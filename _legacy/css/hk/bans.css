@@ -1,0 +1,525 @@
+/* Bans Management Styles */
+:root {
+    --primary: #FF0004;
+    --primary-dark: rgb(153, 8, 11);
+    --success: #3BA55C;
+    --warning: #FAA61A;
+    --danger: #ED4245;
+    --game-primary: #FF0004;
+    --game-secondary: #ff4655;
+    --game-dark: #0f1923;
+    --game-light: #ece8e1;
+    --game-accent: #ff8f3f;
+    --card-bg: #222222;
+    --text-primary: #ffffff;
+    --text-secondary: #b8b8b8;
+    --offline: #747f8d;
+    --border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Hero Banner */
+.bans-hero {
+    background: linear-gradient(135deg, rgba(15,25,35,0.9) 0%, rgba(106,62,231,0.7) 100%);
+    border-radius: 8px;
+    border-bottom: 2px solid var(--primary);
+    position: relative;
+    overflow: hidden;
+    padding: 10px 20px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-icon {
+    font-size: 3.5rem;
+    color: var(--danger);
+    text-shadow: 0 0 15px rgba(237, 66, 69, 0.7);
+}
+
+.bans-hero h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: white;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: rgba(255,255,255,0.8);
+}
+
+/* Table Controls */
+.table-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+.controls-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.controls-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* Filter Buttons */
+.filter-options {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 8px 16px;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.filter-btn:hover {
+    background: rgba(158, 2, 5, 0.2);
+}
+
+.filter-btn.active {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--game-primary) 100%);
+}
+
+/* Search Box */
+.search-box {
+    display: flex;
+    height: 36px;
+    background: rgba(30, 30, 30, 0.8);
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    flex-grow: 1;
+    max-width: 300px;
+}
+
+.search-box i {
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    color: var(--text-secondary);
+}
+
+.search-box input {
+    flex-grow: 1;
+    padding: 0 12px;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+.search-box input:focus {
+    outline: none;
+}
+
+/* Admin Table */
+.admin-table-container {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.admin-table th {
+    text-align: left;
+    padding: 12px 15px;
+    background-color: rgba(0, 0, 0, 0.2);
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+.admin-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.admin-table tr:last-child td {
+    border-bottom: none;
+}
+
+.admin-table tr:hover td {
+    background: rgba(255,255,255,0.03);
+}
+
+/* User Avatar */
+.user-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(158, 2, 5, 0.2);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+/* Status Badges */
+.status-badge {
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    display: inline-block;
+}
+
+.status-active {
+    background: rgba(237, 66, 69, 0.2);
+    color: var(--danger);
+}
+
+.status-expired {
+    background: rgba(250, 166, 26, 0.2);
+    color: var(--warning);
+}
+
+/* Admin Actions */
+.admin-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-admin {
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-edit {
+    background-color: rgba(250, 166, 26, 0.1);
+    color: var(--warning);
+}
+
+.btn-edit:hover {
+    background-color: rgba(250, 166, 26, 0.2);
+}
+
+.btn-ban {
+    background-color: rgba(237, 66, 69, 0.1);
+    color: var(--danger);
+}
+
+.btn-ban:hover {
+    background-color: rgba(237, 66, 69, 0.2);
+}
+
+.btn-unban {
+    background-color: rgba(59, 165, 92, 0.1);
+    color: var(--success);
+}
+
+.btn-unban:hover {
+    background-color: rgba(59, 165, 92, 0.2);
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin-top: 20px;
+}
+
+.pagination-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 4px;
+    background-color: var(--game-primary);
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagination-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.pagination-btn.active {
+    background-color: var(--game-primary);
+    color: white;
+}
+
+.pagination-btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.pagination-ellipsis {
+    padding: 0 10px;
+    color: var(--text-secondary);
+}
+
+/* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.modal-container {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-header {
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+/* Modal Actions */
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color);
+}
+
+.btn-submit {
+    background-color: var(--danger);
+    color: white;
+}
+
+.btn-submit:hover {
+    background-color: rgba(237, 66, 69, 0.8);
+}
+
+.btn-cancel {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.btn-cancel:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .table-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .controls-left, .controls-right {
+        width: 100%;
+    }
+    
+    .controls-right {
+        margin-top: 15px;
+    }
+    
+    .search-box {
+        max-width: 100%;
+    }
+    
+    #addBanBtn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .admin-actions {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+
+/* Error Message Styles */
+/* Enhanced Error Styles */
+.error-message {
+    background-color: rgba(237, 66, 69, 0.1);
+    border-left: 3px solid var(--danger);
+    color: var(--danger);
+    padding: 12px 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: fadeIn 0.3s ease;
+}
+
+.error-message i {
+    font-size: 1.1rem;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Loading State */
+.btn-admin .fa-spinner {
+    margin-right: 8px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Success Message Styles */
+.success-message {
+    color: #3BA55C;
+    background-color: rgba(59, 165, 92, 0.1);
+    padding: 12px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    border-left: 3px solid #3BA55C;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Loading Indicator */
+.loading-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-secondary);
+}
+
+.loading-indicator i {
+    animation: spin 1s linear infinite;
+}
+
+/* Extend Button */
+.btn-extend {
+    background-color: rgba(250, 166, 26, 0.1);
+    color: var(--warning);
+}
+
+.btn-extend:hover {
+    background-color: rgba(250, 166, 26, 0.2);
+}
+
+.status-inactive {
+    background-color: #6c757d;
+    color: white;
+}
+
+.status-permanent {
+    background: rgba(237, 66, 69, 0.2);
+    color: var(--danger);
+}

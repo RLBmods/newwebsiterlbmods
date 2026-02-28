@@ -1,0 +1,580 @@
+        /* CSS will be placed here for full implementation */
+        :root {
+            --game-primary: #FF0004;
+            --game-secondary: #ff4655;
+            --game-dark: #0f1923;
+            --game-light: #ece8e1;
+            --game-accent: #ff8f3f;
+            --game-success: #2ecc71;
+            --game-danger: #e74c3c;
+            --game-warning: #f39c12;
+            --game-info: #3498db;
+        }
+
+        /* Gaming Hero Section */
+        .gaming-hero {
+            background: linear-gradient(135deg, rgba(255, 0, 4, 0.7) 0%, rgba(237, 66, 69, 0.2) 100%);
+            border-radius: 8px;
+            border-bottom: 2px solid var(--game-primary);
+            position: relative;
+            overflow: hidden;
+            padding: 10px 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') center/cover no-repeat;
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        .downloads-hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .downloads-icon {
+            font-size: 3.5rem;
+            color: var(--game-primary);
+            /*margin-bottom: 25px;*/
+            text-shadow: 0 0 15px rgb(0 0 0 / 70%);
+        }
+
+        .gaming-hero h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            color: var(--game-light);
+            text-shadow: 0 0 10px rgba(106,62,231,0.5);
+        }
+
+        .downloads-subtitle {
+            font-size: 1.2rem;
+            color: rgba(236,232,225,0.8);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Gaming Grid Layout */
+        .gaming-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        /* Game Cheat Card Design */
+        .gaming-card {
+            background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .gaming-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(158, 2, 5, 0.2);
+            border-color: rgba(158, 2, 5, 0.2);
+        }
+
+        .card-banner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 15px;
+            z-index: 3;
+        }
+
+        .status-badge {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 10px;
+            border-radius: 4px;
+        }
+
+        .status-badge.undetected {
+            background-color: rgba(46,204,113,0.2);
+            color: var(--game-success);
+            border: 1px solid var(--game-success);
+        }
+
+        .status-badge.risk {
+            background-color: rgba(243, 156, 18, 0.2);
+            color: var(--game-warning);
+            border: 1px solid var(--game-warning);
+        }
+        
+        .status-badge.testing {
+            background-color: rgba(52, 152, 219, 0.2);
+            color: var(--game-info);
+            border: 1px solid var(--game-info);
+        }
+        
+        .status-badge.updating {
+            background-color: rgba(155, 89, 182, 0.2);
+            color: var(--game-accent);
+            border: 1px solid var(--game-accent);
+        }
+        
+        .status-badge.offline {
+            background-color: rgba(231, 76, 60, 0.2);
+            color: var(--game-danger);
+            border: 1px solid var(--game-danger);
+        }
+
+        .status-badge.development {
+            background-color: rgba(41, 128, 185, 0.2);
+            color: #2980b9;
+            border: 1px solid #2980b9;
+        }
+
+        .game-logo {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--game-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: rgba(15,25,35,0.7);
+            padding: 4px 10px;
+            border-radius: 4px;
+        }
+
+        .card-image {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(15,25,35,0.1) 0%, rgba(15,25,35,0.8) 100%);
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .card-header h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--game-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .version-tag {
+            font-size: 0.75rem;
+            background: rgb(47 46 49 / 10%);
+            color: var(--game-primary);
+            padding: 3px 8px;
+            border-radius: 10px;
+            border: 1px solid var(--game-primary);
+        }
+
+        .card-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(158, 2, 5, 0.2);
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.8rem;
+            color: rgba(236,232,225,0.6);
+        }
+
+        .meta-item i {
+            color: var(--game-accent);
+            width: 16px;
+            text-align: center;
+        }
+
+        .card-footer {
+            padding: 0 20px 20px;
+        }
+
+        .download-btn.gaming-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--game-primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .download-btn.gaming-btn:hover {
+            background: rgba(158, 2, 5, 0.2);
+            box-shadow: 0 6px 20px rgba(158, 2, 5, 0.2);
+            border-color: rgba(158, 2, 5, 0.2);
+        }
+
+        .download-btn.gaming-btn:active {
+            transform: scale(0.98);
+        }
+
+        .tutorial-btn.gaming-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--game-primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .tutorial-btn.gaming-btn:hover {
+            background: rgba(158, 2, 5, 0.2);
+            box-shadow: 0 6px 20px rgba(158, 2, 5, 0.2);
+            border-color: rgba(158, 2, 5, 0.2);
+        }
+
+        .tutorial-btn.gaming-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Download Modal Styles */
+        .download-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 25, 35, 0.9);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .download-modal-content {
+            background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);
+            border-radius: 10px;
+            padding: 30px;
+            width: 400px;
+            max-width: 90%;
+            text-align: center;
+            border: 1px solid var(--game-primary);
+            box-shadow: 0 0 30px rgba(106, 62, 231, 0.3);
+        }
+
+        .download-spinner {
+            margin: 0 auto 20px;
+            width: 80px;
+            height: 80px;
+            position: relative;
+        }
+
+        .spinner {
+            width: 100%;
+            height: 100%;
+            border: 5px solid rgba(106, 62, 231, 0.2);
+            border-top-color: var(--game-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .download-status-text {
+            color: var(--game-light);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .download-progress-text {
+            color: rgba(236, 232, 225, 0.7);
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: rgba(106, 62, 231, 0.2);
+            border-radius: 3px;
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(to right, var(--game-primary), #8a2be2);
+            transition: width 0.3s ease;
+        }
+
+        .cancel-download {
+            background: transparent;
+            color: var(--game-light);
+            border: 1px solid var(--game-danger);
+            padding: 8px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cancel-download:hover {
+            background: rgba(231, 76, 60, 0.2);
+        }
+
+        .no-products-message {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        
+        .no-products-message i {
+            font-size: 3rem;
+            color: var(--warning);
+            margin-bottom: 15px;
+        }
+        
+        .no-products-message h3 {
+            margin-bottom: 10px;
+        }
+
+
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .sidebar {
+                width: 70px;
+                overflow: hidden;
+            }
+            
+            .logo-text, .menu-item span {
+                display: none;
+            }
+            
+            .main-content {
+                margin-left: 70px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .gaming-hero {
+                padding: 40px 20px;
+            }
+            
+            .gaming-hero h2 {
+                font-size: 2rem;
+            }
+            
+            .gaming-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .card-image {
+                height: 150px;
+            }
+        }
+
+        /* Animation for cards */
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .gaming-card:hover {
+            animation: cardFloat 3s ease-in-out infinite;
+        }
+
+/* Add to download.css */
+.error-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 25, 35, 0.9);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.error-modal-content {
+    background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);
+    border-radius: 10px;
+    padding: 30px;
+    width: 400px;
+    max-width: 90%;
+    text-align: center;
+    border: 1px solid var(--game-danger);
+    box-shadow: 0 0 30px rgba(231, 76, 60, 0.3);
+}
+
+.error-icon {
+    font-size: 3.5rem;
+    color: var(--game-danger);
+    margin-bottom: 20px;
+}
+
+.error-title {
+    color: var(--game-danger);
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.error-message {
+    color: rgba(236, 232, 225, 0.8);
+    margin-bottom: 25px;
+    font-size: 1rem;
+}
+
+.error-close-btn {
+    background: transparent;
+    color: var(--game-light);
+    border: 1px solid var(--game-danger);
+    padding: 8px 25px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.error-close-btn:hover {
+    background: rgba(231, 76, 60, 0.2);
+}
+
+.error-details {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 5px;
+    border-left: 4px solid #dc3545;
+}
+
+.error-item {
+    margin-bottom: 10px;
+    padding: 8px;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.error-reason, .error-date {
+    margin-bottom: 5px;
+}
+
+.error-reason {
+    color: #dc3545;
+    font-weight: 500;
+}
+
+.view-errors-link {
+    color: #dc3545;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.view-errors-link:hover {
+    color: #c82333;
+}
+
+.download-btn.disabled {
+    background-color: #95a5a6;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.download-btn.disabled:hover {
+    background-color: #95a5a6;
+    transform: none;
+}
+
+[title] {
+    position: relative;
+}
+
+[title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 100;
+    margin-bottom: 5px;
+}
+
+[title]:hover::before {
+    content: "";
+    position: absolute;
+    bottom: calc(100% - 5px);
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+    z-index: 100;
+}

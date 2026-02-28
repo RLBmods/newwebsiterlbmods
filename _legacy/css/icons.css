@@ -1,0 +1,61 @@
+/* Currency Icons */
+.currency-icon {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Fiat Currencies */
+.icon-usd {
+    background-image: url('/icons/usd.svg');
+}
+
+.icon-eur {
+    background-image: url('/icons/eur.svg');
+}
+
+/* Cryptocurrencies */
+.icon-btc {
+    background-image: url('/icons/btc.svg');
+}
+
+.icon-eth {
+    background-image: url('/icons/eth.svg');
+}
+
+.icon-sol {
+    background-image: url('/icons/sol.svg');
+}
+
+.icon-ltc {
+    background-image: url('/icons/ltc.svg');
+}
+
+.icon-usdc {
+    background-image: url('/icons/usdc.svg');
+}
+
+/* Optional size variations */
+.icon-sm {
+    width: 16px;
+    height: 16px;
+}
+
+.icon-md {
+    width: 24px;
+    height: 24px;
+}
+
+.icon-lg {
+    width: 32px;
+    height: 32px;
+}
+
+.icon-xl {
+    width: 48px;
+    height: 48px;
+}

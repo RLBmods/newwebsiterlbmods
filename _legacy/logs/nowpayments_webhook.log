@@ -1,0 +1,983 @@
+[2025-11-14 17:38:17] === NOWPAYMENTS WEBHOOK RECEIVED ===
+--------------------------------------------------
+[2025-11-14 17:38:17] Raw webhook data received
+{
+    "headers": {
+        "Content-Type": "application\/json",
+        "X-NOWPayments-Sig": "34ed91176556f272e431a777bf397324693eea9c4038254055528e982f56c6e9653d1e8c20fdc4eb2635d00069419e8f0f1fb29a7e33fbb1980756a95ca83389",
+        "User-Agent": "NOWPayments v1.0",
+        "Host": "panel.rlbmods.com",
+        "Connection": "close",
+        "Content-Length": "596"
+    },
+    "raw_input": "{\"actually_paid\":0.625,\"actually_paid_at_fiat\":0,\"fee\":{\"currency\":\"ltc\",\"depositFee\":0.0003,\"serviceFee\":0.003124,\"withdrawalFee\":0},\"invoice_id\":null,\"order_description\":\"Balance topup for ronivrolijks@gmail.com\",\"order_id\":\"NP_691254842bf83_1762808964\",\"outcome_amount\":0.6215765,\"outcome_currency\":\"ltc\",\"parent_payment_id\":null,\"pay_address\":\"MTEBSvtSmV62NcwXYF93HPsxCtCMV8yckB\",\"pay_amount\":0.46749921,\"pay_currency\":\"ltc\",\"payin_extra_id\":null,\"payment_extra_ids\":null,\"payment_id\":4903901318,\"payment_status\":\"finished\",\"price_amount\":50,\"price_currency\":\"usd\",\"purchase_id\":\"5712869615\"}",
+    "payload": {
+        "actually_paid": 0.625,
+        "actually_paid_at_fiat": 0,
+        "fee": {
+            "currency": "ltc",
+            "depositFee": 0.0003,
+            "serviceFee": 0.003124,
+            "withdrawalFee": 0
+        },
+        "invoice_id": null,
+        "order_description": "Balance topup for ronivrolijks@gmail.com",
+        "order_id": "NP_691254842bf83_1762808964",
+        "outcome_amount": 0.6215765,
+        "outcome_currency": "ltc",
+        "parent_payment_id": null,
+        "pay_address": "MTEBSvtSmV62NcwXYF93HPsxCtCMV8yckB",
+        "pay_amount": 0.46749921,
+        "pay_currency": "ltc",
+        "payin_extra_id": null,
+        "payment_extra_ids": null,
+        "payment_id": 4903901318,
+        "payment_status": "finished",
+        "price_amount": 50,
+        "price_currency": "usd",
+        "purchase_id": "5712869615"
+    }
+}
+--------------------------------------------------
+[2025-11-14 17:38:17] Processing webhook
+{
+    "payment_id": 4903901318,
+    "order_id": "NP_691254842bf83_1762808964",
+    "payment_status": "finished",
+    "actually_paid": 0.625,
+    "pay_currency": "ltc",
+    "confirmations": 0
+}
+--------------------------------------------------
+[2025-11-14 17:48:09] === NOWPAYMENTS WEBHOOK RECEIVED ===
+--------------------------------------------------
+[2025-11-14 17:48:09] Raw webhook data received
+{
+    "headers": {
+        "Content-Type": "application\/json",
+        "X-NOWPayments-Sig": "34ed91176556f272e431a777bf397324693eea9c4038254055528e982f56c6e9653d1e8c20fdc4eb2635d00069419e8f0f1fb29a7e33fbb1980756a95ca83389",
+        "User-Agent": "NOWPayments v1.0",
+        "Host": "panel.rlbmods.com",
+        "Connection": "close",
+        "Content-Length": "596"
+    },
+    "raw_input": "{\"actually_paid\":0.625,\"actually_paid_at_fiat\":0,\"fee\":{\"currency\":\"ltc\",\"depositFee\":0.0003,\"serviceFee\":0.003124,\"withdrawalFee\":0},\"invoice_id\":null,\"order_description\":\"Balance topup for ronivrolijks@gmail.com\",\"order_id\":\"NP_691254842bf83_1762808964\",\"outcome_amount\":0.6215765,\"outcome_currency\":\"ltc\",\"parent_payment_id\":null,\"pay_address\":\"MTEBSvtSmV62NcwXYF93HPsxCtCMV8yckB\",\"pay_amount\":0.46749921,\"pay_currency\":\"ltc\",\"payin_extra_id\":null,\"payment_extra_ids\":null,\"payment_id\":4903901318,\"payment_status\":\"finished\",\"price_amount\":50,\"price_currency\":\"usd\",\"purchase_id\":\"5712869615\"}",
+    "payload": {
+        "actually_paid": 0.625,
+        "actually_paid_at_fiat": 0,
+        "fee": {
+            "currency": "ltc",
+            "depositFee": 0.0003,
+            "serviceFee": 0.003124,
+            "withdrawalFee": 0
+        },
+        "invoice_id": null,
+        "order_description": "Balance topup for ronivrolijks@gmail.com",
+        "order_id": "NP_691254842bf83_1762808964",
+        "outcome_amount": 0.6215765,
+        "outcome_currency": "ltc",
+        "parent_payment_id": null,
+        "pay_address": "MTEBSvtSmV62NcwXYF93HPsxCtCMV8yckB",
+        "pay_amount": 0.46749921,
+        "pay_currency": "ltc",
+        "payin_extra_id": null,
+        "payment_extra_ids": null,
+        "payment_id": 4903901318,
+        "payment_status": "finished",
+        "price_amount": 50,
+        "price_currency": "usd",
+        "purchase_id": "5712869615"
+    }
+}
+--------------------------------------------------
+[2025-11-14 17:48:09] Processing webhook
+{
+    "payment_id": 4903901318,
+    "order_id": "NP_691254842bf83_1762808964",
+    "payment_status": "finished",
+    "actually_paid": 0.625,
+    "pay_currency": "ltc",
+    "confirmations": 0
+}
+--------------------------------------------------
+[2025-11-14 17:50:33] === NOWPAYMENTS WEBHOOK RECEIVED ===
+--------------------------------------------------
+[2025-11-14 17:50:33] Raw webhook data received
+{
+    "headers": {
+        "Content-Type": "application\/json",
+        "X-NOWPayments-Sig": "34ed91176556f272e431a777bf397324693eea9c4038254055528e982f56c6e9653d1e8c20fdc4eb2635d00069419e8f0f1fb29a7e33fbb1980756a95ca83389",
+        "User-Agent": "NOWPayments v1.0",
+        "Host": "panel.rlbmods.com",
+        "Connection": "close",
+        "Content-Length": "596"
+    },
+    "raw_input": "{\"actually_paid\":0.625,\"actually_paid_at_fiat\":0,\"fee\":{\"currency\":\"ltc\",\"depositFee\":0.0003,\"serviceFee\":0.003124,\"withdrawalFee\":0},\"invoice_id\":null,\"order_description\":\"Balance topup for ronivrolijks@gmail.com\",\"order_id\":\"NP_691254842bf83_1762808964\",\"outcome_amount\":0.6215765,\"outcome_currency\":\"ltc\",\"parent_payment_id\":null,\"pay_address\":\"MTEBSvtSmV62NcwXYF93HPsxCtCMV8yckB\",\"pay_amount\":0.46749921,\"pay_currency\":\"ltc\",\"payin_extra_id\":null,\"payment_extra_ids\":null,\"payment_id\":4903901318,\"payment_status\":\"finished\",\"price_amount\":50,\"price_currency\":\"usd\",\"purchase_id\":\"5712869615\"}",
+    "payload": {
+        "actually_paid": 0.625,
+        "actually_paid_at_fiat": 0,
+        "fee": {
+            "currency": "ltc",
+            "depositFee": 0.0003,
+            "serviceFee": 0.003124,
+            "withdrawalFee": 0
+        },
+        "invoice_id": null,
+        "order_description": "Balance topup for ronivrolijks@gmail.com",
+        "order_id": "NP_691254842bf83_1762808964",
+        "outcome_amount": 0.6215765,
+        "outcome_currency": "ltc",
+        "parent_payment_id": null,
+        "pay_address": "MTEBSvtSmV62NcwXYF93HPsxCtCMV8yckB",
+        "pay_amount": 0.46749921,
+        "pay_currency": "ltc",
+        "payin_extra_id": null,
+        "payment_extra_ids": null,
+        "payment_id": 4903901318,
+        "payment_status": "finished",
+        "price_amount": 50,
+        "price_currency": "usd",
+        "purchase_id": "5712869615"
+    }
+}
+--------------------------------------------------
+[2025-11-14 17:50:33] Processing webhook
+{
+    "payment_id": 4903901318,
+    "order_id": "NP_691254842bf83_1762808964",
+    "payment_status": "finished",
+    "actually_paid": 0.625,
+    "pay_currency": "ltc",
+    "confirmations": 0
+}
+--------------------------------------------------
+[2025-11-14 18:24:57] === NOWPAYMENTS WEBHOOK RECEIVED ===
+--------------------------------------------------
+[2025-11-14 18:24:57] Raw webhook data received
+{
+    "headers": {
+        "Content-Type": "application\/json",
+        "X-NOWPayments-Sig": "34ed91176556f272e431a777bf397324693eea9c4038254055528e982f56c6e9653d1e8c20fdc4eb2635d00069419e8f0f1fb29a7e33fbb1980756a95ca83389",
+        "User-Agent": "NOWPayments v1.0",
+        "Host": "panel.rlbmods.com",
+        "Connection": "close",
+        "Content-Length": "596"
+    },
+    "raw_input": "{\"actually_paid\":0.625,\"actually_paid_at_fiat\":0,\"fee\":{\"currency\":\"ltc\",\"depositFee\":0.0003,\"serviceFee\":0.003124,\"withdrawalFee\":0},\"invoice_id\":null,\"order_description\":\"Balance topup for ronivrolijks@gmail.com\",\"order_id\":\"NP_691254842bf83_1762808964\",\"outcome_amount\":0.6215765,\"outcome_currency\":\"ltc\",\"parent_payment_id\":null,\"pay_address\":\"MTEBSvtSmV62NcwXYF93HPsxCtCMV8yckB\",\"pay_amount\":0.46749921,\"pay_currency\":\"ltc\",\"payin_extra_id\":null,\"payment_extra_ids\":null,\"payment_id\":4903901318,\"payment_status\":\"finished\",\"price_amount\":50,\"price_currency\":\"usd\",\"purchase_id\":\"5712869615\"}",
+    "payload": {
+        "actually_paid": 0.625,
+        "actually_paid_at_fiat": 0,
+        "fee": {
+            "currency": "ltc",
+            "depositFee": 0.0003,
+            "serviceFee": 0.003124,
+            "withdrawalFee": 0
+        },
+        "invoice_id": null,
+        "order_description": "Balance topup for ronivrolijks@gmail.com",
+        "order_id": "NP_691254842bf83_1762808964",
+        "outcome_amount": 0.6215765,
+        "outcome_currency": "ltc",
+        "parent_payment_id": null,
+        "pay_address": "MTEBSvtSmV62NcwXYF93HPsxCtCMV8yckB",
+        "pay_amount": 0.46749921,
+        "pay_currency": "ltc",
+        "payin_extra_id": null,
+        "payment_extra_ids": null,
+        "payment_id": 4903901318,
+        "payment_status": "finished",
+        "price_amount": 50,
+        "price_currency": "usd",
+        "purchase_id": "5712869615"
+    }
+}
+--------------------------------------------------
+[2025-11-14 18:24:57] Processing webhook
+{
+    "payment_id": 4903901318,
+    "order_id": "NP_691254842bf83_1762808964",
+    "payment_status": "finished",
+    "actually_paid": 0.625,
+    "pay_currency": "ltc",
+    "confirmations": 0
+}
+--------------------------------------------------
+[2026-01-31 09:51:50] === NOWPAYMENTS WEBHOOK RECEIVED ===
+--------------------------------------------------
+[2026-01-31 09:51:50] Raw webhook data received
+{
+    "headers": {
+        "Content-Type": "application\/json",
+        "X-NOWPayments-Sig": "21a9b76ad7226ce790eebd7fbf591447d27df287e6875ebd696188f400d9ef7695b67b34c618d9f9ad7e8af08cfe19b1c417ae2cd98484e95f49986cba05bf6f",
+        "User-Agent": "NOWPayments v1.0",
+        "Host": "panel.rlbmods.com",
+        "Connection": "close",
+        "Content-Length": "574"
+    },
+    "raw_input": "{\"actually_paid\":0,\"actually_paid_at_fiat\":0,\"fee\":{\"currency\":\"ltc\",\"depositFee\":0,\"serviceFee\":0,\"withdrawalFee\":0},\"invoice_id\":null,\"order_description\":\"Balance topup for rlbmods@gmail.com\",\"order_id\":\"NP_697dcfc5750d6_1769852869\",\"outcome_amount\":0.1562897,\"outcome_currency\":\"ltc\",\"parent_payment_id\":null,\"pay_address\":\"MRBV2UQzgRoHkroKkGrreW4UD5LtbfpWgD\",\"pay_amount\":0.15737514,\"pay_currency\":\"ltc\",\"payin_extra_id\":null,\"payment_extra_ids\":null,\"payment_id\":4574167884,\"payment_status\":\"waiting\",\"price_amount\":10,\"price_currency\":\"usd\",\"purchase_id\":\"5555587368\"}",
+    "payload": {
+        "actually_paid": 0,
+        "actually_paid_at_fiat": 0,
+        "fee": {
+            "currency": "ltc",
+            "depositFee": 0,
+            "serviceFee": 0,
+            "withdrawalFee": 0
+        },
+        "invoice_id": null,
+        "order_description": "Balance topup for rlbmods@gmail.com",
+        "order_id": "NP_697dcfc5750d6_1769852869",
+        "outcome_amount": 0.1562897,
+        "outcome_currency": "ltc",
+        "parent_payment_id": null,
+        "pay_address": "MRBV2UQzgRoHkroKkGrreW4UD5LtbfpWgD",
+        "pay_amount": 0.15737514,
+        "pay_currency": "ltc",
+        "payin_extra_id": null,
+        "payment_extra_ids": null,
+        "payment_id": 4574167884,
+        "payment_status": "waiting",
+        "price_amount": 10,
+        "price_currency": "usd",
+        "purchase_id": "5555587368"
+    }
+}
+--------------------------------------------------
+[2026-01-31 09:51:50] Processing webhook
+{
+    "payment_id": 4574167884,
+    "order_id": "NP_697dcfc5750d6_1769852869",
+    "payment_status": "waiting",
+    "actually_paid": 0,
+    "pay_currency": "ltc",
+    "confirmations": 0
+}
+--------------------------------------------------
+[2026-01-31 10:00:12] === NOWPAYMENTS WEBHOOK RECEIVED ===
+--------------------------------------------------
+[2026-01-31 10:00:12] Raw webhook data received
+{
+    "headers": {
+        "Content-Type": "application\/json",
+        "X-NOWPayments-Sig": "2a0f71f5c034cde2d4da6bc8e83d17ae93bc676555b06815a7c8e7589187b7a1a57ef68e526ba3e374e4d47b8bed234df35e6ab9459d463a6623d54b4442da03",
+        "User-Agent": "NOWPayments v1.0",
+        "Host": "panel.rlbmods.com",
+        "Connection": "close",
+        "Content-Length": "600"
+    },
+    "raw_input": "{\"actually_paid\":0,\"actually_paid_at_fiat\":0,\"fee\":{\"currency\":\"ltc\",\"depositFee\":0,\"serviceFee\":0,\"withdrawalFee\":0},\"invoice_id\":null,\"order_description\":\"Balance topup for rlbmods@gmail.com\",\"order_id\":\"NP_697dd28bebda4_1769853579\",\"outcome_amount\":0.0153888,\"outcome_currency\":\"ltc\",\"parent_payment_id\":null,\"pay_address\":\"MBVQm3EBNuY2LckkS8i2xHLbhVnuy3EBf3\",\"pay_amount\":0.01576618,\"pay_currency\":\"ltc\",\"payin_extra_id\":null,\"payment_extra_ids\":null,\"payment_id\":5807094610,\"payment_status\":\"waiting\",\"price_amount\":1,\"price_currency\":\"usd\",\"purchase_id\":\"5252833445\",\"updated_at\":1769853609908}",
+    "payload": {
+        "actually_paid": 0,
+        "actually_paid_at_fiat": 0,
+        "fee": {
+            "currency": "ltc",
+            "depositFee": 0,
+            "serviceFee": 0,
+            "withdrawalFee": 0
+        },
+        "invoice_id": null,
+        "order_description": "Balance topup for rlbmods@gmail.com",
+        "order_id": "NP_697dd28bebda4_1769853579",
+        "outcome_amount": 0.0153888,
+        "outcome_currency": "ltc",
+        "parent_payment_id": null,
+        "pay_address": "MBVQm3EBNuY2LckkS8i2xHLbhVnuy3EBf3",
+        "pay_amount": 0.01576618,
+        "pay_currency": "ltc",
+        "payin_extra_id": null,
+        "payment_extra_ids": null,
+        "payment_id": 5807094610,
+        "payment_status": "waiting",
+        "price_amount": 1,
+        "price_currency": "usd",
+        "purchase_id": "5252833445",
+        "updated_at": 1769853609908
+    }
+}
+--------------------------------------------------
+[2026-01-31 10:00:12] Processing webhook
+{
+    "payment_id": 5807094610,
+    "order_id": "NP_697dd28bebda4_1769853579",
+    "payment_status": "waiting",
+    "actually_paid": 0,
+    "pay_currency": "ltc",
+    "confirmations": 0
+}
+--------------------------------------------------
+[2026-01-31 10:11:19] === NOWPAYMENTS WEBHOOK RECEIVED ===
+--------------------------------------------------
+[2026-01-31 10:11:19] Raw webhook data received
+{
+    "headers": {
+        "Content-Type": "application\/json",
+        "X-NOWPayments-Sig": "c9d96477d4ff5086ecc9dfb46efe023466ca1880d94c23aaba85a36e6f0d5dc4ebfd4530fcaf47abd842bc1c4c794f2b673a3ad4bd8eb36c7c96351411ce98f9",
+        "User-Agent": "NOWPayments v1.0",
+        "Host": "panel.rlbmods.com",
+        "Connection": "close",
+        "Content-Length": "616"
+    },
+    "raw_input": "{\"actually_paid\":0.01582028,\"actually_paid_at_fiat\":0,\"fee\":{\"currency\":\"ltc\",\"depositFee\":0.0003,\"serviceFee\":0,\"withdrawalFee\":0},\"invoice_id\":null,\"order_description\":\"Balance topup for rlbmods@gmail.com\",\"order_id\":\"NP_697dd28bebda4_1769853579\",\"outcome_amount\":0.0153888,\"outcome_currency\":\"ltc\",\"parent_payment_id\":null,\"pay_address\":\"MBVQm3EBNuY2LckkS8i2xHLbhVnuy3EBf3\",\"pay_amount\":0.01576618,\"pay_currency\":\"ltc\",\"payin_extra_id\":null,\"payment_extra_ids\":null,\"payment_id\":5807094610,\"payment_status\":\"confirmed\",\"price_amount\":1,\"price_currency\":\"usd\",\"purchase_id\":\"5252833445\",\"updated_at\":1769854278032}",
+    "payload": {
+        "actually_paid": 0.01582028,
+        "actually_paid_at_fiat": 0,
+        "fee": {
+            "currency": "ltc",
+            "depositFee": 0.0003,
+            "serviceFee": 0,
+            "withdrawalFee": 0
+        },
+        "invoice_id": null,
+        "order_description": "Balance topup for rlbmods@gmail.com",
+        "order_id": "NP_697dd28bebda4_1769853579",
+        "outcome_amount": 0.0153888,
+        "outcome_currency": "ltc",
+        "parent_payment_id": null,
+        "pay_address": "MBVQm3EBNuY2LckkS8i2xHLbhVnuy3EBf3",
+        "pay_amount": 0.01576618,
+        "pay_currency": "ltc",
+        "payin_extra_id": null,
+        "payment_extra_ids": null,
+        "payment_id": 5807094610,
+        "payment_status": "confirmed",
+        "price_amount": 1,
+        "price_currency": "usd",
+        "purchase_id": "5252833445",
+        "updated_at": 1769854278032
+    }
+}
+--------------------------------------------------
+[2026-01-31 10:11:19] Processing webhook
+{
+    "payment_id": 5807094610,
+    "order_id": "NP_697dd28bebda4_1769853579",
+    "payment_status": "confirmed",
+    "actually_paid": 0.01582028,
+    "pay_currency": "ltc",
+    "confirmations": 0
+}
+--------------------------------------------------
+[2026-01-31 10:11:32] === NOWPAYMENTS WEBHOOK RECEIVED ===
+--------------------------------------------------
+[2026-01-31 10:11:32] Raw webhook data received
+{
+    "headers": {
+        "Content-Type": "application\/json",
+        "X-NOWPayments-Sig": "567e4a66e9064ff75bd6a04f8879380f2e4b337f4c238f639e96abe22ba7bf039f413b6d365158541aee6bd3e20802c97469d3333b5f684c8d07ae91cb5eaba7",
+        "User-Agent": "NOWPayments v1.0",
+        "Host": "panel.rlbmods.com",
+        "Connection": "close",
+        "Content-Length": "623"
+    },
+    "raw_input": "{\"actually_paid\":0.01582028,\"actually_paid_at_fiat\":0,\"fee\":{\"currency\":\"ltc\",\"depositFee\":0.0003,\"serviceFee\":0.000078,\"withdrawalFee\":0},\"invoice_id\":null,\"order_description\":\"Balance topup for rlbmods@gmail.com\",\"order_id\":\"NP_697dd28bebda4_1769853579\",\"outcome_amount\":0.01544267,\"outcome_currency\":\"ltc\",\"parent_payment_id\":null,\"pay_address\":\"MBVQm3EBNuY2LckkS8i2xHLbhVnuy3EBf3\",\"pay_amount\":0.01576618,\"pay_currency\":\"ltc\",\"payin_extra_id\":null,\"payment_extra_ids\":null,\"payment_id\":5807094610,\"payment_status\":\"finished\",\"price_amount\":1,\"price_currency\":\"usd\",\"purchase_id\":\"5252833445\",\"updated_at\":1769854287919}",
+    "payload": {
+        "actually_paid": 0.01582028,
+        "actually_paid_at_fiat": 0,
+        "fee": {
+            "currency": "ltc",
+            "depositFee": 0.0003,
+            "serviceFee": 7.8e-5,
+            "withdrawalFee": 0
+        },
+        "invoice_id": null,
+        "order_description": "Balance topup for rlbmods@gmail.com",
+        "order_id": "NP_697dd28bebda4_1769853579",
+        "outcome_amount": 0.01544267,
+        "outcome_currency": "ltc",
+        "parent_payment_id": null,
+        "pay_address": "MBVQm3EBNuY2LckkS8i2xHLbhVnuy3EBf3",
+        "pay_amount": 0.01576618,
+        "pay_currency": "ltc",
+        "payin_extra_id": null,
+        "payment_extra_ids": null,
+        "payment_id": 5807094610,
+        "payment_status": "finished",
+        "price_amount": 1,
+        "price_currency": "usd",
+        "purchase_id": "5252833445",
+        "updated_at": 1769854287919
+    }
+}
+--------------------------------------------------
+[2026-01-31 10:11:32] Processing webhook
+{
+    "payment_id": 5807094610,
+    "order_id": "NP_697dd28bebda4_1769853579",
+    "payment_status": "finished",
+    "actually_paid": 0.01582028,
+    "pay_currency": "ltc",
+    "confirmations": 0
+}
+--------------------------------------------------
+[2026-02-01 05:33:16] === NOWPAYMENTS WEBHOOK RECEIVED ===
+--------------------------------------------------
+[2026-02-01 05:33:16] Raw webhook data received
+{
+    "headers": {
+        "Content-Type": "application\/json",
+        "X-NOWPayments-Sig": "7db068b80c6516ab0a702b1b59de9a6a91b8c4e335849049a0fc982f1bb5dcbeae2bc9493edd11c0faa90e3a035559b731c28ed3ef3978f1599c5da72c7270a0",
+        "User-Agent": "NOWPayments v1.0",
+        "Host": "panel.rlbmods.com",
+        "Connection": "close",
+        "Content-Length": "605"
+    },
+    "raw_input": "{\"actually_paid\":0,\"actually_paid_at_fiat\":0,\"fee\":{\"currency\":\"ltc\",\"depositFee\":0,\"serviceFee\":0,\"withdrawalFee\":0},\"invoice_id\":null,\"order_description\":\"Balance topup for 3060valorant@proton.me\",\"order_id\":\"NP_697ee58138fe0_1769923969\",\"outcome_amount\":0.0163511,\"outcome_currency\":\"ltc\",\"parent_payment_id\":null,\"pay_address\":\"MQHeix8yoypraYwFNq93i9bhnnQarsru4q\",\"pay_amount\":0.01673329,\"pay_currency\":\"ltc\",\"payin_extra_id\":null,\"payment_extra_ids\":null,\"payment_id\":5882727282,\"payment_status\":\"waiting\",\"price_amount\":1,\"price_currency\":\"usd\",\"purchase_id\":\"5659920702\",\"updated_at\":1769923995640}",
+    "payload": {
+        "actually_paid": 0,
+        "actually_paid_at_fiat": 0,
+        "fee": {
+            "currency": "ltc",
+            "depositFee": 0,
+            "serviceFee": 0,
+            "withdrawalFee": 0
+        },
+        "invoice_id": null,
+        "order_description": "Balance topup for 3060valorant@proton.me",
+        "order_id": "NP_697ee58138fe0_1769923969",
+        "outcome_amount": 0.0163511,
+        "outcome_currency": "ltc",
+        "parent_payment_id": null,
+        "pay_address": "MQHeix8yoypraYwFNq93i9bhnnQarsru4q",
+        "pay_amount": 0.01673329,
+        "pay_currency": "ltc",
+        "payin_extra_id": null,
+        "payment_extra_ids": null,
+        "payment_id": 5882727282,
+        "payment_status": "waiting",
+        "price_amount": 1,
+        "price_currency": "usd",
+        "purchase_id": "5659920702",
+        "updated_at": 1769923995640
+    }
+}
+--------------------------------------------------
+[2026-02-01 05:33:16] Processing webhook
+{
+    "payment_id": 5882727282,
+    "order_id": "NP_697ee58138fe0_1769923969",
+    "payment_status": "waiting",
+    "actually_paid": 0,
+    "pay_currency": "ltc",
+    "confirmations": 0
+}
+--------------------------------------------------
+[2026-02-01 05:33:44] === NOWPAYMENTS WEBHOOK RECEIVED ===
+--------------------------------------------------
+[2026-02-01 05:33:44] Raw webhook data received
+{
+    "headers": {
+        "Content-Type": "application\/json",
+        "X-NOWPayments-Sig": "b53fcf0359ca1f6ac83003923981ca08d0bdb93a96e860a66ea085e9527122fb5299c188641ec54273bd2686cdc7f9f0bb13c2c1cdf8c208ad0b0dce7a5f1bcd",
+        "User-Agent": "NOWPayments v1.0",
+        "Host": "panel.rlbmods.com",
+        "Connection": "close",
+        "Content-Length": "622"
+    },
+    "raw_input": "{\"actually_paid\":0.01679825,\"actually_paid_at_fiat\":0,\"fee\":{\"currency\":\"ltc\",\"depositFee\":0.0003,\"serviceFee\":0,\"withdrawalFee\":0},\"invoice_id\":null,\"order_description\":\"Balance topup for 3060valorant@proton.me\",\"order_id\":\"NP_697ee58138fe0_1769923969\",\"outcome_amount\":0.0163511,\"outcome_currency\":\"ltc\",\"parent_payment_id\":null,\"pay_address\":\"MQHeix8yoypraYwFNq93i9bhnnQarsru4q\",\"pay_amount\":0.01673329,\"pay_currency\":\"ltc\",\"payin_extra_id\":null,\"payment_extra_ids\":null,\"payment_id\":5882727282,\"payment_status\":\"confirming\",\"price_amount\":1,\"price_currency\":\"usd\",\"purchase_id\":\"5659920702\",\"updated_at\":1769924018732}",
+    "payload": {
+        "actually_paid": 0.01679825,
+        "actually_paid_at_fiat": 0,
+        "fee": {
+            "currency": "ltc",
+            "depositFee": 0.0003,
+            "serviceFee": 0,
+            "withdrawalFee": 0
+        },
+        "invoice_id": null,
+        "order_description": "Balance topup for 3060valorant@proton.me",
+        "order_id": "NP_697ee58138fe0_1769923969",
+        "outcome_amount": 0.0163511,
+        "outcome_currency": "ltc",
+        "parent_payment_id": null,
+        "pay_address": "MQHeix8yoypraYwFNq93i9bhnnQarsru4q",
+        "pay_amount": 0.01673329,
+        "pay_currency": "ltc",
+        "payin_extra_id": null,
+        "payment_extra_ids": null,
+        "payment_id": 5882727282,
+        "payment_status": "confirming",
+        "price_amount": 1,
+        "price_currency": "usd",
+        "purchase_id": "5659920702",
+        "updated_at": 1769924018732
+    }
+}
+--------------------------------------------------
+[2026-02-01 05:33:44] Processing webhook
+{
+    "payment_id": 5882727282,
+    "order_id": "NP_697ee58138fe0_1769923969",
+    "payment_status": "confirming",
+    "actually_paid": 0.01679825,
+    "pay_currency": "ltc",
+    "confirmations": 0
+}
+--------------------------------------------------
+[2026-02-01 05:54:21] === NOWPAYMENTS WEBHOOK RECEIVED ===
+--------------------------------------------------
+[2026-02-01 05:54:21] Raw webhook data received
+{
+    "headers": {
+        "Content-Type": "application\/json",
+        "X-NOWPayments-Sig": "89647bf7ed7274adef40844d65c45cec6b102a5d881caae65eef0aa245c8abf6a34d1c16cf8e455f34b34624838ad65c60a5a34d3970691b3251336fbc4b27a6",
+        "User-Agent": "NOWPayments v1.0",
+        "Host": "panel.rlbmods.com",
+        "Connection": "close",
+        "Content-Length": "621"
+    },
+    "raw_input": "{\"actually_paid\":0.01679825,\"actually_paid_at_fiat\":0,\"fee\":{\"currency\":\"ltc\",\"depositFee\":0.0003,\"serviceFee\":0,\"withdrawalFee\":0},\"invoice_id\":null,\"order_description\":\"Balance topup for 3060valorant@proton.me\",\"order_id\":\"NP_697ee58138fe0_1769923969\",\"outcome_amount\":0.0163511,\"outcome_currency\":\"ltc\",\"parent_payment_id\":null,\"pay_address\":\"MQHeix8yoypraYwFNq93i9bhnnQarsru4q\",\"pay_amount\":0.01673329,\"pay_currency\":\"ltc\",\"payin_extra_id\":null,\"payment_extra_ids\":null,\"payment_id\":5882727282,\"payment_status\":\"confirmed\",\"price_amount\":1,\"price_currency\":\"usd\",\"purchase_id\":\"5659920702\",\"updated_at\":1769925260213}",
+    "payload": {
+        "actually_paid": 0.01679825,
+        "actually_paid_at_fiat": 0,
+        "fee": {
+            "currency": "ltc",
+            "depositFee": 0.0003,
+            "serviceFee": 0,
+            "withdrawalFee": 0
+        },
+        "invoice_id": null,
+        "order_description": "Balance topup for 3060valorant@proton.me",
+        "order_id": "NP_697ee58138fe0_1769923969",
+        "outcome_amount": 0.0163511,
+        "outcome_currency": "ltc",
+        "parent_payment_id": null,
+        "pay_address": "MQHeix8yoypraYwFNq93i9bhnnQarsru4q",
+        "pay_amount": 0.01673329,
+        "pay_currency": "ltc",
+        "payin_extra_id": null,
+        "payment_extra_ids": null,
+        "payment_id": 5882727282,
+        "payment_status": "confirmed",
+        "price_amount": 1,
+        "price_currency": "usd",
+        "purchase_id": "5659920702",
+        "updated_at": 1769925260213
+    }
+}
+--------------------------------------------------
+[2026-02-01 05:54:21] Processing webhook
+{
+    "payment_id": 5882727282,
+    "order_id": "NP_697ee58138fe0_1769923969",
+    "payment_status": "confirmed",
+    "actually_paid": 0.01679825,
+    "pay_currency": "ltc",
+    "confirmations": 0
+}
+--------------------------------------------------
+[2026-02-01 05:54:34] === NOWPAYMENTS WEBHOOK RECEIVED ===
+--------------------------------------------------
+[2026-02-01 05:54:34] Raw webhook data received
+{
+    "headers": {
+        "Content-Type": "application\/json",
+        "X-NOWPayments-Sig": "b19e71f5b817cdac41bdd1ae7858dc16e88024b8e902412de38d4979c93ccbb887e59f0375af6e4f28bf2292e2e1a058eb07320e2cbecf1d5a7e5a25a9e745ac",
+        "User-Agent": "NOWPayments v1.0",
+        "Host": "panel.rlbmods.com",
+        "Connection": "close",
+        "Content-Length": "620"
+    },
+    "raw_input": "{\"actually_paid\":0.01679825,\"actually_paid_at_fiat\":0,\"fee\":{\"currency\":\"ltc\",\"depositFee\":0.0003,\"serviceFee\":0,\"withdrawalFee\":0},\"invoice_id\":null,\"order_description\":\"Balance topup for 3060valorant@proton.me\",\"order_id\":\"NP_697ee58138fe0_1769923969\",\"outcome_amount\":0.01641575,\"outcome_currency\":\"ltc\",\"parent_payment_id\":null,\"pay_address\":\"MQHeix8yoypraYwFNq93i9bhnnQarsru4q\",\"pay_amount\":0.01673329,\"pay_currency\":\"ltc\",\"payin_extra_id\":null,\"payment_extra_ids\":null,\"payment_id\":5882727282,\"payment_status\":\"sending\",\"price_amount\":1,\"price_currency\":\"usd\",\"purchase_id\":\"5659920702\",\"updated_at\":1769925271202}",
+    "payload": {
+        "actually_paid": 0.01679825,
+        "actually_paid_at_fiat": 0,
+        "fee": {
+            "currency": "ltc",
+            "depositFee": 0.0003,
+            "serviceFee": 0,
+            "withdrawalFee": 0
+        },
+        "invoice_id": null,
+        "order_description": "Balance topup for 3060valorant@proton.me",
+        "order_id": "NP_697ee58138fe0_1769923969",
+        "outcome_amount": 0.01641575,
+        "outcome_currency": "ltc",
+        "parent_payment_id": null,
+        "pay_address": "MQHeix8yoypraYwFNq93i9bhnnQarsru4q",
+        "pay_amount": 0.01673329,
+        "pay_currency": "ltc",
+        "payin_extra_id": null,
+        "payment_extra_ids": null,
+        "payment_id": 5882727282,
+        "payment_status": "sending",
+        "price_amount": 1,
+        "price_currency": "usd",
+        "purchase_id": "5659920702",
+        "updated_at": 1769925271202
+    }
+}
+--------------------------------------------------
+[2026-02-01 05:54:34] Processing webhook
+{
+    "payment_id": 5882727282,
+    "order_id": "NP_697ee58138fe0_1769923969",
+    "payment_status": "sending",
+    "actually_paid": 0.01679825,
+    "pay_currency": "ltc",
+    "confirmations": 0
+}
+--------------------------------------------------
+[2026-02-01 05:54:44] === NOWPAYMENTS WEBHOOK RECEIVED ===
+--------------------------------------------------
+[2026-02-01 05:54:44] Raw webhook data received
+{
+    "headers": {
+        "Content-Type": "application\/json",
+        "X-NOWPayments-Sig": "f861564f9bce2c464d5e0a792489bfb713974e695ea6b18379c7764ca7caabeaebba75e81b1c6d891e0e453e93ed1c6ba7eaa9c7d5b72edd605465af605578df",
+        "User-Agent": "NOWPayments v1.0",
+        "Host": "panel.rlbmods.com",
+        "Connection": "close",
+        "Content-Length": "628"
+    },
+    "raw_input": "{\"actually_paid\":0.01679825,\"actually_paid_at_fiat\":0,\"fee\":{\"currency\":\"ltc\",\"depositFee\":0.0003,\"serviceFee\":0.000083,\"withdrawalFee\":0},\"invoice_id\":null,\"order_description\":\"Balance topup for 3060valorant@proton.me\",\"order_id\":\"NP_697ee58138fe0_1769923969\",\"outcome_amount\":0.01641575,\"outcome_currency\":\"ltc\",\"parent_payment_id\":null,\"pay_address\":\"MQHeix8yoypraYwFNq93i9bhnnQarsru4q\",\"pay_amount\":0.01673329,\"pay_currency\":\"ltc\",\"payin_extra_id\":null,\"payment_extra_ids\":null,\"payment_id\":5882727282,\"payment_status\":\"finished\",\"price_amount\":1,\"price_currency\":\"usd\",\"purchase_id\":\"5659920702\",\"updated_at\":1769925281931}",
+    "payload": {
+        "actually_paid": 0.01679825,
+        "actually_paid_at_fiat": 0,
+        "fee": {
+            "currency": "ltc",
+            "depositFee": 0.0003,
+            "serviceFee": 8.3e-5,
+            "withdrawalFee": 0
+        },
+        "invoice_id": null,
+        "order_description": "Balance topup for 3060valorant@proton.me",
+        "order_id": "NP_697ee58138fe0_1769923969",
+        "outcome_amount": 0.01641575,
+        "outcome_currency": "ltc",
+        "parent_payment_id": null,
+        "pay_address": "MQHeix8yoypraYwFNq93i9bhnnQarsru4q",
+        "pay_amount": 0.01673329,
+        "pay_currency": "ltc",
+        "payin_extra_id": null,
+        "payment_extra_ids": null,
+        "payment_id": 5882727282,
+        "payment_status": "finished",
+        "price_amount": 1,
+        "price_currency": "usd",
+        "purchase_id": "5659920702",
+        "updated_at": 1769925281931
+    }
+}
+--------------------------------------------------
+[2026-02-01 05:54:44] Processing webhook
+{
+    "payment_id": 5882727282,
+    "order_id": "NP_697ee58138fe0_1769923969",
+    "payment_status": "finished",
+    "actually_paid": 0.01679825,
+    "pay_currency": "ltc",
+    "confirmations": 0
+}
+--------------------------------------------------
+[2026-02-01 06:51:39] === NOWPAYMENTS WEBHOOK RECEIVED ===
+--------------------------------------------------
+[2026-02-01 06:51:39] Raw webhook data received
+{
+    "headers": {
+        "Content-Type": "application\/json",
+        "X-NOWPayments-Sig": "9b0d4e7d5dbaa7d9c470e40bc146439d9cfa157abfa592fab8d7d1031fd14369d2f38516d47cf68960673654837752dba1607854b4bcf102676cdff121ec9bce",
+        "User-Agent": "NOWPayments v1.0",
+        "Host": "panel.rlbmods.com",
+        "Connection": "close",
+        "Content-Length": "601"
+    },
+    "raw_input": "{\"actually_paid\":0.01679825,\"actually_paid_at_fiat\":0,\"fee\":{\"currency\":\"ltc\",\"depositFee\":0.0003,\"serviceFee\":0.000083,\"withdrawalFee\":0},\"invoice_id\":null,\"order_description\":\"Balance topup for 3060valorant@proton.me\",\"order_id\":\"NP_697ee58138fe0_1769923969\",\"outcome_amount\":0.01641575,\"outcome_currency\":\"ltc\",\"parent_payment_id\":null,\"pay_address\":\"MQHeix8yoypraYwFNq93i9bhnnQarsru4q\",\"pay_amount\":0.01673329,\"pay_currency\":\"ltc\",\"payin_extra_id\":null,\"payment_extra_ids\":null,\"payment_id\":5882727282,\"payment_status\":\"finished\",\"price_amount\":1,\"price_currency\":\"usd\",\"purchase_id\":\"5659920702\"}",
+    "payload": {
+        "actually_paid": 0.01679825,
+        "actually_paid_at_fiat": 0,
+        "fee": {
+            "currency": "ltc",
+            "depositFee": 0.0003,
+            "serviceFee": 8.3e-5,
+            "withdrawalFee": 0
+        },
+        "invoice_id": null,
+        "order_description": "Balance topup for 3060valorant@proton.me",
+        "order_id": "NP_697ee58138fe0_1769923969",
+        "outcome_amount": 0.01641575,
+        "outcome_currency": "ltc",
+        "parent_payment_id": null,
+        "pay_address": "MQHeix8yoypraYwFNq93i9bhnnQarsru4q",
+        "pay_amount": 0.01673329,
+        "pay_currency": "ltc",
+        "payin_extra_id": null,
+        "payment_extra_ids": null,
+        "payment_id": 5882727282,
+        "payment_status": "finished",
+        "price_amount": 1,
+        "price_currency": "usd",
+        "purchase_id": "5659920702"
+    }
+}
+--------------------------------------------------
+[2026-02-01 06:51:39] Processing webhook
+{
+    "payment_id": 5882727282,
+    "order_id": "NP_697ee58138fe0_1769923969",
+    "payment_status": "finished",
+    "actually_paid": 0.01679825,
+    "pay_currency": "ltc",
+    "confirmations": 0
+}
+--------------------------------------------------
+[2026-02-07 09:47:51] === NOWPAYMENTS WEBHOOK RECEIVED ===
+--------------------------------------------------
+[2026-02-07 09:47:51] Raw webhook data received
+{
+    "headers": {
+        "Content-Type": "application\/json",
+        "X-NOWPayments-Sig": "1b7ffd6c9c311466f67d1cbeb6f970788263b5499759949fb981a428fe00107c4174941cf7ccb6cac5753b0d240861c7104dae5adaab318be96548abb4275c7a",
+        "User-Agent": "NOWPayments v1.0",
+        "Host": "panel.rlbmods.com",
+        "Connection": "close",
+        "Content-Length": "654"
+    },
+    "raw_input": "{\"actually_paid\":0,\"actually_paid_at_fiat\":0,\"created_at\":\"2026-01-31T09:47:49.813Z\",\"fee\":{\"currency\":\"ltc\",\"depositFee\":0,\"serviceFee\":0,\"withdrawalFee\":0},\"invoice_id\":null,\"order_description\":\"Balance topup for rlbmods@gmail.com\",\"order_id\":\"NP_697dcfc5750d6_1769852869\",\"outcome_amount\":0.1562897,\"outcome_currency\":\"ltc\",\"parent_payment_id\":null,\"pay_address\":\"MRBV2UQzgRoHkroKkGrreW4UD5LtbfpWgD\",\"pay_amount\":0.15737514,\"pay_currency\":\"ltc\",\"payin_extra_id\":null,\"payment_extra_ids\":null,\"payment_id\":4574167884,\"payment_status\":\"expired\",\"price_amount\":10,\"price_currency\":\"usd\",\"purchase_id\":\"5555587368\",\"updated_at\":\"2026-02-07T09:47:50.223Z\"}",
+    "payload": {
+        "actually_paid": 0,
+        "actually_paid_at_fiat": 0,
+        "created_at": "2026-01-31T09:47:49.813Z",
+        "fee": {
+            "currency": "ltc",
+            "depositFee": 0,
+            "serviceFee": 0,
+            "withdrawalFee": 0
+        },
+        "invoice_id": null,
+        "order_description": "Balance topup for rlbmods@gmail.com",
+        "order_id": "NP_697dcfc5750d6_1769852869",
+        "outcome_amount": 0.1562897,
+        "outcome_currency": "ltc",
+        "parent_payment_id": null,
+        "pay_address": "MRBV2UQzgRoHkroKkGrreW4UD5LtbfpWgD",
+        "pay_amount": 0.15737514,
+        "pay_currency": "ltc",
+        "payin_extra_id": null,
+        "payment_extra_ids": null,
+        "payment_id": 4574167884,
+        "payment_status": "expired",
+        "price_amount": 10,
+        "price_currency": "usd",
+        "purchase_id": "5555587368",
+        "updated_at": "2026-02-07T09:47:50.223Z"
+    }
+}
+--------------------------------------------------
+[2026-02-07 09:47:51] Processing webhook
+{
+    "payment_id": 4574167884,
+    "order_id": "NP_697dcfc5750d6_1769852869",
+    "payment_status": "expired",
+    "actually_paid": 0,
+    "pay_currency": "ltc",
+    "confirmations": 0
+}
+--------------------------------------------------
+[2026-02-08 21:05:46] === NOWPAYMENTS WEBHOOK RECEIVED ===
+--------------------------------------------------
+[2026-02-08 21:05:46] Raw webhook data received
+{
+    "headers": {
+        "Content-Type": "application\/json",
+        "X-NOWPayments-Sig": "f6639009e6d0e7a345251a752959235ca5d951703d86ace1056b84073f913971798edca15785e12c69271baf80dbfbe958e21375f9703e0114814e09fe01a619",
+        "User-Agent": "NOWPayments v1.0",
+        "Host": "panel.rlbmods.com",
+        "Connection": "close",
+        "Content-Length": "600"
+    },
+    "payload": {
+        "actually_paid": 0,
+        "actually_paid_at_fiat": 0,
+        "fee": {
+            "currency": "ltc",
+            "depositFee": 0,
+            "serviceFee": 0,
+            "withdrawalFee": 0
+        },
+        "invoice_id": null,
+        "order_description": "Balance topup for rlbmods@gmail.com",
+        "order_id": "NP_6988fa7d00bc6_1770584701",
+        "outcome_amount": 0.0179172,
+        "outcome_currency": "ltc",
+        "parent_payment_id": null,
+        "pay_address": "M8j7Anv4XXAetMcTWHwbp23oH5LmPQwbJ4",
+        "pay_amount": 0.01830727,
+        "pay_currency": "ltc",
+        "payin_extra_id": null,
+        "payment_extra_ids": null,
+        "payment_id": 6081505993,
+        "payment_status": "waiting",
+        "price_amount": 1,
+        "price_currency": "usd",
+        "purchase_id": "4499053612",
+        "updated_at": 1770584744803
+    }
+}
+--------------------------------------------------
+[2026-02-08 21:05:51] === NOWPAYMENTS WEBHOOK RECEIVED ===
+--------------------------------------------------
+[2026-02-08 21:05:51] Raw webhook data received
+{
+    "headers": {
+        "Content-Type": "application\/json",
+        "X-NOWPayments-Sig": "b40390c79a4529fd70596c142f3554a3dd7a21e52af2d58d2dd64dd77bc395a53824e5a6c4c8572cbe355d5987722d407de19813104a126b3d6c517bd6660aa1",
+        "User-Agent": "NOWPayments v1.0",
+        "Host": "panel.rlbmods.com",
+        "Connection": "close",
+        "Content-Length": "617"
+    },
+    "payload": {
+        "actually_paid": 0.01838573,
+        "actually_paid_at_fiat": 0,
+        "fee": {
+            "currency": "ltc",
+            "depositFee": 0.0003,
+            "serviceFee": 0,
+            "withdrawalFee": 0
+        },
+        "invoice_id": null,
+        "order_description": "Balance topup for rlbmods@gmail.com",
+        "order_id": "NP_6988fa7d00bc6_1770584701",
+        "outcome_amount": 0.0179172,
+        "outcome_currency": "ltc",
+        "parent_payment_id": null,
+        "pay_address": "M8j7Anv4XXAetMcTWHwbp23oH5LmPQwbJ4",
+        "pay_amount": 0.01830727,
+        "pay_currency": "ltc",
+        "payin_extra_id": null,
+        "payment_extra_ids": null,
+        "payment_id": 6081505993,
+        "payment_status": "confirming",
+        "price_amount": 1,
+        "price_currency": "usd",
+        "purchase_id": "4499053612",
+        "updated_at": 1770584750705
+    }
+}
+--------------------------------------------------
+[2026-02-08 21:14:17] === NOWPAYMENTS WEBHOOK RECEIVED ===
+--------------------------------------------------
+[2026-02-08 21:14:17] Raw webhook data received
+{
+    "headers": {
+        "Content-Type": "application\/json",
+        "X-NOWPayments-Sig": "65aefde59c6cab86a8576d283a792e19d16631e67109fb088cbe49e7387c6932076da44b23ddd7d3e0b9e0783dace740bed9cf40862ae7e373baab68c8f783af",
+        "User-Agent": "NOWPayments v1.0",
+        "Host": "panel.rlbmods.com",
+        "Connection": "close",
+        "Content-Length": "616"
+    },
+    "payload": {
+        "actually_paid": 0.01838573,
+        "actually_paid_at_fiat": 0,
+        "fee": {
+            "currency": "ltc",
+            "depositFee": 0.0003,
+            "serviceFee": 0,
+            "withdrawalFee": 0
+        },
+        "invoice_id": null,
+        "order_description": "Balance topup for rlbmods@gmail.com",
+        "order_id": "NP_6988fa7d00bc6_1770584701",
+        "outcome_amount": 0.0179172,
+        "outcome_currency": "ltc",
+        "parent_payment_id": null,
+        "pay_address": "M8j7Anv4XXAetMcTWHwbp23oH5LmPQwbJ4",
+        "pay_amount": 0.01830727,
+        "pay_currency": "ltc",
+        "payin_extra_id": null,
+        "payment_extra_ids": null,
+        "payment_id": 6081505993,
+        "payment_status": "confirmed",
+        "price_amount": 1,
+        "price_currency": "usd",
+        "purchase_id": "4499053612",
+        "updated_at": 1770585250913
+    }
+}
+--------------------------------------------------
+[2026-02-08 21:14:22] === NOWPAYMENTS WEBHOOK RECEIVED ===
+--------------------------------------------------
+[2026-02-08 21:14:22] Raw webhook data received
+{
+    "headers": {
+        "Content-Type": "application\/json",
+        "X-NOWPayments-Sig": "0185bd47da9d21fcc55f451bb786aa0bae7fd852a44b07d5b41bb529cf0f54e937b02e154f51c883ebee83df639cdf07a62624a29bf3d22e618323d4c8e3bddd",
+        "User-Agent": "NOWPayments v1.0",
+        "Host": "panel.rlbmods.com",
+        "Connection": "close",
+        "Content-Length": "622"
+    },
+    "payload": {
+        "actually_paid": 0.01838573,
+        "actually_paid_at_fiat": 0,
+        "fee": {
+            "currency": "ltc",
+            "depositFee": 0.0003,
+            "serviceFee": 9.1e-5,
+            "withdrawalFee": 0
+        },
+        "invoice_id": null,
+        "order_description": "Balance topup for rlbmods@gmail.com",
+        "order_id": "NP_6988fa7d00bc6_1770584701",
+        "outcome_amount": 0.0179953,
+        "outcome_currency": "ltc",
+        "parent_payment_id": null,
+        "pay_address": "M8j7Anv4XXAetMcTWHwbp23oH5LmPQwbJ4",
+        "pay_amount": 0.01830727,
+        "pay_currency": "ltc",
+        "payin_extra_id": null,
+        "payment_extra_ids": null,
+        "payment_id": 6081505993,
+        "payment_status": "finished",
+        "price_amount": 1,
+        "price_currency": "usd",
+        "purchase_id": "4499053612",
+        "updated_at": 1770585260734
+    }
+}
+--------------------------------------------------
+[2026-02-08 21:25:42] === NOWPAYMENTS WEBHOOK RECEIVED ===
+--------------------------------------------------
+[2026-02-08 21:25:51] === NOWPAYMENTS WEBHOOK RECEIVED ===
+--------------------------------------------------
+[2026-02-08 21:26:11] === NOWPAYMENTS WEBHOOK RECEIVED ===
+--------------------------------------------------
+[2026-02-09 05:41:18] === NOWPAYMENTS WEBHOOK RECEIVED ===
+--------------------------------------------------
+[2026-02-09 05:41:41] === NOWPAYMENTS WEBHOOK RECEIVED ===
+--------------------------------------------------
+[2026-02-09 06:05:42] === NOWPAYMENTS WEBHOOK RECEIVED ===
+--------------------------------------------------
+[2026-02-09 06:05:53] === NOWPAYMENTS WEBHOOK RECEIVED ===
+--------------------------------------------------
+[2026-02-09 06:46:48] === NOWPAYMENTS WEBHOOK RECEIVED ===
+--------------------------------------------------
+[2026-02-09 06:46:48] WEBHOOK ERROR: Invalid or empty JSON payload
+--------------------------------------------------
+[2026-02-09 06:47:00] === NOWPAYMENTS WEBHOOK RECEIVED ===
+--------------------------------------------------
+[2026-02-09 06:47:00] WEBHOOK ERROR: Invalid or empty JSON payload
+--------------------------------------------------
+[2026-02-09 06:48:57] === WEBHOOK ATTEMPT START ===
+--------------------------------------------------
+[2026-02-09 06:48:57] WEBHOOK ERROR
+{
+    "msg": "Empty Payload"
+}
+--------------------------------------------------
+[2026-02-09 06:48:59] === WEBHOOK ATTEMPT START ===
+--------------------------------------------------
+[2026-02-09 06:48:59] WEBHOOK ERROR
+{
+    "msg": "Empty Payload"
+}
+--------------------------------------------------
+[2026-02-12 21:59:02] === WEBHOOK ATTEMPT START ===
+--------------------------------------------------
+[2026-02-12 21:59:56] === WEBHOOK ATTEMPT START ===
+--------------------------------------------------
+[2026-02-12 22:10:05] === WEBHOOK ATTEMPT START ===
+--------------------------------------------------
+[2026-02-12 22:10:27] === WEBHOOK ATTEMPT START ===
+--------------------------------------------------

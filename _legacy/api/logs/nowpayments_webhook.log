@@ -1,0 +1,42 @@
+[2026-01-17 09:24:29] === NOWPAYMENTS WEBHOOK RECEIVED ===
+--------------------------------------------------
+[2026-01-17 09:24:29] Raw webhook data received
+{
+    "headers": {
+        "Accept": "text\/html,application\/xhtml+xml,application\/xml;q=0.9,*\/*;q=0.8",
+        "User-Agent": "Mozilla\/5.0 (compatible; Discordbot\/2.0; +https:\/\/discordapp.com)",
+        "Host": "panel.rlbmods.com"
+    },
+    "raw_input": "",
+    "payload": null
+}
+--------------------------------------------------
+[2026-01-17 09:24:29] WEBHOOK ERROR: Empty payload received
+{
+    "trace": "#0 {main}"
+}
+--------------------------------------------------
+[2026-01-17 09:24:41] === NOWPAYMENTS WEBHOOK RECEIVED ===
+--------------------------------------------------
+[2026-01-17 09:24:41] Raw webhook data received
+{
+    "headers": {
+        "Host": "panel.rlbmods.com",
+        "sec-fetch-dest": "document",
+        "User-Agent": "Mozilla\/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit\/605.1.15 (KHTML, like Gecko) Version\/26.2 Mobile\/15E148 Safari\/604.1",
+        "Accept": "text\/html,application\/xhtml+xml,application\/xml;q=0.9,*\/*;q=0.8",
+        "sec-fetch-site": "none",
+        "sec-fetch-mode": "navigate",
+        "Accept-Language": "sv-SE,sv;q=0.9",
+        "priority": "u=0, i",
+        "Accept-Encoding": "gzip, deflate, br"
+    },
+    "raw_input": "",
+    "payload": null
+}
+--------------------------------------------------
+[2026-01-17 09:24:41] WEBHOOK ERROR: Empty payload received
+{
+    "trace": "#0 {main}"
+}
+--------------------------------------------------

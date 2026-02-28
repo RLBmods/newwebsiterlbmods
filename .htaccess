@@ -1,0 +1,43 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Redirect all traffic from root to the /public folder
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+
+    # Prevent directory browsing
+    Options -Indexes
+
+    # Deny access to sensitive files
+    <Files ".env">
+        Order allow,deny
+        Deny from all
+    </Files>
+    
+    <Files "composer.json">
+        Order allow,deny
+        Deny from all
+    </Files>
+
+    <Files "composer.lock">
+        Order allow,deny
+        Deny from all
+    </Files>
+
+    <Files "package.json">
+        Order allow,deny
+        Deny from all
+    </Files>
+
+    # Deny access to sensitive directories
+    RedirectMatch 403 /_legacy/
+    RedirectMatch 403 /app/
+    RedirectMatch 403 /bootstrap/
+    RedirectMatch 403 /config/
+    RedirectMatch 403 /database/
+    RedirectMatch 403 /resources/
+    RedirectMatch 403 /routes/
+    RedirectMatch 403 /storage/
+    RedirectMatch 403 /tests/
+    RedirectMatch 403 /vendor/
+</IfModule>

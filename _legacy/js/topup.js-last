@@ -1,0 +1,1286 @@
+/**
+ * TopUp System - Enhanced Version
+ * Features:
+ * - Centralized state management
+ * - Optimized API calls with caching
+ * - Smooth animations between steps
+ * - Better error handling
+ * - Improved code organization
+ * - Four-step modal flow (Amount → Payment → Summary → Processing)
+ * - Promo code validation and discount application
+ */
+
+class TopUpSystem {
+  constructor() {
+      // DOM Elements
+      this.dom = {
+          transactionsList: document.getElementById('transactionsList'),
+          pagination: document.getElementById('pagination'),
+          btnRefresh: document.querySelector('.btn-refresh'),
+          addFundsModal: document.getElementById('addFundsModal'),
+          btnAddFunds: document.querySelector('.btn-add-funds'),
+          modalClose: document.querySelector('.modal-close'),
+          modalSteps: document.querySelectorAll('.modal-step'),
+          btnContinue: document.querySelectorAll('.btn-continue'),
+          btnBack: document.querySelectorAll('.btn-back'),
+          amountOptions: document.querySelectorAll('.amount-option'),
+          customAmountInput: document.getElementById('customAmount'),
+          paymentMethods: document.querySelectorAll('.payment-method'),
+          btnConfirm: document.querySelector('.btn-confirm-payment'),
+          btnCopy: document.querySelectorAll('.btn-copy'),
+          balanceAmount: document.querySelector('.balance-amount'),
+          applyPromo: document.getElementById('applyPromo'),
+          promoCode: document.getElementById('promoCode'),
+          promoMessage: document.getElementById('promoMessage')
+      };
+
+              // Debug missing elements
+              Object.entries(this.dom).forEach(([name, element]) => {
+                if (!element) console.warn(`Element not found: ${name}`);
+            });
+
+      // State
+      this.state = {
+          currentPage: 1,
+          transactionsPerPage: 7,
+          selectedAmount: 0,
+          selectedMethod: '',
+          currentOrderId: '',
+          paymentCheckInterval: null,
+          countdownInterval: null,
+          countdownTime: 15 * 60, // 15 minutes
+          isProcessingPayment: false,
+          transactionCache: null,
+          lastRefresh: null,
+          promoCode: null,
+          discount: 0
+      };
+
+      // Constants
+      this.constants = {
+          refreshInterval: 30000, // 30 seconds
+          cacheTTL: 60000, // 1 minute
+          pendingCheckInterval: 60000 // 1 minute
+      };
+
+      // Initialize
+      this.init();
+  }
+
+  // Initialize the application
+  init() {
+      this.setupEventListeners();
+      this.loadTransactionHistory();
+      this.checkOldPendingPayments();
+      
+      // Set up periodic checks
+      setInterval(() => this.checkOldPendingPayments(), this.constants.pendingCheckInterval);
+      
+      // Clean up on page unload
+      window.addEventListener('beforeunload', () => this.cleanupIntervals());
+  }
+
+  // Set up all event listeners
+  setupEventListeners() {
+      const { dom } = this;
+      
+      // Add Funds Modal
+      dom.btnAddFunds.addEventListener('click', () => this.openModal());
+      dom.modalClose.addEventListener('click', () => this.closeModal());
+      dom.addFundsModal.addEventListener('click', (e) => {
+          if (e.target === dom.addFundsModal) this.closeModal();
+      });
+
+      // Amount Selection
+      dom.amountOptions.forEach(option => {
+          option.addEventListener('click', () => {
+              if (option.classList.contains('custom-amount-option')) return;
+              
+              dom.amountOptions.forEach(opt => opt.classList.remove('active'));
+              option.classList.add('active');
+              dom.customAmountInput.value = '';
+              this.state.selectedAmount = parseFloat(option.getAttribute('data-amount'));
+          });
+      });
+
+      // Custom Amount Input
+      dom.customAmountInput.addEventListener('focus', () => {
+          dom.amountOptions.forEach(opt => opt.classList.remove('active'));
+          dom.customAmountInput.closest('.amount-option').classList.add('active');
+      });
+
+      dom.customAmountInput.addEventListener('input', () => {
+          this.state.selectedAmount = parseFloat(dom.customAmountInput.value) || 0;
+      });
+
+      document.querySelector('.custom-amount-option').addEventListener('click', (e) => {
+          if (e.target === e.currentTarget) {
+              dom.customAmountInput.focus();
+          }
+      });
+
+      // Payment Method Selection
+      dom.paymentMethods.forEach(method => {
+          method.addEventListener('click', () => {
+              dom.paymentMethods.forEach(m => m.classList.remove('active'));
+              method.classList.add('active');
+              this.state.selectedMethod = method.getAttribute('data-method');
+          });
+      });
+
+      // Step Navigation
+      dom.btnContinue.forEach(btn => {
+          btn.addEventListener('click', () => {
+              const nextStep = btn.getAttribute('data-next');
+              if (this.validateStep(nextStep)) this.goToStep(nextStep);
+          });
+      });
+      
+      dom.btnBack.forEach(btn => {
+          btn.addEventListener('click', () => {
+              const prevStep = btn.getAttribute('data-prev');
+              this.goToStep(prevStep);
+          });
+      });
+
+      // Transaction History Actions
+      dom.btnRefresh.addEventListener('click', () => this.refreshTransactions());
+
+      // Confirm Payment
+      if (dom.btnConfirm) {
+          dom.btnConfirm.addEventListener('click', () => this.processPayment());
+      }
+
+      // Copy Crypto Address
+      dom.btnCopy.forEach(btn => {
+          btn.addEventListener('click', () => this.copyCryptoAddress(btn));
+      });
+      
+      // Promo Code Validation
+      if (dom.applyPromo) {
+          dom.applyPromo.addEventListener('click', () => this.applyPromoCode());
+      }
+  }
+
+  // Clean up intervals
+  cleanupIntervals() {
+      clearInterval(this.state.paymentCheckInterval);
+      clearInterval(this.state.countdownInterval);
+  }
+
+  // Load transaction history from API
+  async loadTransactionHistory(page = 1) {
+      // Check cache first
+      if (this.state.transactionCache && 
+          this.state.currentPage === page && 
+          Date.now() - this.state.lastRefresh < this.constants.cacheTTL) {
+          return;
+      }
+
+      this.dom.transactionsList.innerHTML = `
+          <div class="transaction-loading">
+              <i class="fas fa-spinner fa-spin"></i> Loading transactions...
+          </div>
+      `;
+      
+      try {
+          const response = await fetch(`/api/topup/history.php?page=${page}`);
+          if (!response.ok) throw new Error('Network response was not ok');
+          
+          const data = await response.json();
+          
+          if (data.success) {
+              this.state.transactionCache = data;
+              this.state.currentPage = page;
+              this.state.lastRefresh = Date.now();
+              this.displayTransactions(data.transactions);
+              this.setupPagination(data.total, data.pages, page);
+          } else {
+              throw new Error(data.error || 'Failed to load transaction history');
+          }
+      } catch (error) {
+          this.showError('Error loading transaction history: ' + error.message);
+          this.dom.transactionsList.innerHTML = `
+              <div class="transaction-error">
+                  <i class="fas fa-exclamation-circle"></i> Error loading transactions
+              </div>
+          `;
+      }
+  }
+
+  // Display transactions
+  displayTransactions(transactions) {
+      this.dom.transactionsList.innerHTML = '';
+      
+      if (transactions.length === 0) {
+          this.dom.transactionsList.classList.add('empty');
+          this.dom.transactionsList.innerHTML = '<div>No transactions found</div>';
+      } else {
+          this.dom.transactionsList.classList.remove('empty');
+          transactions.forEach(transaction => {
+              this.dom.transactionsList.appendChild(this.createTransactionElement(transaction));
+          });
+      }
+      
+      // Fill empty space if less than transactionsPerPage
+      const remainingSpace = this.state.transactionsPerPage - transactions.length;
+      for (let i = 0; i < remainingSpace; i++) {
+          const emptyEl = document.createElement('div');
+          emptyEl.className = 'transaction empty-transaction';
+          emptyEl.style.visibility = 'hidden';
+          emptyEl.innerHTML = '<div></div><div></div><div></div><div></div><div></div>';
+          this.dom.transactionsList.appendChild(emptyEl);
+      }
+  }
+
+  // Create transaction element
+  createTransactionElement(transaction) {
+    const transactionEl = document.createElement('div');
+    transactionEl.className = 'transaction';
+    transactionEl.dataset.id = transaction.id; // Store transaction ID
+    transactionEl.style.cursor = 'pointer'; // Show pointer cursor on hover
+    
+    const iconClass = transaction.status === 'completed' ? 'success' : 
+                     transaction.status === 'pending' ? 'pending' : 'failed';
+    
+    // Determine icon based on payment method
+    let icon = 'fas fa-question-circle';
+    if (transaction.payment_method.includes('paypal')) icon = 'fab fa-paypal';
+    else if (transaction.payment_method.includes('card')) icon = 'far fa-credit-card';
+    else if (transaction.payment_method.includes('btc')) icon = 'fab fa-bitcoin';
+    else if (transaction.payment_method.includes('eth')) icon = 'fab fa-ethereum';
+    else if (transaction.payment_method.includes('ltc')) icon = 'fas fa-coins';
+    
+    // Format date
+    const date = new Date(transaction.created_at);
+    const formattedDate = date.toLocaleDateString('en-US', { 
+        year: 'numeric', 
+        month: 'short', 
+        day: 'numeric'
+    });
+    
+    transactionEl.innerHTML = `
+        <div class="transaction-icon ${iconClass}">
+            <i class="${icon}"></i>
+        </div>
+        <div class="transaction-amount positive">
+            +$${parseFloat(transaction.amount).toFixed(2)}
+        </div>
+        <div class="transaction-method">
+            <div class="method-icon">
+                <i class="${icon}"></i>
+            </div>
+            <span>${this.formatPaymentMethod(transaction.payment_method)}</span>
+        </div>
+        <div class="transaction-status status-${transaction.status}">
+            ${transaction.status.charAt(0).toUpperCase() + transaction.status.slice(1)}
+        </div>
+        <div class="transaction-date">
+            ${formattedDate}
+        </div>
+    `;
+    
+    // Add click event to show details modal
+    transactionEl.addEventListener('click', () => {
+        this.showTransactionDetails(transaction.id);
+    });
+    
+    return transactionEl;
+} catch (error) {
+  console.error('Error creating transaction element:', error, transaction);
+  const errorEl = document.createElement('div');
+  errorEl.className = 'transaction-error';
+  errorEl.textContent = 'Error displaying transaction';
+  return errorEl;
+}
+  // Format payment method for display
+  formatPaymentMethod(method) {
+      const methodMap = {
+          'paypal': 'PayPal',
+          'btc': 'Bitcoin',
+          'eth': 'Ethereum',
+          'ltc': 'Litecoin',
+          'sol': 'Solana',
+          'crypto': 'Cryptocurrency'
+      };
+      
+      return methodMap[method] || method.charAt(0).toUpperCase() + method.slice(1);
+  }
+
+
+  async showTransactionDetails(transactionId) {
+    try {
+        // Show loading state
+        const modalBody = document.getElementById('transactionDetails');
+        modalBody.innerHTML = `
+            <div class="loading-transaction">
+                <i class="fas fa-spinner fa-spin"></i> Loading transaction details...
+            </div>
+        `;
+        
+        // Show modal
+        document.getElementById('transactionModal').classList.add('active');
+        
+        // Fetch transaction details
+        const response = await fetch(`/api/topup/transaction_details.php?id=${transactionId}`);
+        if (!response.ok) throw new Error('Network response was not ok');
+        
+        const data = await response.json();
+        
+        if (data.success) {
+            this.displayTransactionDetails(data.transaction);
+        } else {
+            throw new Error(data.error || 'Failed to load transaction details');
+        }
+    } catch (error) {
+        modalBody.innerHTML = `
+            <div class="transaction-error">
+                <i class="fas fa-exclamation-circle"></i> Error loading transaction: ${error.message}
+            </div>
+        `;
+    }
+}
+
+displayTransactionDetails(transaction) {
+    const modalBody = document.getElementById('transactionDetails');
+    
+    // Format dates
+    const createdDate = new Date(transaction.created_at);
+    const updatedDate = new Date(transaction.updated_at);
+    
+    const formattedCreated = createdDate.toLocaleString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    });
+    
+    const formattedUpdated = updatedDate.toLocaleString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    });
+    
+    // Determine status badge class
+    const statusClass = transaction.status === 'completed' ? 'success' :
+                       transaction.status === 'pending' ? 'warning' : 'danger';
+    
+    modalBody.innerHTML = `
+        <div class="transaction-header">
+            <h4>Transaction Details</h4>
+            <span class="transaction-id">#${transaction.id}</span>
+        </div>
+        
+        <div class="transaction-summary">
+            <div class="summary-row">
+                <span>Amount:</span>
+                <span class="amount">$${parseFloat(transaction.amount).toFixed(2)}</span>
+            </div>
+            <div class="summary-row">
+                <span>Status:</span>
+                <span class="status-badge ${statusClass}">
+                    ${transaction.status.charAt(0).toUpperCase() + transaction.status.slice(1)}
+                </span>
+            </div>
+            <div class="summary-row">
+                <span>Payment Method:</span>
+                <span>${this.formatPaymentMethod(transaction.payment_method)}</span>
+            </div>
+        </div>
+        
+        <div class="transaction-timestamps">
+            <div class="timestamp">
+                <span class="label">Created:</span>
+                <span class="value">${formattedCreated}</span>
+            </div>
+            <div class="timestamp">
+                <span class="label">Updated:</span>
+                <span class="value">${formattedUpdated}</span>
+            </div>
+        </div>
+        
+        ${transaction.delivered_item ? `
+        <div class="transaction-delivery">
+            <h5>Delivery Details</h5>
+            <div class="delivery-content">
+                ${transaction.delivered_item}
+            </div>
+        </div>
+        ` : ''}
+        
+        <div class="transaction-actions">
+            <button class="btn-close-modal">Close</button>
+        </div>
+    `;
+    
+    // Add close button event
+    modalBody.querySelector('.btn-close-modal').addEventListener('click', () => {
+        document.getElementById('transactionModal').classList.remove('active');
+    });
+}
+
+async checkLocalPaymentStatus(orderId) {
+    try {
+        const response = await fetch(`/api/topup/status.php?order_id=${orderId}&source=local`);
+        if (!response.ok) return { success: false };
+        return await response.json();
+    } catch (error) {
+        return { success: false };
+    }
+}
+
+  // Check for old pending payments
+  async checkOldPendingPayments() {
+      if (this.state.isCheckingPayments) return;
+      this.state.isCheckingPayments = true;
+      
+      try {
+          const response = await fetch('/api/topup/get_pending_payments.php');
+          if (!response.ok) throw new Error('Network response was not ok');
+          
+          const data = await response.json();
+          
+          if (data.success && data.pending_payments.length > 0) {
+              // Check each pending payment
+              for (const payment of data.pending_payments) {
+                  // Only check payments older than 1 minute to avoid API overload
+                  const paymentDate = new Date(payment.created_at);
+                  const now = new Date();
+                  const minutesOld = (now - paymentDate) / (1000 * 60);
+                  
+                  if (minutesOld > 1) {
+                      await this.checkSinglePaymentStatus(payment.order_id);
+                  }
+              }
+          }
+      } catch (error) {
+          console.error('Error checking pending payments:', error);
+      } finally {
+          this.state.isCheckingPayments = false;
+      }
+  }
+
+  // Check status of a single payment
+  async checkSinglePaymentStatus(orderId) {
+    try {
+        // First try the main status endpoint
+        let statusUrl = `/api/topup/status.php?order_id=${orderId}`;
+        
+        // Determine which API to use based on payment method
+        if (this.state.selectedMethod === 'card') {
+            statusUrl += `&gateway=paytabs`;
+        } else {
+            statusUrl += `&source=sellsn`;
+        }
+
+        const response = await fetch(statusUrl);
+        
+        // Check if response is HTML (error page)
+        const text = await response.text();
+        if (text.startsWith('<!DOCTYPE html>') || text.startsWith('<')) {
+            throw new Error('Server returned HTML instead of JSON');
+        }
+        
+        // Try to parse as JSON
+        const data = JSON.parse(text);
+        
+        if (data.success) {
+            if (data.status === 'completed' || data.status === 'failed' || data.status === 'expired') {
+                // Update transaction in database
+                await this.updatePaymentStatus(orderId, data.status, data.current_balance);
+                
+                // Update UI if this is the current order
+                if (orderId === this.state.currentOrderId) {
+                    this.updatePaymentUI(data.status, data.current_balance);
+                }
+                return true;
+            }
+            return false;
+        } else {
+            throw new Error(data.error || 'Failed to check payment status');
+        }
+    } catch (error) {
+        console.error('Error checking payment status:', error);
+        // Fall back to local check
+        return await this.checkLocalPaymentStatus(orderId);
+    }
+}
+
+  // Update payment UI based on status
+  updatePaymentUI(status, balance) {
+      const statusIndicators = document.querySelectorAll('.payment-status .status-indicator');
+      
+      if (status === 'completed') {
+          statusIndicators.forEach(el => {
+              if (el) {
+                  el.className = 'status-indicator success';
+                  el.innerHTML = '<i class="fas fa-check-circle"></i> <span>Payment completed!</span>';
+              }
+          });
+          
+          this.updateUserBalance(balance);
+          this.loadTransactionHistory();
+          this.stopPaymentStatusCheck();
+          this.stopCountdown();
+          
+          this.showPaymentSuccessModal({
+              amount: this.state.selectedAmount,
+              current_balance: balance,
+              order_id: this.state.currentOrderId,
+              payment_method: this.state.selectedMethod
+          });
+      } else if (status === 'failed' || status === 'expired') {
+          statusIndicators.forEach(el => {
+              if (el) {
+                  el.className = 'status-indicator failed';
+                  el.innerHTML = `<i class="fas fa-times-circle"></i> <span>Payment ${status}</span>`;
+              }
+          });
+          
+          this.stopPaymentStatusCheck();
+          this.stopCountdown();
+      }
+  }
+
+  // Update payment status in database
+  async updatePaymentStatus(orderId, status, currentBalance) {
+      try {
+          const response = await fetch('/api/topup/update_payment_status.php', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                  order_id: orderId,
+                  status: status,
+                  current_balance: currentBalance
+              })
+          });
+          
+          const data = await response.json();
+          
+          if (data.success) {
+              // Refresh transactions if we're on the transactions page
+              if (window.location.pathname.includes('transactions')) {
+                  this.loadTransactionHistory(this.state.currentPage);
+              }
+              // Update balance display if needed
+              if (currentBalance && this.dom.balanceAmount) {
+                  this.updateUserBalance(currentBalance);
+              }
+          }
+      } catch (error) {
+          console.error('Error updating payment status:', error);
+      }
+  }
+
+  
+
+  // Setup pagination
+  setupPagination(total, totalPages, currentPage) {
+      this.dom.pagination.innerHTML = '';
+      
+      if (totalPages <= 1) return;
+      
+      // Previous button
+      const prevBtn = document.createElement('button');
+      prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+      prevBtn.className = 'pagination-btn';
+      prevBtn.disabled = currentPage === 1;
+      prevBtn.addEventListener('click', () => {
+          this.loadTransactionHistory(currentPage - 1);
+      });
+      this.dom.pagination.appendChild(prevBtn);
+      
+      // Always show first page
+      if (currentPage > 2) {
+          const firstPage = document.createElement('button');
+          firstPage.textContent = '1';
+          firstPage.className = 'pagination-btn';
+          firstPage.addEventListener('click', () => this.loadTransactionHistory(1));
+          this.dom.pagination.appendChild(firstPage);
+          
+          if (currentPage > 3) {
+              const ellipsis = document.createElement('span');
+              ellipsis.textContent = '...';
+              ellipsis.className = 'pagination-ellipsis';
+              this.dom.pagination.appendChild(ellipsis);
+          }
+      }
+      
+      // Show pages around current page
+      const startPage = Math.max(1, currentPage - 1);
+      const endPage = Math.min(totalPages, currentPage + 1);
+      
+      for (let i = startPage; i <= endPage; i++) {
+          const pageBtn = document.createElement('button');
+          pageBtn.textContent = i;
+          pageBtn.className = `pagination-btn ${i === currentPage ? 'active' : ''}`;
+          pageBtn.addEventListener('click', () => this.loadTransactionHistory(i));
+          this.dom.pagination.appendChild(pageBtn);
+      }
+      
+      // Always show last page
+      if (currentPage < totalPages - 1) {
+          if (currentPage < totalPages - 2) {
+              const ellipsis = document.createElement('span');
+              ellipsis.textContent = '...';
+              ellipsis.className = 'pagination-ellipsis';
+              this.dom.pagination.appendChild(ellipsis);
+          }
+          
+          const lastPage = document.createElement('button');
+          lastPage.textContent = totalPages;
+          lastPage.className = 'pagination-btn';
+          lastPage.addEventListener('click', () => this.loadTransactionHistory(totalPages));
+          this.dom.pagination.appendChild(lastPage);
+      }
+      
+      // Next button
+      const nextBtn = document.createElement('button');
+      nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+      nextBtn.className = 'pagination-btn';
+      nextBtn.disabled = currentPage === totalPages;
+      nextBtn.addEventListener('click', () => {
+          this.loadTransactionHistory(currentPage + 1);
+      });
+      this.dom.pagination.appendChild(nextBtn);
+  }
+
+  // Modal Functions
+  openModal() {
+      this.dom.addFundsModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      this.resetModal();
+  }
+
+  closeModal() {
+      this.dom.addFundsModal.classList.remove('active');
+      document.body.style.overflow = '';
+      this.stopPaymentStatusCheck();
+      this.stopCountdown();
+  }
+
+  resetModal() {
+      this.goToStep(1);
+      this.dom.amountOptions.forEach(opt => opt.classList.remove('active'));
+      this.dom.customAmountInput.value = '';
+      this.dom.paymentMethods.forEach(m => m.classList.remove('active'));
+      document.querySelectorAll('.payment-form').forEach(form => form.style.display = 'none');
+      
+      // Reset promo state
+      this.state.promoCode = null;
+      this.state.discount = 0;
+      this.dom.promoCode.value = '';
+      this.showPromoMessage('', '');
+      document.querySelector('.discount-row').style.display = 'none';
+      
+      // Initialize first payment method as active
+      if (this.dom.paymentMethods.length > 0) {
+          this.dom.paymentMethods[0].classList.add('active');
+          this.state.selectedMethod = this.dom.paymentMethods[0].getAttribute('data-method');
+      }
+      
+      // Initialize first amount option as active
+      if (this.dom.amountOptions.length >= 3) {
+          this.dom.amountOptions[2].classList.add('active');
+          this.state.selectedAmount = parseFloat(this.dom.amountOptions[2].getAttribute('data-amount'));
+      }
+  }
+
+  goToStep(step) {
+      // Animate step transition
+      const currentActive = document.querySelector('.modal-step.active');
+      if (currentActive) {
+          currentActive.style.opacity = '0';
+          currentActive.style.transform = 'translateY(10px)';
+          setTimeout(() => {
+              currentActive.classList.remove('active');
+              this.showStep(step);
+              
+              // Update order summary when moving to step 3
+              if (step === "3") {
+                  this.updateOrderSummary();
+              }
+          }, 200);
+      } else {
+          this.showStep(step);
+      }
+  }
+
+  showStep(step) {
+      const stepElement = document.querySelector(`.modal-step[data-step="${step}"]`);
+      stepElement.classList.add('active');
+      setTimeout(() => {
+          stepElement.style.opacity = '1';
+          stepElement.style.transform = 'translateY(0)';
+      }, 10);
+  }
+
+  // Validation Functions
+  validateStep(nextStep) {
+      if (nextStep == "2" && !this.validateAmount()) return false;
+      if (nextStep == "3" && !this.validatePaymentMethod()) return false;
+      return true;
+  }
+
+  validateAmount() {
+      const selectedAmountEl = document.querySelector('.amount-option.active');
+      
+      if (!selectedAmountEl) {
+          this.showError('Please select or enter an amount');
+          return false;
+      }
+      
+      if (selectedAmountEl.classList.contains('custom-amount-option')) {
+          const amount = parseFloat(this.dom.customAmountInput.value);
+          if (isNaN(amount)) {
+              this.showError('Please enter a valid amount');
+              return false;
+          }
+          if (amount < 1 || amount > 1000) {
+              this.showError('Amount must be between $1 and $1000');
+              return false;
+          }
+      }
+      
+      return true;
+  }
+
+  validatePaymentMethod() {
+      const selectedMethodEl = document.querySelector('.payment-method.active');
+      if (!selectedMethodEl) {
+          this.showError('Please select a payment method');
+          return false;
+      }
+      return true;
+  }
+
+  
+  // Process payment
+// Process payment
+async processPayment() {
+    if (this.state.isProcessingPayment) return;
+    
+    if (!this.validateAmount() || !this.validatePaymentMethod()) return;
+    
+    this.state.isProcessingPayment = true;
+    this.dom.btnConfirm.disabled = true;
+    this.dom.btnConfirm.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+    
+    const paymentData = {
+        amount: this.state.selectedAmount,
+        quantity: Math.floor(this.state.selectedAmount),
+        paymentMethod: this.state.selectedMethod,
+        promoCode: (this.state.promoCode && this.state.promoCode.code) || null
+    };
+    
+    try {
+        const response = await fetch('/api/topup/create.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(paymentData)
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        
+        if (data.success) {
+            this.state.currentOrderId = data.data.order_id;
+            
+            // Store additional payment data if available
+            if (data.data.transaction_id) {
+                this.state.transactionId = data.data.transaction_id;
+            }
+            if (data.data.gateway) {
+                this.state.paymentGateway = data.data.gateway;
+            }
+            
+            this.goToStep("4");
+
+            // Hide all payment forms first
+            document.querySelectorAll('.payment-form').forEach(form => {
+                form.style.display = 'none';
+            });
+            
+            // Get the correct payment form based on selected method
+            const paymentForm = document.getElementById(`${this.state.selectedMethod}-form`);
+            if (!paymentForm) {
+                throw new Error(`Payment form not found for method: ${this.state.selectedMethod}`);
+            }
+            
+            paymentForm.style.display = 'block';
+            
+            // Enhanced card payment handling
+            if (this.state.selectedMethod === 'card') {
+                const btnProceedCard = paymentForm.querySelector('.btn-proceed-card');
+                if (btnProceedCard) {
+                    // Clear any existing listeners to prevent duplicates
+                    btnProceedCard.replaceWith(btnProceedCard.cloneNode(true));
+                    const newBtn = paymentForm.querySelector('.btn-proceed-card');
+                    
+                    newBtn.addEventListener('click', () => {
+                        // Add loading state to the button
+                        newBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Redirecting...';
+                        newBtn.disabled = true;
+                        
+                        // Initiate payment with additional error handling
+                        try {
+                            this.initiateCardPayment(data.data.payment_url);
+                        } catch (error) {
+                            this.showError('Failed to open payment window: ' + error.message);
+                            newBtn.innerHTML = 'Proceed to Payment';
+                            newBtn.disabled = false;
+                        }
+                    });
+                }
+                
+                // Update any card-specific UI elements
+                const cardInstructions = paymentForm.querySelector('.card-instructions');
+                if (cardInstructions) {
+                    cardInstructions.innerHTML = `
+                        <p>You'll be redirected to our secure payment page to complete your transaction.</p>
+                        ${data.data.instructions ? `<p class="card-note">${data.data.instructions}</p>` : ''}
+                    `;
+                }
+            }
+
+            // Update amount display in all relevant places
+            const amountElements = paymentForm.querySelectorAll('.amount-value');
+            amountElements.forEach(el => {
+                el.textContent = `$${this.state.selectedAmount.toFixed(2)}`;
+            });
+            
+            // Handle crypto-specific updates
+            if (['btc', 'eth', 'ltc'].includes(this.state.selectedMethod)) {
+                const cryptoAmountEl = paymentForm.querySelector('.crypto-amount');
+                const cryptoAddressEl = paymentForm.querySelector('.crypto-address');
+                
+                if (cryptoAmountEl) {
+                    cryptoAmountEl.textContent = `${data.data.payment_amount} ${data.data.payment_currency}`;
+                }
+                if (cryptoAddressEl) {
+                    cryptoAddressEl.textContent = data.data.payment_address;
+                }
+                
+                // Update the "Send the exact amount of X USD to:" text
+                const usdAmountText = paymentForm.querySelector('.crypto-usd-amount');
+                if (usdAmountText) {
+                    usdAmountText.textContent = `${this.state.selectedAmount.toFixed(2)} USD`;
+                }
+            }
+            
+            // Update status indicator with more detailed information
+            const statusIndicator = paymentForm.querySelector('.status-indicator');
+            if (statusIndicator) {
+                statusIndicator.className = 'status-indicator pending';
+                statusIndicator.innerHTML = `
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <div class="status-details">
+                        <span>Waiting for payment...</span>
+                        <small>Order ID: ${this.state.currentOrderId}</small>
+                    </div>
+                `;
+            }
+            
+            // Start monitoring with appropriate intervals
+            this.startCountdown();
+            
+            // For card payments, check more frequently initially
+            const checkInterval = this.state.selectedMethod === 'card' ? 5000 : 30000;
+            this.startPaymentStatusCheck(this.state.currentOrderId, checkInterval);
+            
+        } else {
+            // Enhanced error handling for API errors
+            let errorMessage = data.error || 'Payment processing failed';
+            if (data.data && data.data.gateway_error) {
+                errorMessage += ` (Gateway: ${data.data.gateway_error})`;
+            }
+            throw new Error(errorMessage);
+        }
+    } catch (error) {
+        console.error('Payment processing error:', error);
+        
+        // More user-friendly error messages
+        let userMessage = 'Error processing payment';
+        if (error.message.includes('Failed to fetch')) {
+            userMessage = 'Network error - please check your connection';
+        } else if (error.message.includes('Gateway')) {
+            userMessage = 'Payment service temporarily unavailable';
+        } else {
+            userMessage = error.message;
+        }
+        
+        this.showError(userMessage);
+    } finally {
+        this.state.isProcessingPayment = false;
+        this.dom.btnConfirm.disabled = false;
+        this.dom.btnConfirm.textContent = 'Confirm Payment';
+    }
+}
+
+// Add this with other payment methods
+initiateCardPayment(paymentUrl) {
+    // Show processing overlay
+    const overlay = document.getElementById('processingOverlay');
+    if (overlay) {
+        overlay.style.display = 'flex';
+        overlay.innerHTML = `
+            <div class="processing-content">
+                <div class="spinner"></div>
+                <h2>Redirecting to Secure Payment</h2>
+                <p>Please wait while we redirect you to our payment partner...</p>
+                <p class="small">If you're not redirected automatically, <a href="${paymentUrl}" target="_blank">click here</a></p>
+            </div>
+        `;
+    }
+    
+    try {
+        // Open payment window with specific features
+        const paymentWindow = window.open(
+            paymentUrl, 
+            'paymentWindow',
+            'width=600,height=700,scrollbars=yes,resizable=yes'
+        );
+        
+        if (!paymentWindow) {
+            throw new Error('Popup was blocked. Please allow popups for this site.');
+        }
+        
+        // Store reference to the payment window
+        this.state.paymentWindow = paymentWindow;
+        
+        // Start checking if window is closed
+        this.state.paymentCheckInterval = setInterval(() => {
+            if (this.state.paymentWindow.closed) {
+                clearInterval(this.state.paymentCheckInterval);
+                if (overlay) overlay.style.display = 'none';
+                this.checkPaymentStatus(this.state.currentOrderId);
+            }
+        }, 1000);
+        
+        // Also check payment status periodically in case window doesn't close properly
+        this.state.paymentStatusInterval = setInterval(() => {
+            this.checkPaymentStatus(this.state.currentOrderId);
+        }, 5000);
+        
+    } catch (error) {
+        if (overlay) overlay.style.display = 'none';
+        throw error;
+    }
+}
+
+  // Update payment summary
+  updatePaymentSummary(amount, method) {
+      const methodNames = {
+          'btc': 'Bitcoin',
+          'eth': 'Ethereum', 
+          'ltc': 'Litecoin',
+          'sol': 'Solana',
+          'paypal': 'PayPal'
+      };
+      
+      const amountEl = paymentForm.querySelector('.amount-value');
+      const methodEl = document.querySelector('.method-value');
+      const totalEl = document.querySelector('.total-value');
+      
+      if (amountEl) amountEl.textContent = `$${this.state.selectedAmount.toFixed(2)}`;
+      if (methodEl) methodEl.textContent = methodNames[method] || method;
+      if (totalEl) totalEl.textContent = `$${(amount - this.state.discount).toFixed(2)}`;
+  }
+  
+  // Update order summary display
+  updateOrderSummary() {
+      const amountValue = document.querySelector('.amount-value');
+      const methodValue = document.querySelector('.method-value');
+      const discountValue = document.querySelector('.discount-value');
+      const totalValue = document.querySelector('.total-value');
+      const discountRow = document.querySelector('.discount-row');
+      
+      if (amountValue) amountValue.textContent = `$${this.state.selectedAmount.toFixed(2)}`;
+      if (methodValue) methodValue.textContent = this.formatPaymentMethod(this.state.selectedMethod);
+      
+      const total = this.state.selectedAmount - this.state.discount;
+      
+      if (discountValue) discountValue.textContent = `-$${this.state.discount.toFixed(2)}`;
+      if (totalValue) totalValue.textContent = `$${total.toFixed(2)}`;
+      
+      if (discountRow) {
+          discountRow.style.display = this.state.discount > 0 ? 'flex' : 'none';
+      }
+  }
+
+  // Apply promo code
+  async applyPromoCode() {
+      const promoCode = this.dom.promoCode.value.trim();
+      if (!promoCode) {
+          this.showPromoMessage('Please enter a promo code', 'error');
+          return;
+      }
+      
+      try {
+          const response = await fetch('/api/topup/validate_promo.php', {
+              method: 'POST',
+              headers: {'Content-Type': 'application/json'},
+              body: JSON.stringify({ 
+                  promo_code: promoCode,
+                  amount: this.state.selectedAmount
+              })
+          });
+          
+          const data = await response.json();
+          if (data.success) {
+              this.state.promoCode = data.promo;
+              this.state.discount = data.promo.discount;
+              this.updateOrderSummary();
+              this.showPromoMessage(data.message, 'success');
+          } else {
+              throw new Error(data.error || 'Invalid promo code');
+          }
+      } catch (error) {
+          this.showPromoMessage(error.message, 'error');
+      }
+  }
+  
+  // Show promo validation messages
+  showPromoMessage(message, type) {
+      if (this.dom.promoMessage) {
+          this.dom.promoMessage.textContent = message;
+          this.dom.promoMessage.className = `promo-message ${type}`;
+      }
+  }
+
+  // Start countdown timer
+  startCountdown() {
+      this.state.countdownTime = 15 * 60; // Reset to 15 minutes
+      this.updateCountdownDisplay();
+      
+      this.stopCountdown();
+      this.state.countdownInterval = setInterval(() => {
+          this.state.countdownTime--;
+          this.updateCountdownDisplay();
+          
+          if (this.state.countdownTime <= 0) {
+              this.stopCountdown();
+              this.showError('Payment time has expired. Please start over.');
+          }
+      }, 1000);
+  }
+  
+  // Update countdown display
+  updateCountdownDisplay() {
+      const minutes = Math.floor(this.state.countdownTime / 60);
+      const seconds = this.state.countdownTime % 60;
+      document.querySelectorAll('.time-remaining').forEach(el => {
+          if (el) el.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+      });
+  }
+  
+  // Stop countdown timer
+  stopCountdown() {
+      if (this.state.countdownInterval) {
+          clearInterval(this.state.countdownInterval);
+          this.state.countdownInterval = null;
+      }
+  }
+
+  // Start checking payment status
+  startPaymentStatusCheck(orderId) {
+      // First check immediately
+      this.checkPaymentStatus(orderId);
+      
+      // Then set up interval to check every 30 seconds
+      this.state.paymentCheckInterval = setInterval(() => {
+          this.checkPaymentStatus(orderId);
+      }, 30000);
+  }
+
+  // Stop checking payment status
+  stopPaymentStatusCheck() {
+      if (this.state.paymentCheckInterval) {
+          clearInterval(this.state.paymentCheckInterval);
+          this.state.paymentCheckInterval = null;
+      }
+  }
+
+  // Check payment status with API
+  async checkPaymentStatus(orderId) {
+    try {
+        const response = await fetch(`/api/topup/status.php?order_id=${orderId}`);
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
+        const data = await response.json();
+        
+        if (data.success) {
+            // Update all payment status indicators
+            const statusIndicators = document.querySelectorAll('.payment-status .status-indicator');
+            
+            if (data.status === 'completed') {
+                statusIndicators.forEach(el => {
+                    if (el) {
+                        el.className = 'status-indicator success';
+                        el.innerHTML = '<i class="fas fa-check-circle"></i> <span>Payment completed!</span>';
+                    }
+                });
+                
+                // Make sure we have all required data before showing success modal
+                if (data.amount && data.current_balance) {
+                    this.updateUserBalance(data.current_balance);
+                    this.loadTransactionHistory();
+                    this.stopPaymentStatusCheck();
+                    this.stopCountdown();
+                    
+                    // Show success modal with all required data
+                    this.showPaymentSuccessModal({
+                        amount: parseFloat(data.amount),
+                        current_balance: parseFloat(data.current_balance),
+                        order_id: orderId,
+                        payment_method: this.state.selectedMethod
+                    });
+                } else {
+                    console.error('Missing required data in payment status response:', data);
+                }
+            } else if (data.status === 'failed' || data.status === 'expired') {
+                statusIndicators.forEach(el => {
+                    if (el) {
+                        el.className = 'status-indicator failed';
+                        el.innerHTML = `<i class="fas fa-times-circle"></i> <span>Payment ${data.status}</span>`;
+                    }
+                });
+                
+                this.stopPaymentStatusCheck();
+                this.stopCountdown();
+            }
+        } else {
+            throw new Error(data.error || 'Error checking payment status');
+        }
+    } catch (error) {
+        console.error('Error checking payment status:', error);
+        // Don't throw error here to prevent uncaught promise rejection
+    }
+}
+
+  // Show payment success modal
+  showPaymentSuccessModal(data) {
+    // Ensure we have all required data
+    if (!data || typeof data.amount === 'undefined' || typeof data.current_balance === 'undefined') {
+        console.error('Invalid data passed to showPaymentSuccessModal:', data);
+        return;
+    }
+
+    const amount = parseFloat(data.amount || 0).toFixed(2);
+    const balance = parseFloat(data.current_balance || 0).toFixed(2);
+    const orderId = data.order_id || 'N/A';
+    const method = data.payment_method || 'Unknown';
+
+    const successModal = document.createElement('div');
+    successModal.className = 'payment-success-modal';
+    successModal.innerHTML = `
+        <div class="modal-overlay active">
+            <div class="modal-container success">
+                <div class="modal-header">
+                    <h3>Payment Successful</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h4>$${amount} has been added to your balance</h4>
+                    <p>Your new balance is $${balance}</p>
+                    
+                    <div class="transaction-details">
+                        <div class="detail-row">
+                            <span>Order ID:</span>
+                            <span>${orderId}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Payment Method:</span>
+                            <span>${this.formatPaymentMethod(method)}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Status:</span>
+                            <span class="status-completed">Completed</span>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-close-success">Close</button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(successModal);
+    
+    // Close modal handler
+    successModal.querySelector('.btn-close-success').addEventListener('click', () => {
+        document.body.removeChild(successModal);
+        this.closeModal();
+    });
+}
+  
+  // Update user balance display
+  updateUserBalance(balance) {
+      if (this.dom.balanceAmount) {
+          const formattedBalance = isNaN(balance) ? '0.00' : parseFloat(balance).toFixed(2);
+          this.dom.balanceAmount.textContent = `$${formattedBalance}`;
+      }
+  }
+
+  // Refresh transactions
+  refreshTransactions() {
+      this.dom.btnRefresh.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+      this.state.transactionCache = null; // Force refresh
+      this.loadTransactionHistory(this.state.currentPage);
+      setTimeout(() => {
+          this.dom.btnRefresh.innerHTML = '<i class="fas fa-sync-alt"></i>';
+      }, 1000);
+  }
+
+  // Copy crypto address to clipboard
+  copyCryptoAddress(btn) {
+      const parent = btn.parentElement;
+      const codeElement = parent ? parent.querySelector('code') : null;
+      const cryptoAddress = codeElement ? codeElement.textContent : '';
+      
+      if (!cryptoAddress) return;
+      
+      navigator.clipboard.writeText(cryptoAddress).then(() => {
+          const originalText = btn.innerHTML;
+          btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+          
+          setTimeout(() => {
+              btn.innerHTML = originalText;
+          }, 2000);
+      }).catch(err => {
+          console.error('Failed to copy address:', err);
+      });
+  }
+
+  // Show error message
+  showError(message) {
+      const errorEl = document.createElement('div');
+      errorEl.className = 'error-message';
+      errorEl.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${message}`;
+      
+      // Remove any existing error messages
+      document.querySelectorAll('.error-message').forEach(el => el.remove());
+      
+      // Add to modal body
+      const modalBody = document.querySelector('.modal-body');
+      if (modalBody) modalBody.prepend(errorEl);
+      
+      // Auto-remove after 5 seconds
+      setTimeout(() => {
+          errorEl.remove();
+      }, 5000);
+  }
+}
+
+// Initialize the application when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  new TopUpSystem();
+});

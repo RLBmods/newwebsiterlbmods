@@ -1,0 +1,25 @@
+[2025-11-14 19:06:39] Starting member to customer role update cron job
+[2025-11-14 19:06:39] Cron job error: Unknown column 'username' in 'SELECT'
+[2025-11-14 19:07:15] Starting member to customer role update cron job
+[2025-11-14 19:07:15] Found 11 users with product access but member role
+[2025-11-14 19:07:15] Role updated: User ZeroGravity (ID: 210, Email: ronivrolijks@gmail.com) from member to customer - Product access: Apex Legends
+[2025-11-14 19:07:15] Role updated: User T1nka1337 (ID: 779, Email: bastijaeger06@gmail.com) from member to customer - Product access: Valorant full
+[2025-11-14 19:07:15] Role updated: User VapeBar (ID: 1849, Email: liamtivey200@gmail.com) from member to customer - Product access: B06
+[2025-11-14 19:07:15] Role updated: User levilol (ID: 1872, Email: miamiogs@gmail.com) from member to customer - Product access: Valorant full
+[2025-11-14 19:07:15] Role updated: User Diesjiem020 (ID: 1876, Email: jason.jas020@outlook.com) from member to customer - Product access: Fortnite
+[2025-11-14 19:07:15] Role updated: User mlbwozfuhwit (ID: 1886, Email: warrenlayton11@gmail.com) from member to customer - Product access: Fortnite, Temp Spoofer
+[2025-11-14 19:07:15] Role updated: User onlyfanscrxy (ID: 1890, Email: harveystevens109@outlook.com) from member to customer - Product access: Fortnite, Temp Spoofer
+[2025-11-14 19:07:15] Role updated: User Kevinisborec (ID: 1903, Email: tomastran05@gmail.com) from member to customer - Product access: Fortnite
+[2025-11-14 19:07:15] Role updated: User ladisrupt (ID: 1905, Email: gabcool1010@gmail.com) from member to customer - Product access: Fortnite
+[2025-11-14 19:07:15] Role updated: User jelleri (ID: 1911, Email: parsaparsa123@gmail.com) from member to customer - Product access: Fortnite
+[2025-11-14 19:07:15] Role updated: User kawajoker (ID: 1919, Email: fomitsevm@gmail.com) from member to customer - Product access: Fortnite
+[2025-11-14 19:07:15] Cron job completed: Updated 11 out of 11 users from member to customer
+[2025-11-14 19:07:15] Cron job finished
+[2025-11-14 19:11:26] Starting member to customer role update cron job
+[2025-11-14 19:11:26] Found 0 users with product access but member role
+[2025-11-14 19:11:26] Cron job completed: Updated 0 out of 0 users from member to customer
+[2025-11-14 19:11:26] Cron job finished
+[2025-11-14 19:11:27] Starting member to customer role update cron job
+[2025-11-14 19:11:27] Found 0 users with product access but member role
+[2025-11-14 19:11:27] Cron job completed: Updated 0 out of 0 users from member to customer
+[2025-11-14 19:11:27] Cron job finished

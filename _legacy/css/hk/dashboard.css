@@ -1,0 +1,803 @@
+/* admin-dashboard.css - Admin specific styles */
+
+/* HK Banner */
+.hk-hero {
+    background: linear-gradient(135deg, rgba(255, 0, 4, 0.7) 0%, rgba(237, 66, 69, 0.2) 100%);
+    border-radius: 12px;
+    padding: 40px;
+    margin-bottom: 30px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hk-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.banner-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hk-icon {
+    font-size: 3rem;
+    color: var(--game-primary);
+    margin-bottom: 20px;
+    text-shadow: 0 0 15px rgb(0 0 0 / 70%);
+}
+
+.hk-hero h1 {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+
+.hk-subtitle {
+    color: rgba(255,255,255,0.8);
+    font-size: 1.1rem;
+}
+
+/* Admin Header */
+.admin-header {
+    background: linear-gradient(135deg, rgba(15,25,35,0.9) 0%, rgba(106,62,231,0.7) 100%);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.admin-header .admin-badge {
+    background-color: rgba(237, 66, 69, 0.2);
+    color: var(--danger);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Admin Stats Grid */
+.admin-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.admin-stat-card {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.admin-stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+}
+
+.admin-stat-card h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.stat-change {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9rem;
+}
+
+.stat-change.positive {
+    color: var(--success);
+}
+
+.stat-change.negative {
+    color: var(--danger);
+}
+
+/* Admin Tables */
+.admin-table-container {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.admin-table-header {
+    padding: 15px 20px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-table-header h2 {
+    margin: 0;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-table th {
+    text-align: left;
+    padding: 12px 15px;
+    background-color: rgba(0, 0, 0, 0.2);
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+.admin-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.admin-table tr:last-child td {
+    border-bottom: none;
+}
+
+.user-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgba(158, 2, 5, 0.2);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.status-active {
+    background-color: rgba(59, 165, 92, 0.1);
+    color: var(--success);
+}
+
+.status-expired {
+    background-color: rgba(237, 66, 69, 0.1);
+    color: var(--danger);
+}
+
+.status-pending {
+    background-color: rgba(250, 166, 26, 0.1);
+    color: var(--warning);
+}
+
+/* Admin Actions */
+.admin-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-admin {
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-edit {
+    background-color: rgba(59, 165, 92, 0.1);
+    color: var(--success);
+}
+
+.btn-edit:hover {
+    background-color: rgba(59, 165, 92, 0.2);
+}
+
+.btn-delete {
+    background-color: rgba(237, 66, 69, 0.1);
+    color: var(--danger);
+}
+
+.btn-delete:hover {
+    background-color: rgba(237, 66, 69, 0.2);
+}
+
+.btn-ban {
+    background-color: rgba(250, 166, 26, 0.1);
+    color: var(--warning);
+}
+
+.btn-ban:hover {
+    background-color: rgba(250, 166, 26, 0.2);
+}
+
+/* Quick Actions */
+.quick-actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.quick-action-card {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.quick-action-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.quick-action-icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: var(--primary);
+}
+
+.quick-action-card h3 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+
+/* at this point do not fucking know what am doing */
+/* User Management & Activity Logs Specific Styles */
+
+/* Filter Section */
+.filter-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.filter-options {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 8px 16px;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.filter-btn:hover {
+    background: linear-gradient(135deg, rgba(158, 2, 5, 0.2) 0%, rgba(158, 2, 5, 0.45) 100%);
+}
+
+.filter-btn.active {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--game-primary) 100%);
+}
+
+.filter-controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.filter-select, .filter-date {
+    padding: 8px 12px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin-top: 20px;
+}
+
+.pagination-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 4px;
+    background-color: var(--game-primary);
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagination-btn:hover {
+    background: linear-gradient(135deg, rgba(158, 2, 5, 0.2) 0%, rgba(158, 2, 5, 0.45) 100%);
+    transform: translateY(-3px);
+}
+
+.pagination-btn.active {
+    background: linear-gradient(135deg, rgba(158, 2, 5, 0.2) 0%, rgba(158, 2, 5, 0.45) 100%);
+    transform: translateY(-3px);
+    color: white;
+}
+
+.pagination-btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: var(--game-primary);
+}
+
+.pagination-ellipsis {
+    padding: 0 10px;
+    color: var(--text-secondary);
+}
+
+/* Log Entry Types */
+.log-admin {
+    border-left: 4px solid var(--danger);
+}
+
+.log-user {
+    border-left: 4px solid var(--primary);
+}
+
+.log-system {
+    border-left: 4px solid var(--warning);
+}
+
+.log-security {
+    border-left: 4px solid var(--success);
+}
+
+/* Log Details Modal */
+.log-detail-row {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.log-detail-row.full-width {
+    flex-direction: column;
+}
+
+.log-detail-label {
+    font-weight: 600;
+    color: var(--text-secondary);
+    min-width: 120px;
+}
+
+.log-detail-value {
+    flex: 1;
+    word-break: break-word;
+}
+
+.modal-footer {
+    padding: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Table Controls */
+.table-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+.controls-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.controls-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* Adjust existing search box for this context */
+.table-controls .search-box {
+    margin-left: 0;
+    max-width: 200px;
+}
+
+/* Filter select styles */
+.filter-select {
+    padding: 8px 12px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    height: 36px;
+}
+
+/* Add User button */
+#addUserBtn {
+    height: 36px;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+/* Search Box */
+.search-box {
+    display: flex;
+    height: 36px;
+    background: rgba(30, 30, 30, 0.8);
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    flex-grow: 1;
+    max-width: 300px;
+    margin-left: auto;
+}
+
+.search-box i {
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    color: var(--text-secondary);
+}
+
+.search-box input {
+    flex-grow: 1;
+    padding: 0 12px;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+.search-box input:focus {
+    outline: none;
+}
+
+/* Modal Overlay Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.modal-container {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: modalFadeIn 0.3s ease;
+}
+
+.modal-header {
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+/* Form Styles */
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+}
+
+.form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Checkbox Group */
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.checkbox-label input {
+    margin: 0;
+}
+
+/* Modal Actions */
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-submit {
+    background-color: var(--success);
+    color: white;
+}
+
+.btn-submit:hover {
+    background-color: rgba(59, 165, 92, 0.8);
+}
+
+.btn-cancel {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.btn-cancel:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Admin Actions Buttons */
+.admin-actions {
+    display: flex;
+    /*justify-content: center;*/
+    gap: 5px;
+}
+
+.btn-admin {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.btn-view {
+    color: #FF0004;
+}
+
+.btn-view:hover {
+    background: rgba(158, 2, 5, 0.2);
+}
+
+.btn-view i {
+    font-size: 16px;
+}
+
+/* Animations */
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .table-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .controls-left, .controls-right {
+        width: 100%;
+    }
+    
+    .controls-right {
+        margin-top: 15px;
+    }
+    
+    .table-controls .search-box {
+        max-width: 100%;
+        flex: 1;
+    }
+    
+    .filter-select {
+        flex: 1;
+    }
+    
+    #addUserBtn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .filter-options {
+        justify-content: center;
+    }
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .admin-stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .admin-table th, 
+    .admin-table td {
+        padding: 8px 10px;
+    }
+    
+    .quick-actions {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .quick-actions {
+        grid-template-columns: 1fr;
+    }
+    
+    .admin-actions {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+
+.role-badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.role-customer {
+    background-color: rgba(59, 165, 92, 0.1);
+    color: var(--success);
+}
+
+.role-member {
+    background-color: rgba(59, 165, 92, 0.1);
+    color: var(--success);
+}
+
+.role-reseller {
+    background-color: rgba(59, 165, 92, 0.1);
+    color: var(--success);
+}
+
+.role-media {
+    background-color: rgba(59, 165, 92, 0.1);
+    color: var(--success);
+}
+
+.role-support {
+    background-color: rgba(59, 165, 92, 0.1);
+    color: var(--success);
+}
+
+.role-developer {
+    background-color: rgba(59, 165, 92, 0.1);
+    color: var(--success);
+}
+
+.role-manager {
+    background-color: rgba(59, 165, 92, 0.1);
+    color: var(--success);
+}
+
+.role-founder {
+    background-color: rgba(59, 165, 92, 0.1);
+    color: var(--success);
+}

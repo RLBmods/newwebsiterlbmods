@@ -1,0 +1,727 @@
+/* Media Portal - Redesigned Styles */
+:root {
+    --primary: #FF0004;
+    --primary-dark: #ff4655;
+    --success: #3BA55C;
+    --warning: #FAA61A;
+    --danger: #ED4245;
+    --game-primary: #FF0004;
+    --game-secondary: #ff4655;
+    --game-dark: #0f1923;
+    --game-light: #ece8e1;
+    --game-accent: #ff8f3f;
+    --card-bg: #222222;
+    --text-primary: #ffffff;
+    --text-secondary: #b8b8b8;
+    --offline: #747f8d;
+}
+
+/* Hero Banner Section */
+.media-hero {
+    background: linear-gradient(135deg, rgba(255, 0, 4, 0.7) 0%, rgba(237, 66, 69, 0.2) 100%);
+    border-radius: 8px;
+    border-bottom: 2px solid var(--primary);
+    position: relative;
+    overflow: hidden;
+    padding: 10px 20px;
+    /*margin-bottom: 30px;*/
+    text-align: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /*background: url('https://images.unsplash.com/photo-1558008258-3256797b43f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1631&q=80') center/cover no-repeat;*/
+    opacity: 0.15;
+    z-index: 0;
+}
+
+.media-hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.media-icon {
+    font-size: 3.5rem;
+    color: var(--game-primary);
+    /*margin-bottom: 25px;*/
+    text-shadow: 0 0 15px rgb(0 0 0 / 70%);
+}
+
+.media-hero h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    color: var(--game-light);
+    text-shadow: 0 0 10px rgba(106,62,231,0.5);
+    font-family: 'Oxanium', sans-serif;
+}
+
+.media-subtitle {
+    font-size: 1.2rem;
+    color: rgba(236,232,225,0.8);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Portal Cards */
+.media-portal {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    /*padding: 20px;*/
+    margin-top: 30px;
+}
+
+@media (min-width: 992px) {
+    .media-portal {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+    
+    .portal-card.large-card {
+        grid-column: span 2;
+    }
+}
+
+.portal-card {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    padding: 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border: 1px solid rgba(255,255,255,0.05);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+/*.portal-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(106,62,231,0.2);
+    border-color: rgba(106,62,231,0.6);
+}*/
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Increased from previous value */
+    padding: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.card-header i {
+    font-size: 1.2rem;
+    color: var(--primary);
+    margin-right: 8px; /* Added for consistent spacing */
+}
+
+.card-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: var(--text-primary);
+}
+
+/* Stream Controls */
+.live-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: rgba(0,0,0,0.1);
+}
+
+.stream-status {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Ensures space between indicator and text */
+    font-size: 0.95rem;
+}
+
+.stream-status i {
+    margin-right: 8px; /* For any icons in status */
+}
+
+.status-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px; /* Added spacing between indicator and text */
+}
+
+.status-indicator.live {
+    background-color: var(--danger);
+    box-shadow: 0 0 8px var(--danger);
+    animation: pulse 1.5s infinite;
+}
+
+.status-indicator.offline {
+    background-color: var(--offline);
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.6; }
+    100% { opacity: 1; }
+}
+
+/* Stream Settings */
+.stream-settings {
+    padding: 0 20px 20px;
+}
+
+.stream-settings .form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 10px 12px;
+    background-color: rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+}
+
+.form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.btn-save-settings {
+    width: 100%;
+    padding: 12px;
+}
+
+/* License Key Management */
+.license-keys-container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.current-keys h4 {
+    margin: 0 0 16px 0;
+    font-size: 1rem;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.active-keys {
+    /*display: grid;*/
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+}
+
+.key-card {
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 8px;
+    padding: 16px;
+    border-left: 4px solid var(--success);
+    position: relative;
+}
+
+.key-card.pending {
+    border-left-color: var(--warning);
+    opacity: 0.8;
+}
+
+.key-value {
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    background: rgba(0,0,0,0.3);
+    padding: 10px;
+    border-radius: 4px;
+    word-break: break-all;
+    margin: 12px 0;
+}
+
+.key-value.blurred {
+    color: transparent;
+    text-shadow: 0 0 8px rgba(255,255,255,0.5);
+    user-select: none;
+}
+
+.key-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.key-actions {
+    margin-right: auto; /* Pushes metrics to the right */
+}
+
+.copy-key-btn {
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.3s ease;
+}
+
+.copy-key-btn:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+.copy-key-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.key-management {
+    display: flex;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    gap: 16px; /* Space between button and metrics */
+}
+
+.key-status {
+    display: flex;
+    gap: 12px; /* Added gap between metrics */
+    margin-bottom: 0; /* Removed bottom margin */
+}
+
+.key-metric {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    padding: 8px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    min-width: 80px;
+}
+
+.key-metric:last-child {
+    margin-right: 0;
+}
+
+.metric-value {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary);
+    line-height: 1.2;
+}
+
+.metric-label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    opacity: 0.9;
+}
+
+/* Activity Feed */
+.activity-list {
+    padding: 0 20px 20px;
+}
+
+.activity-item {
+    display: flex;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.activity-item:last-child {
+    border-bottom: none;
+}
+
+.activity-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(158, 2, 5, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    flex-shrink: 0;
+}
+
+.activity-content p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.activity-time {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-top: 4px;
+}
+
+/* Buttons */
+.btn-primary {
+    background: var(--game-primary);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 10px 16px;
+}
+
+.btn-primary:hover {
+    background: rgba(158, 2, 5, 0.2);
+    box-shadow: 0 6px 20px rgba(158, 2, 5, 0.2);
+    border-color: rgba(158, 2, 5, 0.2);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--primary);
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 10px 16px;
+}
+
+.btn-secondary:hover {
+    background: rgba(88, 101, 242, 0.1);
+}
+
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: var(--card-bg);
+    border-radius: 10px;
+    width: 100%;
+    max-width: 500px;
+    overflow: hidden;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 5px;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 20px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .media-hero {
+        padding: 30px 15px;
+    }
+    
+    .media-hero h2 {
+        font-size: 2rem;
+    }
+    
+    .active-keys {
+        grid-template-columns: 1fr;
+    }
+    
+    .live-controls {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .btn-go-live {
+        width: 100%;
+    }
+    
+    .key-status {
+        display: flex;
+        gap: 8px; /* Space between metric boxes */
+    }
+    
+    .modal-content {
+        margin: 20px;
+    }
+}
+
+/* Add to your existing CSS */
+.stream-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-go-live i,
+.btn-end-stream i,
+.copy-key-btn i,
+.btn-request-key i,
+.btn-save-settings i {
+    margin-right: 8px;
+}
+
+/* Enhanced Request Button */
+.btn-request-key {
+    background: var(--game-primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-request-key:hover {
+    background: rgba(158, 2, 5, 0.2);
+    box-shadow: 0 6px 20px rgba(158, 2, 5, 0.2);
+    border-color: rgba(158, 2, 5, 0.2);
+}
+
+.btn-request-key:active {
+    transform: translateY(0);
+}
+
+.btn-request-key i {
+    margin-right: 10px;
+    font-size: 1rem;
+}
+
+.btn-end-stream {
+    background: linear-gradient(to right, var(--danger), #c0392b);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 10px 16px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.btn-end-stream:hover {
+    background: linear-gradient(to right, #c0392b, var(--danger));
+    box-shadow: 0 0 15px rgba(237, 66, 69, 0.5);
+}
+
+/* Animation for cards */
+@keyframes cardFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+/*.portal-card:hover {
+    animation: cardFloat 3s ease-in-out infinite;
+}*/
+
+/* License Key Cards */
+.key-card {
+    background: #2a2a2a;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-left: 4px solid #4CAF50;
+    transition: all 0.3s ease;
+}
+
+.key-card.pending {
+    border-left-color: #FF9800;
+}
+
+.key-card.rejected, .key-card.revoked {
+    border-left-color: #F44336;
+    opacity: 0.7;
+}
+
+.key-product {
+    font-weight: bold;
+    color: #FF0004;
+    margin-right: 10px;
+}
+
+.key-value {
+    font-family: 'Courier New', monospace;
+    font-size: 16px;
+    margin: 10px 0;
+    padding: 8px;
+    background: #1a1a1a;
+    border-radius: 4px;
+    word-break: break-all;
+}
+
+.key-value.blurred {
+    color: transparent;
+    text-shadow: 0 0 8px rgba(255,255,255,0.5);
+    user-select: none;
+}
+
+.key-purpose {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #aaa;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+/* Key Request Modal */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: #2a2a2a;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-header {
+    padding: 20px;
+    border-bottom: 1px solid #444;
+    position: relative;
+}
+
+.modal-header h3 {
+    margin: 0;
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #aaa;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.modal-footer {
+    padding: 15px 20px;
+    border-top: 1px solid #444;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.key-limit-info {
+    background: rgba(0,0,0,0.2);
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.key-limit-info .text-warning {
+    color: #FF9800;
+    margin-top: 5px;
+}
+
+/* Form Elements */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group select, 
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #444;
+    border-radius: 4px;
+    background: #1a1a1a;
+    color: #fff;
+}
+
+.form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Copy Button States */
+.copy-key-btn.copied {
+    background: #4CAF50 !important;
+}
+
+.no-activity, .error-activity {
+    padding: 15px;
+    text-align: center;
+    color: #aaa;
+}
+
+.error-activity {
+    color: #f44336;
+}

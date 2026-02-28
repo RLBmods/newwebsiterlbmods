@@ -1,0 +1,2738 @@
+:root {
+    --primary: #FF0004;
+    --primary-dark: rgb(153, 8, 11);
+    --success: #3BA55C;
+    --warning: #FAA61A;
+    --danger: #ED4245;
+    --game-primary: #FF0004;
+    --game-secondary: #ff4655;
+    --game-dark: #0f1923;
+    --game-light: #ece8e1;
+    --game-accent: #ff8f3f;
+    --card-bg: #222222;
+    --text-primary: #ffffff;
+    --text-secondary: #b8b8b8;
+    --offline: #747f8d;
+    --border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Banner (Reseller Portal Style) */
+.topup-banner {
+    background: linear-gradient(135deg, rgba(255, 0, 4, 0.7) 0%, rgba(237, 66, 69, 0.2) 100%);
+    border-radius: 12px;
+    padding: 40px;
+    margin-bottom: 30px;
+    color: white;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.topup-banner::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    z-index: 0;
+}
+
+.banner-content {
+    position: relative;
+    z-index: 1;
+}
+
+.topup-banner h1 {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.topup-banner h1 i {
+    color: var(--game-primary);
+}
+
+.topup-banner p {
+    opacity: 0.9;
+    font-size: 1.1rem;
+}
+
+.reseller-icon {
+    font-size: 3.5rem;
+    color: var(--game-primary);
+    margin-bottom: 15px;
+    text-shadow: 0 0 15px rgb(0 0 0 / 70%);
+}
+
+.reseller-subtitle {
+    font-size: 1.2rem;
+    color: rgba(255,255,255,0.8);
+}
+
+/* Layout */
+.topup-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
+}
+
+@media (min-width: 992px) {
+    .topup-layout {
+        grid-template-columns: 2fr 1fr;
+    }
+}
+
+/* Balance Box (Reseller Portal Style) */
+.balance-box {
+    width: 100%;
+    background: linear-gradient(135deg, rgb(40 30 30 / 80%) 0%, rgb(39 0 6 / 90%) 100%);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.3),
+        inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.balance-box::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 0, 4, 0.1) 0%, transparent 70%);
+    animation: rotate 15s linear infinite;
+    z-index: 0;
+}
+
+.balance-box::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 10px;
+    pointer-events: none;
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.balance-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+    z-index: 1;
+}
+
+.balance-content i {
+    font-size: 2rem;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--game-primary) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    padding: 15px;
+    border-radius: 50%;
+    background-color: rgba(88, 101, 242, 0.1);
+    box-shadow: 0 0 15px rgba(158, 2, 5, 0.2);
+    transition: all 0.3s ease;
+}
+
+.balance-info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.balance-label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+.balance-amount {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    background: linear-gradient(to right, #ffffff 0%, #b8b8b8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+    display: inline-block;
+}
+
+.balance-amount::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary) 0%, var(--game-primary) 100%);
+    border-radius: 2px;
+}
+
+/* Hover effects */
+.balance-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(158, 2, 5, 0.2);
+    border-color: rgba(158, 2, 5, 0.2);
+}
+
+.balance-box:hover .balance-content i {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 15px rgba(106, 62, 231, 0.2); }
+    50% { box-shadow: 0 0 25px rgba(106, 62, 231, 0.4); }
+    100% { box-shadow: 0 0 15px rgba(106, 62, 231, 0.2); }
+}
+
+/* Add Funds Button */
+.btn-add-funds {
+    position: relative;
+    z-index: 2;
+    width: 60%;
+    padding: 14px;
+    background: var(--game-primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 15px auto 0;
+}
+
+.btn-add-funds:hover {
+    background: rgba(158, 2, 5, 0.2);
+    box-shadow: 0 6px 20px rgba(158, 2, 5, 0.2);
+    border-color: rgba(158, 2, 5, 0.2);
+}
+
+/* Transaction History */
+.transaction-history {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    height: 600px; /* Fixed height */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Transactions List Container */
+.transactions-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Prevent double scrolling */
+}
+
+.empty-transaction {
+    visibility: hidden;
+    height: 0;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+}
+
+.transaction-header {
+    display: grid;
+    grid-template-columns: 40px 1fr 1fr 1fr 1fr;
+    gap: 15px;
+    padding: 10px 15px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: sticky;
+    top: 0;
+    z-index: 2; /* Above the scrolling content */
+}
+
+.transaction-header span {
+    display: flex;
+    align-items: center;
+}
+
+.transactions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow-y: auto; /* Enable scrolling */
+    scrollbar-width: thin;
+    scrollbar-color: var(--game-primary) rgba(0, 0, 0, 0.1);
+    padding-right: 5px; /* Space for scrollbar */
+    margin-right: -5px; /* Compensate for padding */
+}
+
+/* Custom scrollbar */
+.transactions-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.transactions-list::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+}
+
+.transactions-list::-webkit-scrollbar-thumb {
+    background-color: var(--game-primary);
+    border-radius: 3px;
+}
+
+.transactions-list.empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.transaction {
+    display: grid;
+    grid-template-columns: 40px 1fr 1fr 1fr 1fr;
+    gap: 15px;
+    align-items: center;
+    padding: 12px 15px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.transaction:hover {
+    background: rgba(106, 62, 231, 0.05);
+    transform: translateY(-2px);
+}
+
+.transaction-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
+
+.transaction-icon.success {
+    background: rgba(59, 165, 92, 0.1);
+    color: var(--success);
+}
+
+.transaction-icon.pending {
+    background: rgba(250, 166, 26, 0.1);
+    color: var(--warning);
+}
+
+.transaction-icon.failed {
+    background: rgba(237, 66, 69, 0.1);
+    color: var(--danger);
+}
+
+.transaction-amount {
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.transaction-amount.positive {
+    color: var(--success);
+}
+
+.transaction-amount.negative {
+    color: var(--danger);
+}
+
+.transaction-method {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.method-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: rgba(106, 62, 231, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--game-primary);
+    font-size: 0.8rem;
+}
+
+.transaction-status {
+    font-size: 0.85rem;
+    padding: 4px 0; /* Vertical padding only */
+    border-radius: 12px;
+    font-weight: 500;
+    width: 100px; /* Fixed width */
+    text-align: center;
+    display: inline-block;
+    text-transform: capitalize;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.transaction-date {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+/* Pagination Styles */
+.pagination-container {
+    margin-top: auto; /* Push to bottom */
+    padding-top: 15px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.pagination-button {
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    background: rgba(106, 62, 231, 0.1);
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.pagination-button:hover {
+    background: rgba(106, 62, 231, 0.2);
+}
+
+.pagination-button.active {
+    background: var(--game-primary);
+    color: white;
+}
+
+.pagination-button.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.section-header h2 {
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section-header h2 i {
+    color: var(--game-primary);
+}
+
+.btn-refresh {
+    background: var(--game-primary);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-refresh:hover {
+    background: linear-gradient(135deg, rgba(158, 2, 5, 0.2) 0%, rgba(158, 2, 5, 0.45) 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(158, 2, 5, 0.2);
+    border-color: rgba(158, 2, 5, 0.2);
+}
+
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.7);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal-container {
+    background: var(--card-bg);
+    border-radius: 12px;
+    width: 100%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-header {
+    padding: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 1.3rem;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 5px;
+    line-height: 1;
+}
+
+.modal-close:hover {
+    color: var(--text-primary);
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.modal-step {
+    display: none;
+}
+
+.modal-step.active {
+    display: block;
+}
+
+.modal-step h4 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+}
+
+/* Amount Selection */
+.amount-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+}
+
+@media (min-width: 400px) {
+    .amount-options {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.amount-option {
+    background: rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px;
+    padding: 12px 5px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+}
+
+.amount-option:hover {
+    background: rgba(106,62,231,0.1);
+    border-color: rgba(106,62,231,0.3);
+}
+
+.amount-option.active {
+    background: rgba(106,62,231,0.2);
+    border-color: var(--game-primary);
+    color: var(--game-primary);
+}
+
+/* Custom Amount Option */
+.custom-amount-option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 12px 10px;
+}
+
+.custom-amount-option span {
+    color: var(--text-secondary);
+}
+
+.custom-amount-input {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    width: 80px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.custom-amount-input:focus {
+    outline: none;
+}
+
+.custom-amount-input::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.7;
+}
+
+/* Active state for custom amount */
+.custom-amount-option.active {
+    background: rgba(106,62,231,0.2);
+    border-color: var(--game-primary);
+}
+
+.custom-amount-option.active span {
+    color: var(--game-primary);
+}
+
+.custom-amount-option.active input {
+    color: var(--game-primary);
+}
+
+
+.custom-amount {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.custom-amount label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.custom-amount input {
+    width: 100%;
+    padding: 12px 15px;
+    padding-right: 45px;
+    background: rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px;
+    color: var(--text-primary);
+}
+
+.custom-amount input:focus {
+    border-color: var(--game-primary);
+    outline: none;
+}
+
+.custom-amount .currency {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+}
+
+/* Payment Methods */
+.payment-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.payment-method {
+    background: rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.payment-method:hover {
+    background: rgba(106,62,231,0.1);
+    border-color: rgba(106,62,231,0.3);
+}
+
+.payment-method.active {
+    background: rgba(106,62,231,0.2);
+    border-color: var(--game-primary);
+    box-shadow: 0 0 0 1px var(--game-primary);
+}
+
+.method-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(106,62,231,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--game-primary);
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.method-info {
+    flex: 1;
+}
+
+.method-name {
+    font-weight: 500;
+    margin-bottom: 3px;
+}
+
+.method-desc {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+/* Payment Summary */
+.payment-summary {
+    background: rgba(0,0,0,0.2);
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 25px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.summary-row.total {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 10px;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+/* Payment Forms */
+.payment-form {
+    margin-bottom: 25px;
+}
+
+.payment-form p {
+    margin-bottom: 15px;
+    color: var(--text-secondary);
+}
+
+.btn-paypal {
+    width: 100%;
+    padding: 12px;
+    background: #0070ba;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-paypal:hover {
+    background: #0061a5;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.form-group {
+    flex: 1;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    background: rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px;
+    color: var(--text-primary);
+}
+
+.crypto-address {
+    background: rgba(0,0,0,0.3);
+    padding: 12px;
+    border-radius: 6px;
+    font-family: monospace;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btn-copy {
+    background: rgba(106,62,231,0.2);
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    color: var(--text-primary);
+    cursor: pointer;
+}
+
+.small {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+/* Modal Actions */
+.modal-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.modal-actions button {
+    flex: 1;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.btn-back {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--text-primary);
+}
+
+.btn-back:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+.btn-continue, .btn-confirm-payment {
+    background: var(--game-primary);
+    border: none;
+    color: white;
+}
+
+.btn-continue:hover, .btn-confirm-payment:hover {
+    background: var(--game-secondary);
+}
+
+/* Help Section - Quick Solutions Style */
+.balance-help {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.balance-help-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.balance-help-header i {
+    color: var(--game-primary);
+    font-size: 1.2rem;
+}
+
+.balance-help-header h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+}
+
+.help-item {
+    margin-bottom: 20px;
+}
+
+.help-item:last-child {
+    margin-bottom: 0;
+}
+
+.help-item h5 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 15px 0;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+}
+
+.help-item h5 i {
+    color: var(--game-primary);
+    font-size: 1rem;
+}
+
+.help-item p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .balance-summary {
+        position: static;
+    }
+    
+    .amount-options {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .modal-container {
+        margin: 0 15px;
+    }
+
+    .transaction-history {
+        height: 550px; /* Slightly smaller on mobile */
+    }
+    
+    .transaction-header,
+    .transaction {
+        grid-template-columns: 40px 1fr 1fr;
+    }
+
+    .transaction-header span:nth-child(4),
+    .transaction-header span:nth-child(5),
+    .transaction > div:nth-child(4),
+    .transaction > div:nth-child(5) {
+        display: none;
+    }
+    
+    .transactions-list {
+        min-height: 350px;
+    }
+}
+
+
+/* Notification System */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    background: #2a2a2a;
+    border-left: 4px solid var(--game-primary);
+    border-radius: 4px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 1001;
+    transform: translateX(100%);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.notification.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.notification.success {
+    border-left-color: var(--success);
+}
+
+.notification.error {
+    border-left-color: var(--danger);
+}
+
+.notification i {
+    font-size: 1.2rem;
+}
+
+.notification.success i {
+    color: var(--success);
+}
+
+.notification.error i {
+    color: var(--danger);
+}
+
+/* Payment Processing Modal */
+.payment-status-container {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.payment-status-icon {
+    font-size: 60px;
+    margin-bottom: 15px;
+}
+
+.payment-status-icon.pending {
+    color: var(--warning);
+    animation: pulse 2s infinite;
+}
+
+.payment-status-icon.completed {
+    color: var(--success);
+}
+
+.payment-status-icon.failed {
+    color: var(--danger);
+}
+
+.payment-status-title {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.payment-status-subtitle {
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+}
+
+.payment-details {
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.qr-code-container {
+    max-width: 200px;
+    margin: 0 auto 20px;
+    background: white;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.crypto-address-container {
+    background: rgba(0,0,0,0.3);
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.crypto-address {
+    font-family: monospace;
+    word-break: break-all;
+    flex: 1;
+}
+
+.payment-instructions {
+    background: rgba(0,0,0,0.2);
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Error and success messages */
+.error-message, .success-message {
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    font-size: 14px;
+    text-align: center;
+    animation: slideDown 0.3s ease-out;
+}
+
+.error-message {
+    background-color: #ffebee;
+    color: #c62828;
+    border-left: 4px solid #c62828;
+}
+
+.success-message {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border-left: 4px solid #2e7d32;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Loading states */
+.btn-refresh .fa-spinner,
+.btn-confirm-payment .fa-spinner {
+    margin-right: 8px;
+}
+
+/* Disabled buttons */
+.btn-confirm-payment:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+
+.custom-amount-input {
+    pointer-events: auto; /* Ensure the input can still be clicked */
+}
+
+.amount-option {
+    cursor: pointer;
+    /* This helps prevent the click from passing through */
+}
+
+/* Add to your topup.css */
+.paypal-instructions {
+    background: rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.paypal-email {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #0070ba; /* PayPal blue */
+    margin: 10px 0;
+}
+
+.payment-status {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.status-indicator.pending {
+    color: #ffc107; /* Yellow for pending */
+}
+
+.status-indicator.success {
+    color: #28a745; /* Green for success */
+}
+
+.status-indicator.failed {
+    color: #dc3545; /* Red for failed */
+}
+
+.timer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #6c757d;
+}
+
+/* Add to topup.css */
+.payment-form {
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(0,0,0,0.1);
+    border-radius: 5px;
+}
+
+.paypal-instructions {
+    margin: 15px 0;
+    padding: 15px;
+    background: rgba(0,0,0,0.1);
+    border-radius: 5px;
+}
+
+.paypal-email {
+    font-weight: bold;
+    color: #0070ba;
+    margin: 10px 0;
+    font-size: 1.1em;
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.status-indicator i {
+    font-size: 1.2em;
+}
+
+.status-indicator.pending {
+    color: #ffc107;
+}
+
+.status-indicator.success {
+    color: #28a745;
+}
+
+.status-indicator.failed {
+    color: #dc3545;
+}
+
+.timer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #6c757d;
+}
+
+.btn-paypal {
+    width: 100%;
+    padding: 12px;
+    background: #0070ba;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.btn-paypal:hover {
+    background: #005ea6;
+}
+
+/* Transaction History Styles */
+.transaction {
+    display: grid;
+    grid-template-columns: 50px 1fr 1.5fr 1fr 1fr;
+    align-items: center;
+    padding: 12px 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.transaction-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+}
+
+.transaction-icon.success {
+    background-color: rgba(40, 167, 69, 0.2);
+    color: #28a745;
+}
+
+.transaction-icon.pending {
+    background-color: rgba(255, 193, 7, 0.2);
+    color: #ffc107;
+}
+
+.transaction-icon.failed {
+    background-color: rgba(220, 53, 69, 0.2);
+    color: #dc3545;
+}
+
+.transaction-amount {
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+
+.transaction-amount.positive {
+    color: #28a745;
+}
+
+.transaction-amount.negative {
+    color: #dc3545;
+}
+
+.amount-sign {
+    margin-right: 3px;
+}
+
+.transaction-method {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.method-icon {
+    color: #6c757d;
+}
+
+.transaction-status {
+    text-transform: capitalize;
+    font-weight: 500;
+}
+
+.status-text {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.85em;
+}
+
+.transaction-date {
+    color: #6c757d;
+    font-size: 0.9em;
+}
+
+.no-transactions {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 30px;
+    color: #6c757d;
+}
+
+/* Payment Success Modal */
+.payment-success-modal .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.payment-success-modal .modal-container {
+    background: #2a2a2a;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 500px;
+    padding: 25px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+
+.payment-success-modal .success-icon {
+    font-size: 60px;
+    color: #28a745;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.payment-success-modal h4 {
+    text-align: center;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.payment-success-modal p {
+    text-align: center;
+    color: #aaa;
+    margin-bottom: 30px;
+}
+
+.payment-success-modal .transaction-details {
+    background: #333;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 25px;
+}
+
+.payment-success-modal .detail-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.payment-success-modal .detail-row:last-child {
+    margin-bottom: 0;
+}
+
+.payment-success-modal .detail-row span:first-child {
+    color: #aaa;
+}
+
+.payment-success-modal .detail-row span:last-child {
+    font-weight: 500;
+    color: #fff;
+}
+
+.payment-success-modal .status-completed {
+    color: #28a745;
+}
+
+.payment-success-modal .btn-close-success {
+    background: #7b4397;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    width: 100%;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.payment-success-modal .btn-close-success:hover {
+    background: #6a2d8a;
+}
+
+/* Improved Pagination */
+.pagination {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination-btn {
+    background: #333;
+    border: none;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.pagination-btn:hover:not(:disabled) {
+    background: #444;
+}
+
+.pagination-btn.active {
+    background: #7b4397;
+    font-weight: bold;
+}
+
+.pagination-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.pagination-ellipsis {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    color: #aaa;
+}
+/* Add to your topup.css */
+.transaction-loading {
+    padding: 20px;
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+}
+
+.transaction-loading i {
+    margin-right: 8px;
+}
+
+.transaction-error {
+    padding: 20px;
+    text-align: center;
+    color: #ff4444;
+    font-size: 14px;
+}
+
+/* Transaction Details Modal */
+.transaction-details-modal .modal-container {
+    max-width: 500px;
+}
+
+.transaction-details-modal .transaction-icon {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.transaction-details-modal .transaction-summary {
+    margin: 1.5rem 0;
+}
+
+.transaction-details-modal .summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #eee;
+}
+
+.transaction-details-modal .summary-row:last-child {
+    border-bottom: none;
+}
+
+/* Payment Success Modal */
+.payment-success-modal .modal-container.success {
+    max-width: 500px;
+    text-align: center;
+}
+
+.payment-success-modal .success-icon {
+    font-size: 4rem;
+    color: #4CAF50;
+    margin-bottom: 1rem;
+}
+
+.payment-success-modal h4 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.payment-success-modal .transaction-details {
+    margin: 1.5rem 0;
+    text-align: left;
+    background: #f9f9f9;
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.payment-success-modal .detail-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.payment-success-modal .modal-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.payment-success-modal .modal-actions button {
+    flex: 1;
+}
+
+/* Payment Status Styles */
+.status-pending {
+    background: rgba(250, 166, 26, 0.1);
+    color: var(--warning);
+    border: 1px solid rgba(250, 166, 26, 0.3);
+}
+
+.status-completed {
+    background: rgba(59, 165, 92, 0.1);
+    color: var(--success);
+    border: 1px solid rgba(59, 165, 92, 0.3);
+}
+
+.status-failed {
+    background: rgba(237, 66, 69, 0.1);
+    color: var(--danger);
+    border: 1px solid rgba(237, 66, 69, 0.3);
+}
+
+.status-on_hold {
+    background: rgba(114, 137, 218, 0.1);
+    color: var(--primary);
+    border: 1px solid rgba(114, 137, 218, 0.3);
+}
+
+.status-voided {
+    background: rgba(153, 170, 181, 0.1);
+    color: var(--offline);
+    border: 1px solid rgba(153, 170, 181, 0.3);
+}
+
+.status-declined {
+    background: rgba(27, 27, 27, 0.1);
+    color: #5b5d5f;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.status-cancelled {
+    background: rgba(27, 27, 27, 0.1);
+    color: #5b5d5f;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+/* Status Badge - Common Styles */
+.status-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-align: center;
+    text-transform: capitalize;
+    white-space: nowrap;
+    margin: 2px 0;
+}
+
+/* Status Icons */
+.status-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin-right: 6px;
+    font-size: 0.8rem;
+}
+
+.status-icon.pending {
+    background: rgba(250, 166, 26, 0.2);
+    color: var(--warning);
+}
+
+.status-icon.completed {
+    background: rgba(59, 165, 92, 0.2);
+    color: var(--success);
+}
+
+.status-icon.failed {
+    background: rgba(237, 66, 69, 0.2);
+    color: var(--danger);
+}
+
+.status-icon.on_hold {
+    background: rgba(114, 137, 218, 0.2);
+    color: var(--primary);
+}
+
+.status-icon.voided {
+    background: rgba(153, 170, 181, 0.2);
+    color: var(--offline);
+}
+
+.status-icon.cancelled {
+    background: rgba(32, 34, 37, 0.2);
+    color: #202225;
+}
+
+.status-icon.declined {
+    background: rgba(32, 34, 37, 0.2);
+    color: #202225;
+}
+
+/* Status in Transaction List */
+.transaction-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    width: fit-content;
+    min-width: 80px;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+/* Status in Cards or Larger Displays */
+.status-card {
+    padding: 8px 16px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+/* Status with Pulse Animation for Pending */
+.status-pending.pulse {
+    position: relative;
+}
+
+.status-pending.pulse::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: inherit;
+    border: 2px solid rgba(250, 166, 26, 0.3);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.8; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(1.05); }
+    100% { opacity: 0.8; transform: scale(1); }
+}
+
+/* Status in Payment Processing Modal */
+.payment-status-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 15px 0;
+}
+
+.payment-status-indicator .status-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.payment-status-indicator .status-text {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.payment-status-indicator .status-description {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+
+/* Transaction List */
+.transaction {
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.transaction:hover {
+    background-color: rgba(0,0,0,0.05);
+}
+
+.transaction.empty-transaction {
+    pointer-events: none;
+}
+
+/* Modal step transitions */
+.modal-step {
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  
+  .modal-step.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Loading animations */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  .transaction-loading, .transaction-error {
+    animation: fadeIn 0.3s ease;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  /* Button loading states */
+  .btn-loading {
+    position: relative;
+    pointer-events: none;
+  }
+  
+  .btn-loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  /* Improved form focus states */
+  .custom-amount-input:focus,
+  .payment-method:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--game-primary);
+  }
+  
+  /* Better mobile experience */
+  @media (max-width: 576px) {
+    .modal-container {
+      margin: 10px;
+      max-height: 90vh;
+    }
+    
+    .amount-options {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .payment-methods {
+      gap: 8px;
+    }
+    
+    .payment-method {
+      padding: 12px;
+    }
+  }
+  
+  /* Enhanced error states */
+  .error-message {
+    animation: slideDown 0.3s ease-out;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: rgba(237, 66, 69, 0.1);
+    color: var(--danger);
+    border-left: 3px solid var(--danger);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  /* Success states */
+  .success-message {
+    animation: slideDown 0.3s ease-out;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: rgba(59, 165, 92, 0.1);
+    color: var(--success);
+    border-left: 3px solid var(--success);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  /* Payment status animations */
+  .status-indicator {
+    transition: all 0.3s ease;
+  }
+  
+  /* Copy button animation */
+  .btn-copy {
+    transition: all 0.2s ease;
+  }
+  
+  .btn-copy:hover {
+    transform: scale(1.05);
+    background: rgba(106,62,231,0.3);
+  }
+
+  /* Transaction Detail Modal */
+#transactionDetailModal .modal-container {
+    max-width: 600px;
+  }
+  
+  .transaction-summary {
+    padding: 20px;
+  }
+  
+  .transaction-icon-large {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    margin: 0 auto 20px;
+    background: rgba(106, 62, 231, 0.1);
+    color: var(--game-primary);
+  }
+  
+  .transaction-icon-large.success {
+    background: rgba(59, 165, 92, 0.1);
+    color: var(--success);
+  }
+  
+  .transaction-icon-large.pending {
+    background: rgba(250, 166, 26, 0.1);
+    color: var(--warning);
+  }
+  
+  .transaction-icon-large.failed {
+    background: rgba(237, 66, 69, 0.1);
+    color: var(--danger);
+  }
+  
+  .transaction-header {
+        display: flex;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        padding-right: 10rem;
+        padding-left: 5rem;
+        border-bottom: 1px solid var(--border-color);
+        justify-content: space-between;
+  }
+  
+  .transaction-header h4 {
+    margin: 0;
+    font-size: 1.3rem;
+  }
+  
+  .transaction-date {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+  }
+  
+  .payment-instructions {
+    margin-top: 25px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  .payment-instructions h4 {
+    margin-top: 0;
+    margin-bottom: 15px;
+  }
+  
+  .payment-details {
+    margin-bottom: 15px;
+  }
+  
+  .payment-details p {
+    margin: 5px 0;
+  }
+  
+  .modal-footer {
+    padding: 15px 20px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .btn-close-transaction {
+    padding: 10px 20px;
+    background: var(--game-primary);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .btn-close-transaction:hover {
+    background: var(--game-secondary);
+  }
+  
+  /* Make transactions clickable */
+  .transaction {
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .transaction:hover {
+    background-color: rgba(106, 62, 231, 0.05);
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .transaction-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 5px;
+    }
+    
+    .payment-instructions {
+      padding: 15px;
+    }
+  }
+
+  /* Add to your topup.css */
+.transaction {
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.transaction:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.transaction.empty-transaction {
+    cursor: default;
+    pointer-events: none;
+}
+
+/* Payment failed state */
+.payment-failed-message {
+    padding: 15px;
+    background: #ffebee;
+    border-radius: 4px;
+    margin-top: 20px;
+    text-align: center;
+    color: #c62828;
+}
+
+/* Transaction actions */
+.transaction-actions {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10px;
+}
+
+.btn-cancel-order {
+    background: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background 0.2s;
+}
+
+.btn-cancel-order:hover {
+    background: #d32f2f;
+}
+
+/* Modal transitions */
+.modal-step {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Ensure modal sections stay visible */
+.modal-step {
+    display: none;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.modal-step.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Button styles for pending orders */
+.btn-cancel-order {
+    background-color: #f44336;
+    color: white;
+    margin: 0 5px;
+}
+
+.btn-check-status {
+    background-color: #2196F3;
+    color: white;
+    margin: 0 5px;
+}
+
+/* Fix timer display */
+.timer .time-remaining {
+    font-family: monospace;
+}
+
+/* Ensure modal steps transition smoothly */
+.modal-step {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    display: none;
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.modal-step.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Fix for payment status display */
+.payment-status {
+    margin-top: 15px;
+    padding: 15px;
+    background: rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.status-indicator i {
+    font-size: 1.2em;
+}
+
+.status-indicator.pending {
+    color: #FFC107;
+}
+
+.status-indicator.success {
+    color: #4CAF50;
+}
+
+.status-indicator.failed {
+    color: #F44336;
+}
+
+.timer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #9E9E9E;
+}
+
+.time-remaining {
+    font-family: monospace;
+}
+
+/* Transaction action buttons */
+.transaction-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.btn-cancel-order, .btn-check-status {
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-cancel-order {
+    background: #F44336;
+    color: white;
+    border: none;
+}
+
+.btn-cancel-order:hover {
+    background: #D32F2F;
+}
+
+.btn-check-status {
+    background: #2196F3;
+    color: white;
+    border: none;
+}
+
+.btn-check-status:hover {
+    background: #1976D2;
+}
+
+/* Payment failed state */
+.payment-failed-message {
+    padding: 15px;
+    background: #FFEBEE;
+    border-radius: 4px;
+    margin-top: 20px;
+    text-align: center;
+    color: #C62828;
+    border-left: 4px solid #C62828;
+}
+
+/* Transaction Amount Status Styles */
+.transaction-amount {
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+
+.transaction-amount.positive {
+    color: var(--success);
+}
+
+.transaction-amount.negative {
+    color: var(--danger);
+}
+
+.transaction-amount.pending {
+    color: var(--warning);
+}
+
+.transaction-amount.on-hold {
+    color: var(--primary);
+    opacity: 0.8;
+}
+
+.transaction-amount.voided {
+    color: var(--offline);
+    text-decoration: line-through;
+}
+
+.transaction-amount.declined {
+    color: #202225;
+    opacity: 0.6;
+}
+
+/* Status Icons */
+.transaction-icon.pending {
+    background: rgba(250, 166, 26, 0.1);
+    color: var(--warning);
+}
+
+.transaction-icon.success {
+    background: rgba(59, 165, 92, 0.1);
+    color: var(--success);
+}
+
+.transaction-icon.failed {
+    background: rgba(237, 66, 69, 0.1);
+    color: var(--danger);
+}
+
+.transaction-icon.on-hold {
+    background: rgba(114, 137, 218, 0.1);
+    color: var(--primary);
+}
+
+.transaction-icon.voided {
+    background: rgba(153, 170, 181, 0.1);
+    color: var(--offline);
+}
+
+.transaction-icon.declined {
+    background: rgba(32, 34, 37, 0.1);
+    color: #202225;
+}
+
+/* Processing Overlay */
+.processing-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255,255,255,0.9);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    display: none;
+}
+
+.processing-content {
+    text-align: center;
+    max-width: 400px;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #4CAF50;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.payment-status {
+    display: none;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.payment-success {
+    color: #4CAF50;
+}
+
+.payment-failed {
+    color: #f44336;
+}
+
+.security-badges {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    justify-content: center;
+}
+
+.security-badges img {
+    height: 40px;
+    width: auto;
+}
+
+/* Add to topup.css */
+.promo-code-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+#promoCode {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#applyPromo {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.promo-message {
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+.promo-message.success {
+    color: #4CAF50;
+}
+
+.promo-message.error {
+    color: #f44336;
+}
+
+.discount-row {
+    color: #4CAF50;
+}
+
+/* PayPal Instructions */
+.paypal-instructions {
+    margin-top: 20px;
+    padding: 20px;
+    background: rgba(0, 86, 166, 0.1);
+    border-radius: 10px;
+    border-left: 4px solid #003087;
+}
+
+.paypal-email-container,
+.paypal-note-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+    padding: 12px;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.paypal-email,
+.paypal-note {
+    flex: 1;
+    font-family: 'Oxanium', monospace;
+    font-size: 14px;
+    color: #003087;
+    word-break: break-all;
+}
+
+.paypal-instructions .payment-instructions {
+    margin-bottom: 15px;
+}
+
+.paypal-instructions .btn-outline-primary {
+    border-color: #003087;
+    color: #003087;
+}
+
+.paypal-instructions .btn-outline-primary:hover {
+    background-color: #003087;
+    border-color: #003087;
+}
+
+/* Resume Payment Section */
+.resume-payment-section {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 15px;
+    color: white;
+}
+
+.resume-payment-section .section-header {
+    margin-bottom: 15px;
+}
+
+.resume-payment-section .section-header h2 {
+    color: white;
+    margin: 0;
+}
+
+.pending-transactions-container {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 15px;
+    backdrop-filter: blur(10px);
+}
+
+.pending-transactions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.pending-transaction {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.pending-transaction:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateX(5px);
+}
+
+.pending-icon {
+    font-size: 24px;
+    margin-right: 15px;
+    width: 40px;
+    text-align: center;
+}
+
+.pending-info {
+    flex: 1;
+}
+
+.pending-amount {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.pending-method {
+    font-size: 12px;
+    opacity: 0.9;
+}
+
+.pending-order {
+    font-size: 11px;
+    opacity: 0.7;
+}
+
+.btn-resume-payment {
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-resume-payment:hover {
+    background: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+.empty-pending {
+    text-align: center;
+    padding: 20px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* PayPal Instructions */
+.paypal-instructions {
+    margin-top: 20px;
+    padding: 20px;
+    background: rgba(0, 86, 166, 0.1);
+    border-radius: 10px;
+    border-left: 4px solid #003087;
+}
+
+.paypal-email-container,
+.paypal-note-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+    padding: 12px;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.paypal-email,
+.paypal-note {
+    flex: 1;
+    font-family: 'Oxanium', monospace;
+    font-size: 14px;
+    color: #003087;
+    word-break: break-all;
+}
+
+.paypal-instructions .payment-instructions {
+    margin-bottom: 15px;
+}
+
+.paypal-instructions .btn-outline-primary {
+    border-color: #003087;
+    color: #003087;
+}
+
+.paypal-instructions .btn-outline-primary:hover {
+    background-color: #003087;
+    border-color: #003087;
+}
+
+/* Payment Method Icons */
+.method-icon .fab.fa-card:before {
+    content: "💳"; /* Credit card emoji as fallback */
+    font-family: Arial, sans-serif;
+}
+
+.method-icon .fas.fa-credit-card {
+    font-size: 24px;
+}
+
+/* PayPal Instructions */
+.paypal-instructions {
+    margin-top: 20px;
+    padding: 20px;
+    background: rgba(0, 86, 166, 0.1);
+    border-radius: 10px;
+    border-left: 4px solid #003087;
+}
+
+.paypal-email-container,
+.paypal-note-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+    padding: 12px;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.paypal-email,
+.paypal-note {
+    flex: 1;
+    font-family: 'Oxanium', monospace;
+    font-size: 14px;
+    color: #003087;
+    word-break: break-all;
+}
+
+.paypal-instructions .payment-instructions {
+    margin-bottom: 15px;
+}
+
+/* Card Payment Section */
+.card-redirect-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.card-redirect-container .btn {
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #4e54c8, #8f94fb);
+    border: none;
+    box-shadow: 0 4px 15px rgba(78, 84, 200, 0.3);
+    transition: all 0.3s ease;
+}
+
+.card-redirect-container .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(78, 84, 200, 0.4);
+}
+
+.card-security-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 15px;
+    color: #28a745;
+    font-size: 14px;
+}
+
+/* PayPal Payment Section */
+.paypal-email-container,
+.paypal-note-container {
+    margin: 15px 0;
+}
+
+.paypal-email-container label,
+.paypal-note-container label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.paypal-email-value,
+.paypal-note-value {
+    display: flex;
+    align-items: center;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.paypal-email-value code,
+.paypal-note-value code {
+    flex: 1;
+    font-family: monospace;
+    font-size: 14px;
+    color: #007bff;
+    word-break: break-all;
+}
+
+.note-important {
+    background: #fff3cd;
+    border-left: 4px solid #ffc107;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 15px;
+    color: #856404;
+}
+
+.note-important i {
+    color: #ffc107;
+    margin-right: 5px;
+}
+
+/* Card Payment Section */
+.card-redirect-container {
+    text-align: center;
+    margin: 25px 0;
+}
+
+#cardRedirectBtn {
+    background: linear-gradient(135deg, #4e54c8, #8f94fb);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(78, 84, 200, 0.3);
+}
+
+#cardRedirectBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(78, 84, 200, 0.4);
+}
+
+#cardRedirectBtn i {
+    margin-right: 10px;
+}
+
+.card-security-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 15px 0;
+    color: #28a745;
+    font-size: 14px;
+}
+
+.card-payment-details {
+    background: #1b1b1b;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+    border-left: 4px solid #f62024;
+}
+
+.card-payment-details p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+/* Copy button styles */
+.copy-btn {
+    background: #6c757d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 12px;
+    transition: background 0.3s ease;
+}
+
+.copy-btn:hover {
+    background: #5a6268;
+}

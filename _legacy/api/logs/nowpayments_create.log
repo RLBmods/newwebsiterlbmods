@@ -1,0 +1,1388 @@
+[2025-11-09 14:09:21] === NOWPAYMENTS PAYMENT CREATION STARTED ===
+[2025-11-09 14:09:21] User authenticated
+{
+    "user_id": 1
+}
+[2025-11-09 14:09:21] Validated input
+{
+    "amount": 10,
+    "quantity": 1,
+    "method": "btc",
+    "note": ""
+}
+[2025-11-09 14:09:21] Retrieved user data
+{
+    "user_id": 1,
+    "email": "rlbmods@gmail.com"
+}
+[2025-11-09 14:09:21] Prepared NowPayments payload
+{
+    "price_amount": 10,
+    "price_currency": "usd",
+    "pay_currency": "btc",
+    "ipn_callback_url": "https:\/\/panel.rlbmods.com\/api\/webhook\/nowpayments.php",
+    "order_id": "NP_6910a09156087_1762697361",
+    "order_description": "Balance topup for rlbmods@gmail.com",
+    "customer_email": "rlbmods@gmail.com"
+}
+[2025-11-09 14:09:21] NowPayments API response
+{
+    "http_code": 201,
+    "curl_error": "",
+    "response": "{\"payment_id\":\"5791166090\",\"payment_status\":\"waiting\",\"pay_address\":\"3FDGauvmvTWo5hkTjhfDsFeGxHT6XtANut\",\"price_amount\":10,\"price_currency\":\"usd\",\"pay_amount\":0.00009711,\"amount_received\":0.0899861,\"pay_currency\":\"btc\",\"order_id\":\"NP_6910a09156087_1762697361\",\"order_description\":\"Balance topup for rlbmods@gmail.com\",\"payin_extra_id\":null,\"ipn_callback_url\":\"https:\/\/panel.rlbmods.com\/api\/webhook\/nowpayments.php\",\"customer_email\":\"rlbmods@gmail.com\",\"created_at\":\"2025-11-09T14:09:21.720Z\",\"updated_at\":\"2025-11-09T14:09:21.720Z\",\"purchase_id\":\"6380868702\",\"smart_contract\":null,\"network\":\"btc\",\"network_precision\":null,\"time_limit\":null,\"burning_percent\":null,\"expiration_estimate_date\":\"2025-11-09T14:29:21.720Z\",\"is_fixed_rate\":false,\"is_fee_paid_by_user\":false,\"valid_until\":\"2025-11-16T14:09:21.720Z\",\"type\":\"crypto2crypto\",\"product\":\"api\",\"origin_ip\":\"2a02:4780:a:591:0:24f8:1568:1\"}"
+}
+[2025-11-09 14:09:21] Payment details extracted
+{
+    "payment_id": "5791166090",
+    "payment_address": "3FDGauvmvTWo5hkTjhfDsFeGxHT6XtANut",
+    "pay_amount": 9.711e-5,
+    "pay_currency": "btc",
+    "expiration_date": "2025-11-09T14:29:21.720Z"
+}
+[2025-11-09 14:09:21] Database columns found
+[
+    "id",
+    "user_id",
+    "order_id",
+    "amount",
+    "quantity",
+    "status",
+    "delivery_status",
+    "checkout_url",
+    "payment_method",
+    "crypto_address",
+    "gateway",
+    "transaction_id",
+    "created_at",
+    "updated_at",
+    "network_fee",
+    "gateway_fee",
+    "amount_received",
+    "confirmations",
+    "delivered_item",
+    "note",
+    "sell_key",
+    "expires_at",
+    "can_cancel"
+]
+[2025-11-09 14:09:21] Transaction saved to database
+{
+    "db_id": 285,
+    "order_id": "NP_6910a09156087_1762697361"
+}
+[2025-11-09 14:09:21] Payment creation completed successfully
+[2025-11-09 14:09:38] === NOWPAYMENTS PAYMENT CREATION STARTED ===
+[2025-11-09 14:09:38] User authenticated
+{
+    "user_id": 1
+}
+[2025-11-09 14:09:38] ERROR: You already have a pending transaction. Please complete it first.
+{
+    "code": 400
+}
+[2025-11-09 14:10:10] === NOWPAYMENTS PAYMENT CREATION STARTED ===
+[2025-11-09 14:10:10] User authenticated
+{
+    "user_id": 1
+}
+[2025-11-09 14:10:10] ERROR: You already have a pending transaction. Please complete it first.
+{
+    "code": 400
+}
+[2025-11-09 14:12:20] === NOWPAYMENTS PAYMENT CREATION STARTED ===
+[2025-11-09 14:12:20] User authenticated
+{
+    "user_id": 1022
+}
+[2025-11-09 14:12:20] Validated input
+{
+    "amount": 10,
+    "quantity": 1,
+    "method": "ltc",
+    "note": ""
+}
+[2025-11-09 14:12:20] Retrieved user data
+{
+    "user_id": 1022,
+    "email": "mreagle13337@gmail.com"
+}
+[2025-11-09 14:12:20] Prepared NowPayments payload
+{
+    "price_amount": 10,
+    "price_currency": "usd",
+    "pay_currency": "ltc",
+    "ipn_callback_url": "https:\/\/panel.rlbmods.com\/api\/webhook\/nowpayments.php",
+    "order_id": "NP_6910a144a02c2_1762697540",
+    "order_description": "Balance topup for mreagle13337@gmail.com",
+    "customer_email": "mreagle13337@gmail.com"
+}
+[2025-11-09 14:12:21] NowPayments API response
+{
+    "http_code": 201,
+    "curl_error": "",
+    "response": "{\"payment_id\":\"6230268483\",\"payment_status\":\"waiting\",\"pay_address\":\"MRYHMGhzM1SJDtFUxUFxsqsg4HpYZea25q\",\"price_amount\":10,\"price_currency\":\"usd\",\"pay_amount\":0.09495514,\"amount_received\":0.0941818,\"pay_currency\":\"ltc\",\"order_id\":\"NP_6910a144a02c2_1762697540\",\"order_description\":\"Balance topup for mreagle13337@gmail.com\",\"payin_extra_id\":null,\"ipn_callback_url\":\"https:\/\/panel.rlbmods.com\/api\/webhook\/nowpayments.php\",\"customer_email\":\"mreagle13337@gmail.com\",\"created_at\":\"2025-11-09T14:12:21.002Z\",\"updated_at\":\"2025-11-09T14:12:21.002Z\",\"purchase_id\":\"5809710070\",\"smart_contract\":null,\"network\":\"ltc\",\"network_precision\":null,\"time_limit\":null,\"burning_percent\":null,\"expiration_estimate_date\":\"2025-11-09T14:32:21.002Z\",\"is_fixed_rate\":false,\"is_fee_paid_by_user\":false,\"valid_until\":\"2025-11-16T14:12:21.002Z\",\"type\":\"crypto2crypto\",\"product\":\"api\",\"origin_ip\":\"2a02:4780:a:591:0:24f8:1568:1\"}"
+}
+[2025-11-09 14:12:21] Payment details extracted
+{
+    "payment_id": "6230268483",
+    "payment_address": "MRYHMGhzM1SJDtFUxUFxsqsg4HpYZea25q",
+    "pay_amount": 0.09495514,
+    "pay_currency": "ltc",
+    "expiration_date": "2025-11-09T14:32:21.002Z"
+}
+[2025-11-09 14:12:21] Database columns found
+[
+    "id",
+    "user_id",
+    "order_id",
+    "amount",
+    "quantity",
+    "status",
+    "delivery_status",
+    "checkout_url",
+    "payment_method",
+    "crypto_address",
+    "gateway",
+    "transaction_id",
+    "created_at",
+    "updated_at",
+    "network_fee",
+    "gateway_fee",
+    "amount_received",
+    "confirmations",
+    "delivered_item",
+    "note",
+    "sell_key",
+    "expires_at",
+    "can_cancel"
+]
+[2025-11-09 14:12:21] Transaction saved to database
+{
+    "db_id": 286,
+    "order_id": "NP_6910a144a02c2_1762697540"
+}
+[2025-11-09 14:12:21] Payment creation completed successfully
+[2025-11-09 14:15:33] === NOWPAYMENTS PAYMENT CREATION STARTED ===
+[2025-11-09 14:15:33] User authenticated
+{
+    "user_id": 1
+}
+[2025-11-09 14:15:33] ERROR: You already have a pending transaction. Please complete it first.
+{
+    "code": 400
+}
+[2025-11-09 15:05:09] === NOWPAYMENTS PAYMENT CREATION STARTED ===
+[2025-11-09 15:05:09] User authenticated
+{
+    "user_id": 1
+}
+[2025-11-09 15:05:09] ERROR: You already have a pending transaction. Please complete it first.
+{
+    "code": 400
+}
+[2025-11-10 20:05:17] === NOWPAYMENTS PAYMENT CREATION STARTED ===
+[2025-11-10 20:05:17] User authenticated
+{
+    "user_id": 210
+}
+[2025-11-10 20:05:17] Validated input
+{
+    "amount": 50,
+    "quantity": 1,
+    "method": "ltc",
+    "note": ""
+}
+[2025-11-10 20:05:18] Retrieved user data
+{
+    "user_id": 210,
+    "email": "ronivrolijks@gmail.com"
+}
+[2025-11-10 20:05:18] Prepared NowPayments payload
+{
+    "price_amount": 50,
+    "price_currency": "usd",
+    "pay_currency": "ltc",
+    "ipn_callback_url": "https:\/\/panel.rlbmods.com\/api\/webhook\/nowpayments.php",
+    "order_id": "NP_6912457e0018d_1762805118",
+    "order_description": "Balance topup for ronivrolijks@gmail.com",
+    "customer_email": "ronivrolijks@gmail.com"
+}
+[2025-11-10 20:05:18] NowPayments API response
+{
+    "http_code": 201,
+    "curl_error": "",
+    "response": "{\"payment_id\":\"6231935965\",\"payment_status\":\"waiting\",\"pay_address\":\"MQxAuockYcXzSaM24BHcuoHefom7p49b4T\",\"price_amount\":50,\"price_currency\":\"usd\",\"pay_amount\":0.46219548,\"amount_received\":0.459586,\"pay_currency\":\"ltc\",\"order_id\":\"NP_6912457e0018d_1762805118\",\"order_description\":\"Balance topup for ronivrolijks@gmail.com\",\"payin_extra_id\":null,\"ipn_callback_url\":\"https:\/\/panel.rlbmods.com\/api\/webhook\/nowpayments.php\",\"customer_email\":\"ronivrolijks@gmail.com\",\"created_at\":\"2025-11-10T20:05:18.701Z\",\"updated_at\":\"2025-11-10T20:05:18.701Z\",\"purchase_id\":\"4756554632\",\"smart_contract\":null,\"network\":\"ltc\",\"network_precision\":null,\"time_limit\":null,\"burning_percent\":null,\"expiration_estimate_date\":\"2025-11-10T20:25:18.701Z\",\"is_fixed_rate\":false,\"is_fee_paid_by_user\":false,\"valid_until\":\"2025-11-17T20:05:18.701Z\",\"type\":\"crypto2crypto\",\"product\":\"api\",\"origin_ip\":\"2a02:4780:a:591:0:24f8:1568:1\"}"
+}
+[2025-11-10 20:05:18] Payment details extracted
+{
+    "payment_id": "6231935965",
+    "payment_address": "MQxAuockYcXzSaM24BHcuoHefom7p49b4T",
+    "pay_amount": 0.46219548,
+    "pay_currency": "ltc",
+    "expiration_date": "2025-11-10T20:25:18.701Z"
+}
+[2025-11-10 20:05:18] Database columns found
+[
+    "id",
+    "user_id",
+    "order_id",
+    "amount",
+    "quantity",
+    "status",
+    "delivery_status",
+    "checkout_url",
+    "payment_method",
+    "crypto_address",
+    "gateway",
+    "transaction_id",
+    "created_at",
+    "updated_at",
+    "network_fee",
+    "gateway_fee",
+    "amount_received",
+    "confirmations",
+    "delivered_item",
+    "note",
+    "sell_key",
+    "expires_at",
+    "can_cancel"
+]
+[2025-11-10 20:05:18] Transaction saved to database
+{
+    "db_id": 292,
+    "order_id": "NP_6912457e0018d_1762805118"
+}
+[2025-11-10 20:05:18] Payment creation completed successfully
+[2025-11-10 20:44:02] === NOWPAYMENTS PAYMENT CREATION STARTED ===
+[2025-11-10 20:44:02] User authenticated
+{
+    "user_id": 210
+}
+[2025-11-10 20:44:02] ERROR: You already have a pending transaction. Please complete it first.
+{
+    "code": 400
+}
+[2025-11-10 20:46:27] === NOWPAYMENTS PAYMENT CREATION STARTED ===
+[2025-11-10 20:46:27] User authenticated
+{
+    "user_id": 210
+}
+[2025-11-10 20:46:27] ERROR: You already have a pending transaction. Please complete it first.
+{
+    "code": 400
+}
+[2025-11-10 21:09:24] === NOWPAYMENTS PAYMENT CREATION STARTED ===
+[2025-11-10 21:09:24] User authenticated
+{
+    "user_id": 210
+}
+[2025-11-10 21:09:24] Validated input
+{
+    "amount": 50,
+    "quantity": 1,
+    "method": "ltc",
+    "note": ""
+}
+[2025-11-10 21:09:24] Retrieved user data
+{
+    "user_id": 210,
+    "email": "ronivrolijks@gmail.com"
+}
+[2025-11-10 21:09:24] Prepared NowPayments payload
+{
+    "price_amount": 50,
+    "price_currency": "usd",
+    "pay_currency": "ltc",
+    "ipn_callback_url": "https:\/\/panel.rlbmods.com\/api\/webhook\/nowpayments.php",
+    "order_id": "NP_691254842bf83_1762808964",
+    "order_description": "Balance topup for ronivrolijks@gmail.com",
+    "customer_email": "ronivrolijks@gmail.com"
+}
+[2025-11-10 21:09:26] NowPayments API response
+{
+    "http_code": 201,
+    "curl_error": "",
+    "response": "{\"payment_id\":\"4903901318\",\"payment_status\":\"waiting\",\"pay_address\":\"MTEBSvtSmV62NcwXYF93HPsxCtCMV8yckB\",\"price_amount\":50,\"price_currency\":\"usd\",\"pay_amount\":0.46749921,\"amount_received\":0.4648632,\"pay_currency\":\"ltc\",\"order_id\":\"NP_691254842bf83_1762808964\",\"order_description\":\"Balance topup for ronivrolijks@gmail.com\",\"payin_extra_id\":null,\"ipn_callback_url\":\"https:\/\/panel.rlbmods.com\/api\/webhook\/nowpayments.php\",\"customer_email\":\"ronivrolijks@gmail.com\",\"created_at\":\"2025-11-10T21:09:26.223Z\",\"updated_at\":\"2025-11-10T21:09:26.223Z\",\"purchase_id\":\"5712869615\",\"smart_contract\":null,\"network\":\"ltc\",\"network_precision\":null,\"time_limit\":null,\"burning_percent\":null,\"expiration_estimate_date\":\"2025-11-10T21:29:26.223Z\",\"is_fixed_rate\":false,\"is_fee_paid_by_user\":false,\"valid_until\":\"2025-11-17T21:09:26.223Z\",\"type\":\"crypto2crypto\",\"product\":\"api\",\"origin_ip\":\"2a02:4780:a:591:0:24f8:1568:1\"}"
+}
+[2025-11-10 21:09:26] Payment details extracted
+{
+    "payment_id": "4903901318",
+    "payment_address": "MTEBSvtSmV62NcwXYF93HPsxCtCMV8yckB",
+    "pay_amount": 0.46749921,
+    "pay_currency": "ltc",
+    "expiration_date": "2025-11-10T21:29:26.223Z"
+}
+[2025-11-10 21:09:26] Database columns found
+[
+    "id",
+    "user_id",
+    "order_id",
+    "amount",
+    "quantity",
+    "status",
+    "delivery_status",
+    "checkout_url",
+    "payment_method",
+    "crypto_address",
+    "gateway",
+    "transaction_id",
+    "created_at",
+    "updated_at",
+    "network_fee",
+    "gateway_fee",
+    "amount_received",
+    "confirmations",
+    "delivered_item",
+    "note",
+    "sell_key",
+    "expires_at",
+    "can_cancel"
+]
+[2025-11-10 21:09:26] Transaction saved to database
+{
+    "db_id": 293,
+    "order_id": "NP_691254842bf83_1762808964"
+}
+[2025-11-10 21:09:26] Payment creation completed successfully
+[2025-11-11 05:37:37] === NOWPAYMENTS PAYMENT CREATION STARTED ===
+[2025-11-11 05:37:37] User authenticated
+{
+    "user_id": 563
+}
+[2025-11-11 05:37:37] Validated input
+{
+    "amount": 10,
+    "quantity": 1,
+    "method": "paypalfnf",
+    "note": ""
+}
+[2025-11-11 05:37:37] Retrieved user data
+{
+    "user_id": 563,
+    "email": "aidenr337@gmail.com"
+}
+[2025-11-11 05:37:37] Prepared NowPayments payload
+{
+    "price_amount": 10,
+    "price_currency": "usd",
+    "pay_currency": "paypalfnf",
+    "ipn_callback_url": "https:\/\/panel.rlbmods.com\/api\/webhook\/nowpayments.php",
+    "order_id": "NP_6912cba1e6ee6_1762839457",
+    "order_description": "Balance topup for aidenr337@gmail.com",
+    "customer_email": "aidenr337@gmail.com"
+}
+[2025-11-11 05:37:38] NowPayments API response
+{
+    "http_code": 400,
+    "curl_error": "",
+    "response": "{\"status\":false,\"statusCode\":400,\"code\":\"BAD_REQUEST\",\"message\":\"Currency paypalfnf was not found\"}"
+}
+[2025-11-11 05:37:38] ERROR: Currency paypalfnf was not found
+{
+    "code": 400
+}
+[2025-11-11 05:37:45] === NOWPAYMENTS PAYMENT CREATION STARTED ===
+[2025-11-11 05:37:45] User authenticated
+{
+    "user_id": 563
+}
+[2025-11-11 05:37:45] Validated input
+{
+    "amount": 10,
+    "quantity": 1,
+    "method": "paypalfnf",
+    "note": ""
+}
+[2025-11-11 05:37:45] Retrieved user data
+{
+    "user_id": 563,
+    "email": "aidenr337@gmail.com"
+}
+[2025-11-11 05:37:45] Prepared NowPayments payload
+{
+    "price_amount": 10,
+    "price_currency": "usd",
+    "pay_currency": "paypalfnf",
+    "ipn_callback_url": "https:\/\/panel.rlbmods.com\/api\/webhook\/nowpayments.php",
+    "order_id": "NP_6912cba9f1b6b_1762839465",
+    "order_description": "Balance topup for aidenr337@gmail.com",
+    "customer_email": "aidenr337@gmail.com"
+}
+[2025-11-11 05:37:46] NowPayments API response
+{
+    "http_code": 400,
+    "curl_error": "",
+    "response": "{\"status\":false,\"statusCode\":400,\"code\":\"BAD_REQUEST\",\"message\":\"Currency paypalfnf was not found\"}"
+}
+[2025-11-11 05:37:46] ERROR: Currency paypalfnf was not found
+{
+    "code": 400
+}
+[2025-11-11 05:40:39] === NOWPAYMENTS PAYMENT CREATION STARTED ===
+[2025-11-11 05:40:39] User authenticated
+{
+    "user_id": 563
+}
+[2025-11-11 05:40:39] Validated input
+{
+    "amount": 10,
+    "quantity": 1,
+    "method": "paypalfnf",
+    "note": ""
+}
+[2025-11-11 05:40:39] Retrieved user data
+{
+    "user_id": 563,
+    "email": "aidenr337@gmail.com"
+}
+[2025-11-11 05:40:39] Prepared NowPayments payload
+{
+    "price_amount": 10,
+    "price_currency": "usd",
+    "pay_currency": "paypalfnf",
+    "ipn_callback_url": "https:\/\/panel.rlbmods.com\/api\/webhook\/nowpayments.php",
+    "order_id": "NP_6912cc5752d33_1762839639",
+    "order_description": "Balance topup for aidenr337@gmail.com",
+    "customer_email": "aidenr337@gmail.com"
+}
+[2025-11-11 05:40:39] NowPayments API response
+{
+    "http_code": 400,
+    "curl_error": "",
+    "response": "{\"status\":false,\"statusCode\":400,\"code\":\"BAD_REQUEST\",\"message\":\"Currency paypalfnf was not found\"}"
+}
+[2025-11-11 05:40:39] ERROR: Currency paypalfnf was not found
+{
+    "code": 400
+}
+[2025-11-16 01:09:03] === NOWPAYMENTS PAYMENT CREATION STARTED ===
+[2025-11-16 01:09:03] User authenticated
+{
+    "user_id": 1921
+}
+[2025-11-16 01:09:03] Validated input
+{
+    "amount": 15,
+    "quantity": 1,
+    "method": "paypalfnf",
+    "note": ""
+}
+[2025-11-16 01:09:03] Retrieved user data
+{
+    "user_id": 1921,
+    "email": "zippydrippy69@gmail.com"
+}
+[2025-11-16 01:09:03] Prepared NowPayments payload
+{
+    "price_amount": 15,
+    "price_currency": "usd",
+    "pay_currency": "paypalfnf",
+    "ipn_callback_url": "https:\/\/panel.rlbmods.com\/api\/webhook\/nowpayments.php",
+    "order_id": "NP_6919242fbf89d_1763255343",
+    "order_description": "Balance topup for zippydrippy69@gmail.com",
+    "customer_email": "zippydrippy69@gmail.com"
+}
+[2025-11-16 01:09:03] NowPayments API response
+{
+    "http_code": 400,
+    "curl_error": "",
+    "response": "{\"status\":false,\"statusCode\":400,\"code\":\"BAD_REQUEST\",\"message\":\"Currency paypalfnf was not found\"}"
+}
+[2025-11-16 01:09:03] ERROR: Currency paypalfnf was not found
+{
+    "code": 400
+}
+[2025-11-16 01:11:36] === NOWPAYMENTS PAYMENT CREATION STARTED ===
+[2025-11-16 01:11:36] User authenticated
+{
+    "user_id": 1921
+}
+[2025-11-16 01:11:36] Validated input
+{
+    "amount": 15,
+    "quantity": 1,
+    "method": "paypalfnf",
+    "note": ""
+}
+[2025-11-16 01:11:36] Retrieved user data
+{
+    "user_id": 1921,
+    "email": "zippydrippy69@gmail.com"
+}
+[2025-11-16 01:11:36] Prepared NowPayments payload
+{
+    "price_amount": 15,
+    "price_currency": "usd",
+    "pay_currency": "paypalfnf",
+    "ipn_callback_url": "https:\/\/panel.rlbmods.com\/api\/webhook\/nowpayments.php",
+    "order_id": "NP_691924c8ea965_1763255496",
+    "order_description": "Balance topup for zippydrippy69@gmail.com",
+    "customer_email": "zippydrippy69@gmail.com"
+}
+[2025-11-16 01:11:37] NowPayments API response
+{
+    "http_code": 400,
+    "curl_error": "",
+    "response": "{\"status\":false,\"statusCode\":400,\"code\":\"BAD_REQUEST\",\"message\":\"Currency paypalfnf was not found\"}"
+}
+[2025-11-16 01:11:37] ERROR: Currency paypalfnf was not found
+{
+    "code": 400
+}
+[2025-11-16 01:14:45] === NOWPAYMENTS PAYMENT CREATION STARTED ===
+[2025-11-16 01:14:45] User authenticated
+{
+    "user_id": 1921
+}
+[2025-11-16 01:14:45] Validated input
+{
+    "amount": 15,
+    "quantity": 1,
+    "method": "btc",
+    "note": ""
+}
+[2025-11-16 01:14:45] Retrieved user data
+{
+    "user_id": 1921,
+    "email": "zippydrippy69@gmail.com"
+}
+[2025-11-16 01:14:45] Prepared NowPayments payload
+{
+    "price_amount": 15,
+    "price_currency": "usd",
+    "pay_currency": "btc",
+    "ipn_callback_url": "https:\/\/panel.rlbmods.com\/api\/webhook\/nowpayments.php",
+    "order_id": "NP_691925858a8e5_1763255685",
+    "order_description": "Balance topup for zippydrippy69@gmail.com",
+    "customer_email": "zippydrippy69@gmail.com"
+}
+[2025-11-16 01:14:45] NowPayments API response
+{
+    "http_code": 201,
+    "curl_error": "",
+    "response": "{\"payment_id\":\"4386364896\",\"payment_status\":\"waiting\",\"pay_address\":\"3DcABjfQKFArtdhfrqXN4rxf5k4dMPScEq\",\"price_amount\":15,\"price_currency\":\"usd\",\"pay_amount\":0.00015699,\"amount_received\":0.1423731,\"pay_currency\":\"btc\",\"order_id\":\"NP_691925858a8e5_1763255685\",\"order_description\":\"Balance topup for zippydrippy69@gmail.com\",\"payin_extra_id\":null,\"ipn_callback_url\":\"https:\/\/panel.rlbmods.com\/api\/webhook\/nowpayments.php\",\"customer_email\":\"zippydrippy69@gmail.com\",\"created_at\":\"2025-11-16T01:14:45.936Z\",\"updated_at\":\"2025-11-16T01:14:45.936Z\",\"purchase_id\":\"5012593757\",\"smart_contract\":null,\"network\":\"btc\",\"network_precision\":null,\"time_limit\":null,\"burning_percent\":null,\"expiration_estimate_date\":\"2025-11-16T01:34:45.935Z\",\"is_fixed_rate\":false,\"is_fee_paid_by_user\":false,\"valid_until\":\"2025-11-23T01:14:45.936Z\",\"type\":\"crypto2crypto\",\"product\":\"api\",\"origin_ip\":\"2a02:4780:a:591:0:24f8:1568:1\"}"
+}
+[2025-11-16 01:14:45] Payment details extracted
+{
+    "payment_id": "4386364896",
+    "payment_address": "3DcABjfQKFArtdhfrqXN4rxf5k4dMPScEq",
+    "pay_amount": 0.00015699,
+    "pay_currency": "btc",
+    "expiration_date": "2025-11-16T01:34:45.935Z"
+}
+[2025-11-16 01:14:45] Database columns found
+[
+    "id",
+    "user_id",
+    "order_id",
+    "amount",
+    "quantity",
+    "status",
+    "delivery_status",
+    "checkout_url",
+    "payment_method",
+    "crypto_address",
+    "gateway",
+    "transaction_id",
+    "created_at",
+    "updated_at",
+    "network_fee",
+    "gateway_fee",
+    "amount_received",
+    "confirmations",
+    "delivered_item",
+    "note",
+    "sell_key",
+    "expires_at",
+    "can_cancel"
+]
+[2025-11-16 01:14:45] Transaction saved to database
+{
+    "db_id": 304,
+    "order_id": "NP_691925858a8e5_1763255685"
+}
+[2025-11-16 01:14:45] Payment creation completed successfully
+[2025-11-16 01:17:32] === NOWPAYMENTS PAYMENT CREATION STARTED ===
+[2025-11-16 01:17:32] User authenticated
+{
+    "user_id": 1921
+}
+[2025-11-16 01:17:32] ERROR: You already have a pending transaction. Please complete it first.
+{
+    "code": 400
+}
+[2025-11-16 01:17:38] === NOWPAYMENTS PAYMENT CREATION STARTED ===
+[2025-11-16 01:17:38] User authenticated
+{
+    "user_id": 1921
+}
+[2025-11-16 01:17:38] ERROR: You already have a pending transaction. Please complete it first.
+{
+    "code": 400
+}
+[2025-11-16 01:51:24] === NOWPAYMENTS PAYMENT CREATION STARTED ===
+[2025-11-16 01:51:24] User authenticated
+{
+    "user_id": 1921
+}
+[2025-11-16 01:51:24] ERROR: You already have a pending transaction. Please complete it first.
+{
+    "code": 400
+}
+[2025-11-16 01:55:48] === NOWPAYMENTS PAYMENT CREATION STARTED ===
+[2025-11-16 01:55:48] User authenticated
+{
+    "user_id": 1922
+}
+[2025-11-16 01:55:48] Validated input
+{
+    "amount": 15,
+    "quantity": 1,
+    "method": "btc",
+    "note": ""
+}
+[2025-11-16 01:55:48] Retrieved user data
+{
+    "user_id": 1922,
+    "email": "Lil-Kerr7@outlook.com"
+}
+[2025-11-16 01:55:48] Prepared NowPayments payload
+{
+    "price_amount": 15,
+    "price_currency": "usd",
+    "pay_currency": "btc",
+    "ipn_callback_url": "https:\/\/panel.rlbmods.com\/api\/webhook\/nowpayments.php",
+    "order_id": "NP_69192f241e06a_1763258148",
+    "order_description": "Balance topup for Lil-Kerr7@outlook.com",
+    "customer_email": "Lil-Kerr7@outlook.com"
+}
+[2025-11-16 01:55:48] NowPayments API response
+{
+    "http_code": 201,
+    "curl_error": "",
+    "response": "{\"payment_id\":\"6353301466\",\"payment_status\":\"waiting\",\"pay_address\":\"3C31HhfbfWvud7WmCake2oXsVrYz8J3LYC\",\"price_amount\":15,\"price_currency\":\"usd\",\"pay_amount\":0.00015727,\"amount_received\":0.1419507,\"pay_currency\":\"btc\",\"order_id\":\"NP_69192f241e06a_1763258148\",\"order_description\":\"Balance topup for Lil-Kerr7@outlook.com\",\"payin_extra_id\":null,\"ipn_callback_url\":\"https:\/\/panel.rlbmods.com\/api\/webhook\/nowpayments.php\",\"customer_email\":\"Lil-Kerr7@outlook.com\",\"created_at\":\"2025-11-16T01:55:48.648Z\",\"updated_at\":\"2025-11-16T01:55:48.648Z\",\"purchase_id\":\"5613953211\",\"smart_contract\":null,\"network\":\"btc\",\"network_precision\":null,\"time_limit\":null,\"burning_percent\":null,\"expiration_estimate_date\":\"2025-11-16T02:15:48.648Z\",\"is_fixed_rate\":false,\"is_fee_paid_by_user\":false,\"valid_until\":\"2025-11-23T01:55:48.648Z\",\"type\":\"crypto2crypto\",\"product\":\"api\",\"origin_ip\":\"2a02:4780:a:591:0:24f8:1568:1\"}"
+}
+[2025-11-16 01:55:48] Payment details extracted
+{
+    "payment_id": "6353301466",
+    "payment_address": "3C31HhfbfWvud7WmCake2oXsVrYz8J3LYC",
+    "pay_amount": 0.00015727,
+    "pay_currency": "btc",
+    "expiration_date": "2025-11-16T02:15:48.648Z"
+}
+[2025-11-16 01:55:48] Database columns found
+[
+    "id",
+    "user_id",
+    "order_id",
+    "amount",
+    "quantity",
+    "status",
+    "delivery_status",
+    "checkout_url",
+    "payment_method",
+    "crypto_address",
+    "gateway",
+    "transaction_id",
+    "created_at",
+    "updated_at",
+    "network_fee",
+    "gateway_fee",
+    "amount_received",
+    "confirmations",
+    "delivered_item",
+    "note",
+    "sell_key",
+    "expires_at",
+    "can_cancel"
+]
+[2025-11-16 01:55:48] Transaction saved to database
+{
+    "db_id": 305,
+    "order_id": "NP_69192f241e06a_1763258148"
+}
+[2025-11-16 01:55:48] Payment creation completed successfully
+[2025-12-17 14:01:48] === NOWPAYMENTS PAYMENT CREATION STARTED ===
+[2025-12-17 14:01:48] User authenticated
+{
+    "user_id": 1936
+}
+[2025-12-17 14:01:48] ERROR: You already have a pending transaction. Please complete it first.
+{
+    "code": 400
+}
+[2026-01-13 23:16:11] === NOWPAYMENTS PAYMENT CREATION STARTED ===
+[2026-01-13 23:16:11] User authenticated
+{
+    "user_id": 1255
+}
+[2026-01-13 23:16:11] Validated input
+{
+    "amount": 50,
+    "quantity": 1,
+    "method": "ltc",
+    "note": ""
+}
+[2026-01-13 23:16:11] Retrieved user data
+{
+    "user_id": 1255,
+    "email": "pleasefreerubux@gmail.com"
+}
+[2026-01-13 23:16:11] Prepared NowPayments payload
+{
+    "price_amount": 50,
+    "price_currency": "usd",
+    "pay_currency": "ltc",
+    "ipn_callback_url": "https:\/\/panel.rlbmods.com\/api\/webhook\/nowpayments.php",
+    "order_id": "NP_6966d23ba24eb_1768346171",
+    "order_description": "Balance topup for pleasefreerubux@gmail.com",
+    "customer_email": "pleasefreerubux@gmail.com"
+}
+[2026-01-13 23:16:12] NowPayments API response
+{
+    "http_code": 201,
+    "curl_error": "",
+    "response": "{\"payment_id\":\"4961257961\",\"payment_status\":\"waiting\",\"pay_address\":\"MBsBpUrJmEw52LKxCdXgVt67BjqM87QqGg\",\"price_amount\":50,\"price_currency\":\"usd\",\"pay_amount\":0.63634026,\"amount_received\":0.63286,\"pay_currency\":\"ltc\",\"order_id\":\"NP_6966d23ba24eb_1768346171\",\"order_description\":\"Balance topup for pleasefreerubux@gmail.com\",\"payin_extra_id\":null,\"ipn_callback_url\":\"https:\/\/panel.rlbmods.com\/api\/webhook\/nowpayments.php\",\"customer_email\":\"pleasefreerubux@gmail.com\",\"created_at\":\"2026-01-13T23:16:12.100Z\",\"updated_at\":\"2026-01-13T23:16:12.100Z\",\"purchase_id\":\"6348721195\",\"smart_contract\":null,\"network\":\"ltc\",\"network_precision\":null,\"time_limit\":null,\"burning_percent\":null,\"expiration_estimate_date\":\"2026-01-13T23:36:12.100Z\",\"is_fixed_rate\":false,\"is_fee_paid_by_user\":false,\"valid_until\":\"2026-01-20T23:16:12.100Z\",\"type\":\"crypto2crypto\",\"product\":\"api\",\"origin_ip\":\"2a02:4780:a:591:0:24f8:1568:1\"}"
+}
+[2026-01-13 23:16:12] Payment details extracted
+{
+    "payment_id": "4961257961",
+    "payment_address": "MBsBpUrJmEw52LKxCdXgVt67BjqM87QqGg",
+    "pay_amount": 0.63634026,
+    "pay_currency": "ltc",
+    "expiration_date": "2026-01-13T23:36:12.100Z"
+}
+[2026-01-13 23:16:12] Database columns found
+[
+    "id",
+    "user_id",
+    "order_id",
+    "amount",
+    "quantity",
+    "status",
+    "delivery_status",
+    "checkout_url",
+    "payment_method",
+    "crypto_address",
+    "gateway",
+    "transaction_id",
+    "created_at",
+    "updated_at",
+    "network_fee",
+    "gateway_fee",
+    "amount_received",
+    "confirmations",
+    "delivered_item",
+    "note",
+    "sell_key",
+    "expires_at",
+    "can_cancel"
+]
+[2026-01-13 23:16:12] Transaction saved to database
+{
+    "db_id": 315,
+    "order_id": "NP_6966d23ba24eb_1768346171"
+}
+[2026-01-13 23:16:12] Payment creation completed successfully
+[2026-01-31 07:18:01] === NOWPAYMENTS PAYMENT CREATION STARTED ===
+[2026-01-31 07:18:01] User authenticated
+{
+    "user_id": 988
+}
+[2026-01-31 07:18:01] Validated input
+{
+    "amount": 4,
+    "quantity": 1,
+    "method": "ltc",
+    "note": ""
+}
+[2026-01-31 07:18:01] Retrieved user data
+{
+    "user_id": 988,
+    "email": "3060valorant@proton.me"
+}
+[2026-01-31 07:18:01] Prepared NowPayments payload
+{
+    "price_amount": 4,
+    "price_currency": "usd",
+    "pay_currency": "ltc",
+    "ipn_callback_url": "https:\/\/panel.rlbmods.com\/api\/webhook\/nowpayments.php",
+    "order_id": "NP_697daca936939_1769843881",
+    "order_description": "Balance topup for 3060valorant@proton.me",
+    "customer_email": "3060valorant@proton.me"
+}
+[2026-01-31 07:18:03] NowPayments API response
+{
+    "http_code": 201,
+    "curl_error": "",
+    "response": "{\"payment_id\":\"5820482309\",\"payment_status\":\"waiting\",\"pay_address\":\"MLNXT7j8Kqb38yWEyE8k2j9d6sf4kV8Axd\",\"price_amount\":4,\"price_currency\":\"usd\",\"pay_amount\":0.06208652,\"amount_received\":0.0614775,\"pay_currency\":\"ltc\",\"order_id\":\"NP_697daca936939_1769843881\",\"order_description\":\"Balance topup for 3060valorant@proton.me\",\"payin_extra_id\":null,\"ipn_callback_url\":\"https:\/\/panel.rlbmods.com\/api\/webhook\/nowpayments.php\",\"customer_email\":\"3060valorant@proton.me\",\"created_at\":\"2026-01-31T07:18:03.954Z\",\"updated_at\":\"2026-01-31T07:18:03.954Z\",\"purchase_id\":\"5895915002\",\"smart_contract\":null,\"network\":\"ltc\",\"network_precision\":null,\"time_limit\":null,\"burning_percent\":null,\"expiration_estimate_date\":\"2026-01-31T07:38:03.954Z\",\"is_fixed_rate\":false,\"is_fee_paid_by_user\":false,\"valid_until\":\"2026-02-07T07:18:03.954Z\",\"type\":\"crypto2crypto\",\"product\":\"api\",\"origin_ip\":\"2a02:4780:a:591:0:24f8:1568:1\"}"
+}
+[2026-01-31 07:18:03] Payment details extracted
+{
+    "payment_id": "5820482309",
+    "payment_address": "MLNXT7j8Kqb38yWEyE8k2j9d6sf4kV8Axd",
+    "pay_amount": 0.06208652,
+    "pay_currency": "ltc",
+    "expiration_date": "2026-01-31T07:38:03.954Z"
+}
+[2026-01-31 07:18:03] Database columns found
+[
+    "id",
+    "user_id",
+    "order_id",
+    "amount",
+    "quantity",
+    "status",
+    "delivery_status",
+    "checkout_url",
+    "payment_method",
+    "crypto_address",
+    "gateway",
+    "transaction_id",
+    "created_at",
+    "updated_at",
+    "network_fee",
+    "gateway_fee",
+    "amount_received",
+    "confirmations",
+    "delivered_item",
+    "note",
+    "sell_key",
+    "expires_at",
+    "can_cancel"
+]
+[2026-01-31 07:18:03] Transaction saved to database
+{
+    "db_id": 321,
+    "order_id": "NP_697daca936939_1769843881"
+}
+[2026-01-31 07:18:03] Payment creation completed successfully
+[2026-01-31 09:47:49] === NOWPAYMENTS PAYMENT CREATION STARTED ===
+[2026-01-31 09:47:49] User authenticated
+{
+    "user_id": 1
+}
+[2026-01-31 09:47:49] Validated input
+{
+    "amount": 10,
+    "quantity": 1,
+    "method": "ltc",
+    "note": ""
+}
+[2026-01-31 09:47:49] Retrieved user data
+{
+    "user_id": 1,
+    "email": "rlbmods@gmail.com"
+}
+[2026-01-31 09:47:49] Prepared NowPayments payload
+{
+    "price_amount": 10,
+    "price_currency": "usd",
+    "pay_currency": "ltc",
+    "ipn_callback_url": "https:\/\/panel.rlbmods.com\/api\/webhook\/nowpayments.php",
+    "order_id": "NP_697dcfc5750d6_1769852869",
+    "order_description": "Balance topup for rlbmods@gmail.com",
+    "customer_email": "rlbmods@gmail.com"
+}
+[2026-01-31 09:47:49] NowPayments API response
+{
+    "http_code": 201,
+    "curl_error": "",
+    "response": "{\"payment_id\":\"4574167884\",\"payment_status\":\"waiting\",\"pay_address\":\"MRBV2UQzgRoHkroKkGrreW4UD5LtbfpWgD\",\"price_amount\":10,\"price_currency\":\"usd\",\"pay_amount\":0.15737514,\"amount_received\":0.1562897,\"pay_currency\":\"ltc\",\"order_id\":\"NP_697dcfc5750d6_1769852869\",\"order_description\":\"Balance topup for rlbmods@gmail.com\",\"payin_extra_id\":null,\"ipn_callback_url\":\"https:\/\/panel.rlbmods.com\/api\/webhook\/nowpayments.php\",\"customer_email\":\"rlbmods@gmail.com\",\"created_at\":\"2026-01-31T09:47:49.813Z\",\"updated_at\":\"2026-01-31T09:47:49.813Z\",\"purchase_id\":\"5555587368\",\"smart_contract\":null,\"network\":\"ltc\",\"network_precision\":null,\"time_limit\":null,\"burning_percent\":null,\"expiration_estimate_date\":\"2026-01-31T10:07:49.813Z\",\"is_fixed_rate\":false,\"is_fee_paid_by_user\":false,\"valid_until\":\"2026-02-07T09:47:49.813Z\",\"type\":\"crypto2crypto\",\"product\":\"api\",\"origin_ip\":\"2a02:4780:a:591:0:24f8:1568:1\"}"
+}
+[2026-01-31 09:47:49] Payment details extracted
+{
+    "payment_id": "4574167884",
+    "payment_address": "MRBV2UQzgRoHkroKkGrreW4UD5LtbfpWgD",
+    "pay_amount": 0.15737514,
+    "pay_currency": "ltc",
+    "expiration_date": "2026-01-31T10:07:49.813Z"
+}
+[2026-01-31 09:47:49] Database columns found
+[
+    "id",
+    "user_id",
+    "order_id",
+    "amount",
+    "quantity",
+    "status",
+    "delivery_status",
+    "checkout_url",
+    "payment_method",
+    "crypto_address",
+    "gateway",
+    "transaction_id",
+    "created_at",
+    "updated_at",
+    "network_fee",
+    "gateway_fee",
+    "amount_received",
+    "confirmations",
+    "delivered_item",
+    "note",
+    "sell_key",
+    "expires_at",
+    "can_cancel"
+]
+[2026-01-31 09:47:49] Transaction saved to database
+{
+    "db_id": 322,
+    "order_id": "NP_697dcfc5750d6_1769852869"
+}
+[2026-01-31 09:47:49] Payment creation completed successfully
+[2026-01-31 09:51:20] === NOWPAYMENTS PAYMENT CREATION STARTED ===
+[2026-01-31 09:51:20] User authenticated
+{
+    "user_id": 1
+}
+[2026-01-31 09:51:20] ERROR: You already have a pending transaction. Please complete it first.
+{
+    "code": 400
+}
+[2026-01-31 09:59:22] === NOWPAYMENTS PAYMENT CREATION STARTED ===
+[2026-01-31 09:59:22] User authenticated
+{
+    "user_id": 1
+}
+[2026-01-31 09:59:22] ERROR: You already have a pending transaction. Please complete it first.
+{
+    "code": 400
+}
+[2026-01-31 09:59:39] === NOWPAYMENTS PAYMENT CREATION STARTED ===
+[2026-01-31 09:59:39] User authenticated
+{
+    "user_id": 1
+}
+[2026-01-31 09:59:39] Validated input
+{
+    "amount": 1,
+    "quantity": 1,
+    "method": "ltc",
+    "note": ""
+}
+[2026-01-31 09:59:39] Retrieved user data
+{
+    "user_id": 1,
+    "email": "rlbmods@gmail.com"
+}
+[2026-01-31 09:59:39] Prepared NowPayments payload
+{
+    "price_amount": 1,
+    "price_currency": "usd",
+    "pay_currency": "ltc",
+    "ipn_callback_url": "https:\/\/panel.rlbmods.com\/api\/webhook\/nowpayments.php",
+    "order_id": "NP_697dd28bebda4_1769853579",
+    "order_description": "Balance topup for rlbmods@gmail.com",
+    "customer_email": "rlbmods@gmail.com"
+}
+[2026-01-31 09:59:40] NowPayments API response
+{
+    "http_code": 201,
+    "curl_error": "",
+    "response": "{\"payment_id\":\"5807094610\",\"payment_status\":\"waiting\",\"pay_address\":\"MBVQm3EBNuY2LckkS8i2xHLbhVnuy3EBf3\",\"price_amount\":1,\"price_currency\":\"usd\",\"pay_amount\":0.01576618,\"amount_received\":0.0153888,\"pay_currency\":\"ltc\",\"order_id\":\"NP_697dd28bebda4_1769853579\",\"order_description\":\"Balance topup for rlbmods@gmail.com\",\"payin_extra_id\":null,\"ipn_callback_url\":\"https:\/\/panel.rlbmods.com\/api\/webhook\/nowpayments.php\",\"customer_email\":\"rlbmods@gmail.com\",\"created_at\":\"2026-01-31T09:59:40.541Z\",\"updated_at\":\"2026-01-31T09:59:40.541Z\",\"purchase_id\":\"5252833445\",\"smart_contract\":null,\"network\":\"ltc\",\"network_precision\":null,\"time_limit\":null,\"burning_percent\":null,\"expiration_estimate_date\":\"2026-01-31T10:19:40.541Z\",\"is_fixed_rate\":false,\"is_fee_paid_by_user\":false,\"valid_until\":\"2026-02-07T09:59:40.541Z\",\"type\":\"crypto2crypto\",\"product\":\"api\",\"origin_ip\":\"2a02:4780:a:591:0:24f8:1568:1\"}"
+}
+[2026-01-31 09:59:40] Payment details extracted
+{
+    "payment_id": "5807094610",
+    "payment_address": "MBVQm3EBNuY2LckkS8i2xHLbhVnuy3EBf3",
+    "pay_amount": 0.01576618,
+    "pay_currency": "ltc",
+    "expiration_date": "2026-01-31T10:19:40.541Z"
+}
+[2026-01-31 09:59:40] Database columns found
+[
+    "id",
+    "user_id",
+    "order_id",
+    "amount",
+    "quantity",
+    "status",
+    "delivery_status",
+    "checkout_url",
+    "payment_method",
+    "crypto_address",
+    "gateway",
+    "transaction_id",
+    "created_at",
+    "updated_at",
+    "network_fee",
+    "gateway_fee",
+    "amount_received",
+    "confirmations",
+    "delivered_item",
+    "note",
+    "sell_key",
+    "expires_at",
+    "can_cancel"
+]
+[2026-01-31 09:59:40] Transaction saved to database
+{
+    "db_id": 323,
+    "order_id": "NP_697dd28bebda4_1769853579"
+}
+[2026-01-31 09:59:40] Payment creation completed successfully
+[2026-02-01 05:32:49] === NOWPAYMENTS PAYMENT CREATION STARTED ===
+[2026-02-01 05:32:49] User authenticated
+{
+    "user_id": 988
+}
+[2026-02-01 05:32:49] Validated input
+{
+    "amount": 1,
+    "quantity": 1,
+    "method": "ltc",
+    "note": ""
+}
+[2026-02-01 05:32:49] Retrieved user data
+{
+    "user_id": 988,
+    "email": "3060valorant@proton.me"
+}
+[2026-02-01 05:32:49] Prepared NowPayments payload
+{
+    "price_amount": 1,
+    "price_currency": "usd",
+    "pay_currency": "ltc",
+    "ipn_callback_url": "https:\/\/panel.rlbmods.com\/api\/webhook\/nowpayments.php",
+    "order_id": "NP_697ee58138fe0_1769923969",
+    "order_description": "Balance topup for 3060valorant@proton.me",
+    "customer_email": "3060valorant@proton.me"
+}
+[2026-02-01 05:32:49] NowPayments API response
+{
+    "http_code": 201,
+    "curl_error": "",
+    "response": "{\"payment_id\":\"5882727282\",\"payment_status\":\"waiting\",\"pay_address\":\"MQHeix8yoypraYwFNq93i9bhnnQarsru4q\",\"price_amount\":1,\"price_currency\":\"usd\",\"pay_amount\":0.01673329,\"amount_received\":0.0163511,\"pay_currency\":\"ltc\",\"order_id\":\"NP_697ee58138fe0_1769923969\",\"order_description\":\"Balance topup for 3060valorant@proton.me\",\"payin_extra_id\":null,\"ipn_callback_url\":\"https:\/\/panel.rlbmods.com\/api\/webhook\/nowpayments.php\",\"customer_email\":\"3060valorant@proton.me\",\"created_at\":\"2026-02-01T05:32:49.553Z\",\"updated_at\":\"2026-02-01T05:32:49.553Z\",\"purchase_id\":\"5659920702\",\"smart_contract\":null,\"network\":\"ltc\",\"network_precision\":null,\"time_limit\":null,\"burning_percent\":null,\"expiration_estimate_date\":\"2026-02-01T05:52:49.553Z\",\"is_fixed_rate\":false,\"is_fee_paid_by_user\":false,\"valid_until\":\"2026-02-08T05:32:49.553Z\",\"type\":\"crypto2crypto\",\"product\":\"api\",\"origin_ip\":\"2a02:4780:a:591:0:24f8:1568:1\"}"
+}
+[2026-02-01 05:32:49] Payment details extracted
+{
+    "payment_id": "5882727282",
+    "payment_address": "MQHeix8yoypraYwFNq93i9bhnnQarsru4q",
+    "pay_amount": 0.01673329,
+    "pay_currency": "ltc",
+    "expiration_date": "2026-02-01T05:52:49.553Z"
+}
+[2026-02-01 05:32:49] Database columns found
+[
+    "id",
+    "user_id",
+    "order_id",
+    "amount",
+    "quantity",
+    "status",
+    "delivery_status",
+    "checkout_url",
+    "payment_method",
+    "crypto_address",
+    "gateway",
+    "transaction_id",
+    "created_at",
+    "updated_at",
+    "network_fee",
+    "gateway_fee",
+    "amount_received",
+    "confirmations",
+    "delivered_item",
+    "note",
+    "sell_key",
+    "expires_at",
+    "can_cancel"
+]
+[2026-02-01 05:32:49] Transaction saved to database
+{
+    "db_id": 324,
+    "order_id": "NP_697ee58138fe0_1769923969"
+}
+[2026-02-01 05:32:49] Payment creation completed successfully
+[2026-02-08 21:05:01] === NOWPAYMENTS PAYMENT CREATION STARTED ===
+[2026-02-08 21:05:01] User authenticated
+{
+    "user_id": 1
+}
+[2026-02-08 21:05:01] Validated input
+{
+    "amount": 1,
+    "quantity": 1,
+    "method": "ltc",
+    "note": ""
+}
+[2026-02-08 21:05:01] Retrieved user data
+{
+    "user_id": 1,
+    "email": "rlbmods@gmail.com"
+}
+[2026-02-08 21:05:01] Prepared NowPayments payload
+{
+    "price_amount": 1,
+    "price_currency": "usd",
+    "pay_currency": "ltc",
+    "ipn_callback_url": "https:\/\/panel.rlbmods.com\/api\/webhook\/nowpayments.php",
+    "order_id": "NP_6988fa7d00bc6_1770584701",
+    "order_description": "Balance topup for rlbmods@gmail.com",
+    "customer_email": "rlbmods@gmail.com"
+}
+[2026-02-08 21:05:01] NowPayments API response
+{
+    "http_code": 201,
+    "curl_error": "",
+    "response": "{\"payment_id\":\"6081505993\",\"payment_status\":\"waiting\",\"pay_address\":\"M8j7Anv4XXAetMcTWHwbp23oH5LmPQwbJ4\",\"price_amount\":1,\"price_currency\":\"usd\",\"pay_amount\":0.01830727,\"amount_received\":0.0179172,\"pay_currency\":\"ltc\",\"order_id\":\"NP_6988fa7d00bc6_1770584701\",\"order_description\":\"Balance topup for rlbmods@gmail.com\",\"payin_extra_id\":null,\"ipn_callback_url\":\"https:\/\/panel.rlbmods.com\/api\/webhook\/nowpayments.php\",\"customer_email\":\"rlbmods@gmail.com\",\"created_at\":\"2026-02-08T21:05:01.621Z\",\"updated_at\":\"2026-02-08T21:05:01.621Z\",\"purchase_id\":\"4499053612\",\"smart_contract\":null,\"network\":\"ltc\",\"network_precision\":null,\"time_limit\":null,\"burning_percent\":null,\"expiration_estimate_date\":\"2026-02-08T21:25:01.621Z\",\"is_fixed_rate\":false,\"is_fee_paid_by_user\":false,\"valid_until\":\"2026-02-15T21:05:01.621Z\",\"type\":\"crypto2crypto\",\"product\":\"api\",\"origin_ip\":\"2a02:4780:a:591:0:24f8:1568:1\"}"
+}
+[2026-02-08 21:05:01] Payment details extracted
+{
+    "payment_id": "6081505993",
+    "payment_address": "M8j7Anv4XXAetMcTWHwbp23oH5LmPQwbJ4",
+    "pay_amount": 0.01830727,
+    "pay_currency": "ltc",
+    "expiration_date": "2026-02-08T21:25:01.621Z"
+}
+[2026-02-08 21:05:01] Database columns found
+[
+    "id",
+    "user_id",
+    "order_id",
+    "amount",
+    "quantity",
+    "status",
+    "delivery_status",
+    "checkout_url",
+    "payment_method",
+    "crypto_address",
+    "gateway",
+    "transaction_id",
+    "created_at",
+    "updated_at",
+    "network_fee",
+    "gateway_fee",
+    "amount_received",
+    "confirmations",
+    "delivered_item",
+    "note",
+    "sell_key",
+    "expires_at",
+    "can_cancel"
+]
+[2026-02-08 21:05:01] Transaction saved to database
+{
+    "db_id": 325,
+    "order_id": "NP_6988fa7d00bc6_1770584701"
+}
+[2026-02-08 21:05:01] Payment creation completed successfully
+[2026-02-08 21:25:06] === NOWPAYMENTS PAYMENT CREATION STARTED ===
+[2026-02-08 21:25:06] User authenticated
+{
+    "user_id": 1
+}
+[2026-02-08 21:25:06] Validated input
+{
+    "amount": 1,
+    "quantity": 1,
+    "method": "sol",
+    "note": ""
+}
+[2026-02-08 21:25:06] Retrieved user data
+{
+    "user_id": 1,
+    "email": "rlbmods@gmail.com"
+}
+[2026-02-08 21:25:06] Prepared NowPayments payload
+{
+    "price_amount": 1,
+    "price_currency": "usd",
+    "pay_currency": "sol",
+    "ipn_callback_url": "https:\/\/panel.rlbmods.com\/api\/webhook\/nowpayments.php",
+    "order_id": "NP_6988ff32c9a53_1770585906",
+    "order_description": "Balance topup for rlbmods@gmail.com",
+    "customer_email": "rlbmods@gmail.com"
+}
+[2026-02-08 21:25:07] NowPayments API response
+{
+    "http_code": 201,
+    "curl_error": "",
+    "response": "{\"payment_id\":\"5462310713\",\"payment_status\":\"waiting\",\"pay_address\":\"4awmq6VmrrJbLr1gt9ckHPLRYFLM8w3H9QAf5aKfgN8Q\",\"price_amount\":1,\"price_currency\":\"usd\",\"pay_amount\":0.01143751,\"amount_received\":0.0171201,\"pay_currency\":\"sol\",\"order_id\":\"NP_6988ff32c9a53_1770585906\",\"order_description\":\"Balance topup for rlbmods@gmail.com\",\"payin_extra_id\":null,\"ipn_callback_url\":\"https:\/\/panel.rlbmods.com\/api\/webhook\/nowpayments.php\",\"customer_email\":\"rlbmods@gmail.com\",\"created_at\":\"2026-02-08T21:25:07.226Z\",\"updated_at\":\"2026-02-08T21:25:07.226Z\",\"purchase_id\":\"5326850732\",\"smart_contract\":null,\"network\":\"sol\",\"network_precision\":null,\"time_limit\":null,\"burning_percent\":null,\"expiration_estimate_date\":\"2026-02-08T21:45:07.226Z\",\"is_fixed_rate\":false,\"is_fee_paid_by_user\":false,\"valid_until\":\"2026-02-15T21:25:07.226Z\",\"type\":\"crypto2crypto\",\"product\":\"api\",\"origin_ip\":\"2a02:4780:a:591:0:24f8:1568:1\"}"
+}
+[2026-02-08 21:25:07] Payment details extracted
+{
+    "payment_id": "5462310713",
+    "payment_address": "4awmq6VmrrJbLr1gt9ckHPLRYFLM8w3H9QAf5aKfgN8Q",
+    "pay_amount": 0.01143751,
+    "pay_currency": "sol",
+    "expiration_date": "2026-02-08T21:45:07.226Z"
+}
+[2026-02-08 21:25:07] Database columns found
+[
+    "id",
+    "user_id",
+    "order_id",
+    "amount",
+    "quantity",
+    "status",
+    "delivery_status",
+    "checkout_url",
+    "payment_method",
+    "crypto_address",
+    "gateway",
+    "transaction_id",
+    "created_at",
+    "updated_at",
+    "network_fee",
+    "gateway_fee",
+    "amount_received",
+    "confirmations",
+    "delivered_item",
+    "note",
+    "sell_key",
+    "expires_at",
+    "can_cancel"
+]
+[2026-02-08 21:25:07] Transaction saved to database
+{
+    "db_id": 326,
+    "order_id": "NP_6988ff32c9a53_1770585906"
+}
+[2026-02-08 21:25:07] Payment creation completed successfully
+[2026-02-09 05:40:52] === NOWPAYMENTS PAYMENT CREATION STARTED ===
+[2026-02-09 05:40:52] User authenticated
+{
+    "user_id": 988
+}
+[2026-02-09 05:40:52] Validated input
+{
+    "amount": 4,
+    "quantity": 1,
+    "method": "ltc",
+    "note": ""
+}
+[2026-02-09 05:40:52] Retrieved user data
+{
+    "user_id": 988,
+    "email": "3060valorant@proton.me"
+}
+[2026-02-09 05:40:52] Prepared NowPayments payload
+{
+    "price_amount": 4,
+    "price_currency": "usd",
+    "pay_currency": "ltc",
+    "ipn_callback_url": "https:\/\/panel.rlbmods.com\/api\/webhook\/nowpayments.php",
+    "order_id": "NP_698973643eccf_1770615652",
+    "order_description": "Balance topup for 3060valorant@proton.me",
+    "customer_email": "3060valorant@proton.me"
+}
+[2026-02-09 05:40:52] NowPayments API response
+{
+    "http_code": 201,
+    "curl_error": "",
+    "response": "{\"payment_id\":\"5950723889\",\"payment_status\":\"waiting\",\"pay_address\":\"MUjQY7VbSm7qqUd3fdjY7Cuc8StarWZmvv\",\"price_amount\":4,\"price_currency\":\"usd\",\"pay_amount\":0.07265697,\"amount_received\":0.0719951,\"pay_currency\":\"ltc\",\"order_id\":\"NP_698973643eccf_1770615652\",\"order_description\":\"Balance topup for 3060valorant@proton.me\",\"payin_extra_id\":null,\"ipn_callback_url\":\"https:\/\/panel.rlbmods.com\/api\/webhook\/nowpayments.php\",\"customer_email\":\"3060valorant@proton.me\",\"created_at\":\"2026-02-09T05:40:52.658Z\",\"updated_at\":\"2026-02-09T05:40:52.658Z\",\"purchase_id\":\"5034675840\",\"smart_contract\":null,\"network\":\"ltc\",\"network_precision\":null,\"time_limit\":null,\"burning_percent\":null,\"expiration_estimate_date\":\"2026-02-09T06:00:52.658Z\",\"is_fixed_rate\":false,\"is_fee_paid_by_user\":false,\"valid_until\":\"2026-02-16T05:40:52.658Z\",\"type\":\"crypto2crypto\",\"product\":\"api\",\"origin_ip\":\"2a02:4780:a:591:0:24f8:1568:1\"}"
+}
+[2026-02-09 05:40:52] Payment details extracted
+{
+    "payment_id": "5950723889",
+    "payment_address": "MUjQY7VbSm7qqUd3fdjY7Cuc8StarWZmvv",
+    "pay_amount": 0.07265697,
+    "pay_currency": "ltc",
+    "expiration_date": "2026-02-09T06:00:52.658Z"
+}
+[2026-02-09 05:40:52] Database columns found
+[
+    "id",
+    "user_id",
+    "order_id",
+    "amount",
+    "quantity",
+    "status",
+    "delivery_status",
+    "checkout_url",
+    "payment_method",
+    "crypto_address",
+    "gateway",
+    "transaction_id",
+    "created_at",
+    "updated_at",
+    "network_fee",
+    "gateway_fee",
+    "amount_received",
+    "confirmations",
+    "delivered_item",
+    "note",
+    "sell_key",
+    "expires_at",
+    "can_cancel"
+]
+[2026-02-09 05:40:52] Transaction saved to database
+{
+    "db_id": 327,
+    "order_id": "NP_698973643eccf_1770615652"
+}
+[2026-02-09 05:40:52] Payment creation completed successfully
+[2026-02-12 21:58:37] === NOWPAYMENTS PAYMENT CREATION STARTED ===
+[2026-02-12 21:58:37] User authenticated
+{
+    "user_id": 988
+}
+[2026-02-12 21:58:37] Validated input
+{
+    "amount": 4,
+    "quantity": 1,
+    "method": "ltc",
+    "note": ""
+}
+[2026-02-12 21:58:37] Retrieved user data
+{
+    "user_id": 988,
+    "email": "3060valorant@proton.me"
+}
+[2026-02-12 21:58:37] Prepared NowPayments payload
+{
+    "price_amount": 4,
+    "price_currency": "usd",
+    "pay_currency": "ltc",
+    "ipn_callback_url": "https:\/\/panel.rlbmods.com\/api\/webhook\/nowpayments.php",
+    "order_id": "NP_698e4d0dcecab_1770933517",
+    "order_description": "Balance topup for 3060valorant@proton.me",
+    "customer_email": "3060valorant@proton.me"
+}
+[2026-02-12 21:58:38] NowPayments API response
+{
+    "http_code": 201,
+    "curl_error": "",
+    "response": "{\"payment_id\":\"4402626024\",\"payment_status\":\"waiting\",\"pay_address\":\"MU9rzc7Ber9AURSiFscuf2CTTvgKQgapbV\",\"price_amount\":4,\"price_currency\":\"usd\",\"pay_amount\":0.07629037,\"amount_received\":0.0756104,\"pay_currency\":\"ltc\",\"order_id\":\"NP_698e4d0dcecab_1770933517\",\"order_description\":\"Balance topup for 3060valorant@proton.me\",\"payin_extra_id\":null,\"ipn_callback_url\":\"https:\/\/panel.rlbmods.com\/api\/webhook\/nowpayments.php\",\"customer_email\":\"3060valorant@proton.me\",\"created_at\":\"2026-02-12T21:58:38.196Z\",\"updated_at\":\"2026-02-12T21:58:38.196Z\",\"purchase_id\":\"6038901040\",\"smart_contract\":null,\"network\":\"ltc\",\"network_precision\":null,\"time_limit\":null,\"burning_percent\":null,\"expiration_estimate_date\":\"2026-02-12T22:18:38.196Z\",\"is_fixed_rate\":false,\"is_fee_paid_by_user\":false,\"valid_until\":\"2026-02-19T21:58:38.196Z\",\"type\":\"crypto2crypto\",\"product\":\"api\",\"origin_ip\":\"2a02:4780:a:591:0:24f8:1568:1\"}"
+}
+[2026-02-12 21:58:38] Payment details extracted
+{
+    "payment_id": "4402626024",
+    "payment_address": "MU9rzc7Ber9AURSiFscuf2CTTvgKQgapbV",
+    "pay_amount": 0.07629037,
+    "pay_currency": "ltc",
+    "expiration_date": "2026-02-12T22:18:38.196Z"
+}
+[2026-02-12 21:58:38] Database columns found
+[
+    "id",
+    "user_id",
+    "order_id",
+    "amount",
+    "quantity",
+    "status",
+    "delivery_status",
+    "checkout_url",
+    "payment_method",
+    "crypto_address",
+    "gateway",
+    "transaction_id",
+    "created_at",
+    "updated_at",
+    "network_fee",
+    "gateway_fee",
+    "amount_received",
+    "confirmations",
+    "delivered_item",
+    "note",
+    "sell_key",
+    "expires_at",
+    "can_cancel"
+]
+[2026-02-12 21:58:38] Transaction saved to database
+{
+    "db_id": 329,
+    "order_id": "NP_698e4d0dcecab_1770933517"
+}
+[2026-02-12 21:58:38] Payment creation completed successfully
