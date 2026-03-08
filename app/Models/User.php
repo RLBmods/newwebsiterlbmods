@@ -68,9 +68,9 @@ class User extends Authenticatable implements MustVerifyEmail
             'muted' => 'boolean',
             'last_login_at' => 'datetime',
             'last_activity_at' => 'datetime',
-            'balance' => 'decimal:2',
+            'balance' => 'float',
             'otp_expires_at' => 'datetime',
-            'reseller_discount' => 'decimal:2',
+            'reseller_discount' => 'float',
             'known_ips' => 'array',
         ];
     }

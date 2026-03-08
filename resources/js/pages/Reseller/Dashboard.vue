@@ -126,7 +126,7 @@ const handleTopup = async () => {
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground/50">Available Credits</p>
-                            <p class="mt-4 text-4xl font-black text-white tracking-tight">${{ stats.balance.toFixed(2) }}</p>
+                            <p class="mt-4 text-4xl font-black text-white tracking-tight">${{ Number(stats.balance).toFixed(2) }}</p>
                             <Button 
                                 @click="isTopupModalOpen = true"
                                 variant="outline" 
@@ -246,7 +246,7 @@ const handleTopup = async () => {
                                         </div>
                                     </div>
                                     <div class="text-right">
-                                        <p class="text-sm font-black text-emerald-400">-${{ parseFloat(purchase.amount_paid).toFixed(2) }}</p>
+                                        <p class="text-sm font-black text-emerald-400">-${{ Number(purchase.amount_paid).toFixed(2) }}</p>
                                         <p class="text-[9px] font-black uppercase text-muted-foreground/50">Credits</p>
                                     </div>
                                 </div>

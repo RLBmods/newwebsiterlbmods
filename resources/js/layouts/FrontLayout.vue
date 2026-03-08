@@ -18,7 +18,7 @@ import {
     Minus,
     ArrowRight
 } from 'lucide-vue-next';
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted, watch } from 'vue';
 import { Button } from '@/components/ui/button';
 import { 
     Sheet, 
@@ -32,7 +32,15 @@ import { useCart } from '@/composables/useCart';
 
 const isMenuOpen = ref(false);
 const isScrolled = ref(false);
-const { cart, removeFromCart, updateQuantity, cartCount, cartTotal } = useCart();
+const page = usePage();
+const { cart, removeFromCart, updateQuantity, cartCount, cartTotal, clearCart } = useCart();
+
+// Watch for clear_cart signal from backend
+watch(() => page.props.flash, (flash: any) => {
+    if (flash && flash.clear_cart) {
+        clearCart();
+    }
+}, { deep: true });
 
 const handleScroll = () => {
     isScrolled.value = window.scrollY > 20;

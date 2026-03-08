@@ -204,7 +204,7 @@ const handleNowPaymentsCheckout = () => {
                                     </div>
                                 </div>
                                 <div class="text-right">
-                                    <p class="text-lg font-black text-white italic">${{ (item.price * item.quantity).toFixed(2) }}</p>
+                                    <p class="text-lg font-black text-white italic">${{ Number(item.price * item.quantity).toFixed(2) }}</p>
                                 </div>
                             </div>
                         </div>
@@ -212,7 +212,7 @@ const handleNowPaymentsCheckout = () => {
                         <div v-if="cart.length > 0" class="p-10 rounded-[3rem] bg-white/2 border border-white/5 space-y-6">
                             <div class="flex items-center justify-between text-muted-foreground">
                                 <span class="text-xs font-black uppercase tracking-widest">Subtotal</span>
-                                <span class="text-sm font-bold">${{ cartTotal.toFixed(2) }}</span>
+                                <span class="text-sm font-bold">${{ Number(cartTotal).toFixed(2) }}</span>
                             </div>
                             <div class="flex items-center justify-between text-muted-foreground">
                                 <span class="text-xs font-black uppercase tracking-widest">Processing Fee</span>
@@ -221,7 +221,7 @@ const handleNowPaymentsCheckout = () => {
                             <div class="h-px bg-white/5"></div>
                             <div class="flex items-center justify-between">
                                 <span class="text-sm font-black uppercase tracking-widest text-white">Grand Total</span>
-                                <span class="text-4xl font-black text-brand-primary italic">${{ cartTotal.toFixed(2) }}</span>
+                                <span class="text-4xl font-black text-brand-primary italic">${{ Number(cartTotal).toFixed(2) }}</span>
                             </div>
                         </div>
                     </div>

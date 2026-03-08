@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\Mail;
 
 class Purchase extends Model
 {
+    /**
+     * Ensure that model hooks (like 'created') only fire after the transaction is fully committed.
+     * This prevents duplicate emails if multiple processes hit simultaneously.
+     */
+    public $afterCommit = true;
+
     protected $fillable = [
         'order_id',
         'user_id',
@@ -15,6 +21,8 @@ class Purchase extends Model
         'amount_paid',
         'payment_method',
         'status',
+        'license_key',
+        'checkout_order_id',
     ];
 
     /**

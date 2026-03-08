@@ -52,6 +52,7 @@ class HandleInertiaRequests extends Middleware
                 'error' => $request->session()->get('error'),
                 'keys' => $request->session()->get('keys'),
                 'product_name' => $request->session()->get('product_name'),
+                'clear_cart' => $request->session()->get('clear_cart'),
             ],
             'settings' => [
                 'site_name' => setting('site_name', config('app.name')),

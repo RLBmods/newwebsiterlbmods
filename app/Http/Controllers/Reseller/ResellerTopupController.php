@@ -8,6 +8,7 @@ use Inertia\Inertia;
 use App\Models\CheckoutOrder;
 use App\Services\NowPaymentsService;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 
 class ResellerTopupController extends Controller
 {
@@ -62,8 +63,9 @@ class ResellerTopupController extends Controller
                 'orderRef' => $checkoutOrder->order_ref,
             ]);
         } catch (\Exception $e) {
-            \Log::error('Reseller Topup Error: ' . $e->getMessage(), [
+            Log::error('Reseller Topup Error: ' . $e->getMessage(), [
                 'user_id' => $user->id,
+                'trace' => $e->getTraceAsString()
             ]);
             return response()->json(['message' => 'Failed to create payment: ' . $e->getMessage()], 500);
         }

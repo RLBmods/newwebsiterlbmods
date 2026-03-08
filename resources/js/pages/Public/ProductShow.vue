@@ -180,9 +180,7 @@ const getCurrentMenuImage = computed(() => {
                                         <span :class="['text-sm font-black uppercase tracking-widest', selectedPrice?.id === price.id ? 'text-white' : 'text-white']">{{ formatDuration(price.duration, price.duration_type) }}</span>
                                         <span :class="['text-[10px] font-bold uppercase tracking-widest', selectedPrice?.id === price.id ? 'text-white/60' : 'text-muted-foreground/40']">{{ price.stock }} in stock</span>
                                     </div>
-                                    <div :class="['text-xl font-black italic', selectedPrice?.id === price.id ? 'text-white' : 'text-white']">
-                                        ${{ (price.price || 0).toFixed(2) }}
-                                    </div>
+                                        ${{ Number(price.price || 0).toFixed(2) }}
                                 </div>
 
                                 <Button 

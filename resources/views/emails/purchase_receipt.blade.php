@@ -218,6 +218,15 @@
                     </div>
                 </div>
 
+                @if($purchase->license_key)
+                <div class="summary-card" style="border-color: rgba(251, 191, 36, 0.4); background: rgba(251, 191, 36, 0.05);">
+                    <div class="summary-label" style="color: #fbbf24; margin-bottom: 8px;">License Key</div>
+                    <div class="summary-value" style="font-family: 'Courier New', monospace; font-size: 16px; color: #ffffff; background: rgba(0,0,0,0.3); padding: 12px; border-radius: 8px; border: 1px solid rgba(251, 191, 36, 0.2); text-align: center; letter-spacing: 1px;">
+                        {{ $purchase->license_key }}
+                    </div>
+                </div>
+                @endif
+
                 <div class="info">
                     <p>
                         <strong>What happens next?</strong><br>

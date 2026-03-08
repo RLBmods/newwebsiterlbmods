@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class PaytabsService
 {
@@ -16,9 +17,10 @@ class PaytabsService
         ])->post($baseUrl . '/payment/request', $payload);
 
         if (! $response->successful()) {
-            \Log::error('PayTabs API Error', [
+            Log::error('PayTabs API Error', [
                 'status' => $response->status(),
-                'body' => $response->body()
+                'body' => $response->body(),
+                'payload' => $payload
             ]);
             throw new \RuntimeException('PayTabs error: HTTP '.$response->status());
         }
@@ -26,7 +28,10 @@ class PaytabsService
         $data = $response->json();
 
         if (! $data || empty($data['redirect_url'])) {
-            \Log::error('Invalid PayTabs response', ['response' => $data]);
+            Log::error('Invalid PayTabs response', [
+                'response' => $data,
+                'payload' => $payload
+            ]);
             throw new \RuntimeException('Invalid PayTabs response: redirect_url missing');
         }
 
@@ -46,7 +51,7 @@ class PaytabsService
         ]);
 
         if (! $response->successful()) {
-            \Log::error('PayTabs Verify API Error', [
+            Log::error('PayTabs Verify API Error', [
                 'status' => $response->status(),
                 'body' => $response->body(),
                 'tran_ref' => $tranRef

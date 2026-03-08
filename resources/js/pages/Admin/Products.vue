@@ -321,7 +321,7 @@ const getStatusColorClass = (status: string | null | undefined) => {
                             <Package v-else class="h-12 w-12 text-white/20 group-hover:scale-110 transition-transform" />
                             <div class="absolute top-4 right-4 px-2.5 py-1 rounded-lg bg-black/50 backdrop-blur-md border border-white/10 flex items-center gap-1.5">
                                 <Tag class="h-3 w-3 text-brand-primary" />
-                                <span class="text-sm font-black text-white italic">${{ product.price.toFixed(2) }}</span>
+                                <span class="text-sm font-black text-white italic">${{ Number(product.price).toFixed(2) }}</span>
                             </div>
                             <div class="absolute bottom-4 left-4">
                                 <Badge variant="outline" :class="getStatusColorClass(product.public_status)">

@@ -40,7 +40,7 @@ class Product extends Model
     protected function casts(): array
     {
         return [
-            'price' => 'decimal:2',
+            'price' => 'float',
             'status' => 'integer',
             'reseller_can_sell' => 'boolean',
             'license_level' => 'integer',

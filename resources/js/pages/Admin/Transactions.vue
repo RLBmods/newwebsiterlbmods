@@ -188,7 +188,7 @@ const formatDetails = (details: string ) => {
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right">
                                         <span class="text-sm font-black tracking-tight" :class="txn.amount < 0 ? 'text-red-400' : 'text-emerald-400'">
-                                            {{ txn.amount < 0 ? '-' : '+' }}${{ Math.abs(txn.amount).toFixed(2) }}
+                                            {{ txn.amount < 0 ? '-' : '+' }}${{ Number(Math.abs(txn.amount)).toFixed(2) }}
                                         </span>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
@@ -258,7 +258,7 @@ const formatDetails = (details: string ) => {
                         <div class="space-y-1">
                             <p class="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">Amount</p>
                             <p class="text-sm font-bold italic" :class="selectedTransaction.amount < 0 ? 'text-red-400' : 'text-emerald-400'">
-                                ${{ selectedTransaction.amount.toFixed(2) }}
+                                ${{ Number(selectedTransaction.amount).toFixed(2) }}
                             </p>
                         </div>
                         <div class="space-y-1">

@@ -23,6 +23,7 @@ class CheckoutOrder extends Model
     protected $casts = [
         'items' => 'array',
         'meta' => 'array',
+        'total_amount' => 'float',
         'processed_at' => 'datetime',
     ];
 }

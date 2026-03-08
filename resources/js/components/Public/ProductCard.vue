@@ -72,7 +72,7 @@ const getStatusColor = (status: string) => {
                     <span class="text-[10px] font-black uppercase tracking-widest text-muted-foreground/40 leading-none mb-1">starting at</span>
                     <div class="flex items-center gap-1 text-white font-black text-xl leading-none">
                         <span class="text-xs font-bold text-muted-foreground/50">$</span>
-                        {{ product.price.toFixed(2) }}
+                        {{ Number(product.price).toFixed(2) }}
                     </div>
                 </div>
             </div>
@@ -82,7 +82,7 @@ const getStatusColor = (status: string) => {
             <!-- Durations / Prices -->
             <div v-if="((product.prices as any)?.data || product.prices || []).length > 0" class="flex flex-wrap gap-2">
                 <div v-for="price in ((product.prices as any)?.data || product.prices || [])" :key="price.id" class="px-3 py-1.5 rounded-xl bg-white/5 border border-white/5 text-[9px] font-black uppercase tracking-widest text-white/70 group-hover:border-brand-primary/20 transition-colors">
-                    {{ formatDuration(price.duration, price.duration_type) }} - ${{ (price.price || 0).toFixed(2) }}
+                    {{ formatDuration(price.duration, price.duration_type) }} - ${{ Number(price.price || 0).toFixed(2) }}
                 </div>
             </div>
             <div v-else class="inline-flex px-3 py-1 rounded-lg bg-brand-primary/10 border border-brand-primary/20 text-brand-primary font-black uppercase text-[9px] tracking-widest">

@@ -12,6 +12,18 @@ class ProductPrice extends Model
         'duration_type',
         'price',
     ];
+    
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'price' => 'float',
+        ];
+    }
 
     public function product()
     {

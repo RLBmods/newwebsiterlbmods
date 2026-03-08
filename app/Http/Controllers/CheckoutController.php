@@ -11,10 +11,20 @@ use App\Models\CheckoutOrder;
 use App\Models\User;
 use App\Services\PaytabsService;
 use App\Services\NowPaymentsService;
+use App\Models\Transaction;
+use App\Notifications\GeneralNotification;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 
 class CheckoutController extends Controller
 {
+    protected $licenseProvider;
+
+    public function __construct(\App\Services\LicenseProviderService $licenseProvider)
+    {
+        $this->licenseProvider = $licenseProvider;
+    }
+
     /**
      * Display the checkout page.
      */
@@ -206,63 +216,119 @@ class CheckoutController extends Controller
             return redirect()->route('checkout')->withErrors(['message' => 'Missing payment reference.']);
         }
 
-        // Find the order by its external reference (tran_ref)
-        $checkoutOrder = CheckoutOrder::where('external_id', (string) $tranRef)->first();
-
-        // If not found by external_id, try by the cart_id (which we store in order_ref) if provided
-        if (! $checkoutOrder && $request->has('cartId')) {
-             $checkoutOrder = CheckoutOrder::where('order_ref', $request->input('cartId'))->first();
-        }
-
-        if (! $checkoutOrder) {
-            \Log::error('PayTabs Order Not Found', ['tranRef' => $tranRef, 'all' => $request->all()]);
-            return redirect()->route('checkout')->withErrors(['message' => 'Order not found for this payment.']);
-        }
-
-        // Idempotency: if already processed (maybe by IPN/webhook already), just redirect
-        if ($checkoutOrder->processed_at) {
-            session()->forget('checkout_paytabs');
-            return redirect()->route('purchases.index')->with('success', 'Your order has been completed.');
-        }
-
+        // Use a transaction and lock the order to prevent duplicate processing (idempotency)
         try {
-            $result = $paytabs->verifyPayment($tranRef);
+            return \Illuminate\Support\Facades\DB::transaction(function () use ($tranRef, $paytabs) {
+                // Find and lock the order
+                $checkoutOrder = CheckoutOrder::where('external_id', (string) $tranRef)->lockForUpdate()->first();
+
+                if (! $checkoutOrder) {
+                    Log::error('PayTabs Order Not Found during lock', ['tranRef' => $tranRef]);
+                    return redirect()->route('checkout')->withErrors(['message' => 'Order not found for this payment.']);
+                }
+
+                // Idempotency: if already processed, skip duplication
+                if ($checkoutOrder->processed_at) {
+                    session()->forget('checkout_paytabs');
+                    session()->flash('clear_cart', true);
+                    return redirect()->route('purchases.index')->with('success', 'Your order has been completed.');
+                }
+
+                $result = $paytabs->verifyPayment($tranRef);
+                $status = $result['payment_result']['response_status'] ?? null;
+
+                if ($status !== 'A') {
+                    Log::warning('PayTabs Payment Not Successful', ['tranRef' => $tranRef, 'status' => $status]);
+                    return redirect()->route('checkout')->withErrors(['message' => 'Payment was not successful.']);
+                }
+
+                // Process order (Create purchases)
+                foreach ($checkoutOrder->items as $item) {
+                    $product = Product::find($item['product_id']);
+                    if (! $product) {
+                        Log::warning('Product not found in PayTabs completion', ['product_id' => $item['product_id']]);
+                        continue;
+                    }
+
+                    // Strict Idempotency: skip if purchase already exists for this order/product
+                    $exists = Purchase::where('checkout_order_id', $checkoutOrder->id)
+                        ->where('product_id', $product->id)
+                        ->exists();
+                    
+                    if ($exists) {
+                        Log::info('Purchase already exists for this order item', ['order' => $checkoutOrder->id, 'product' => $product->id]);
+                        continue;
+                    }
+
+                    $purchase = Purchase::create([
+                        'user_id' => $checkoutOrder->user_id,
+                        'product_id' => $product->id,
+                        'amount_paid' => $item['amount'] ?? 0,
+                        'payment_method' => 'paytabs',
+                        'status' => 'completed',
+                        'checkout_order_id' => $checkoutOrder->id,
+                    ]);
+
+                    // Generate License Key
+                    $this->triggerLicenseGeneration($purchase, $item, $checkoutOrder);
+                }
+
+                $checkoutOrder->update([
+                    'status' => 'completed',
+                    'processed_at' => now(),
+                ]);
+
+                session()->forget('checkout_paytabs');
+                session()->flash('clear_cart', true);
+                
+                Log::info('PayTabs Return: Order processed and redirecting to purchases', ['order_id' => $checkoutOrder->id]);
+                return redirect()->route('purchases.index')->with('success', 'Payment successful!');
+            });
         } catch (\Throwable $e) {
-            \Log::error('PayTabs Verification Failed on Redirect', ['tranRef' => $tranRef, 'error' => $e->getMessage()]);
-            return redirect()->route('checkout')->withErrors(['message' => 'Failed to verify payment: '.$e->getMessage()]);
+            Log::error('PayTabs Completion Error: ' . $e->getMessage(), ['trace' => $e->getTraceAsString()]);
+            // Still try to clear the cart if we suspect the payment might have actually gone through
+            session()->flash('clear_cart', true);
+            return redirect()->route('purchases.index')->with('success', 'Your order is being processed.');
         }
+    }
 
-        $status = $result['payment_result']['response_status'] ?? null;
+    /**
+     * Helper to handle license generation logic.
+     */
+    protected function triggerLicenseGeneration($purchase, $item, $checkoutOrder)
+    {
+        try {
+            if (isset($item['price_id'])) {
+                $priceRecord = ProductPrice::find($item['price_id']);
+                if ($priceRecord) {
+                    $keys = $this->licenseProvider->generate(
+                        $purchase->product,
+                        $priceRecord->duration,
+                        $priceRecord->duration_type,
+                        1,
+                        $checkoutOrder->user->name ?? 'System'
+                    );
 
-        if ($status !== 'A') {
-            \Log::warning('PayTabs Payment Not Successful', ['tranRef' => $tranRef, 'status' => $status, 'result' => $result]);
-            return redirect()->route('checkout')->withErrors(['message' => 'Payment was not successful (Status: '.$status.').']);
-        }
-
-        // Process order (Create purchases)
-        foreach ($checkoutOrder->items as $item) {
-            $product = Product::find($item['product_id']);
-            if (! $product) {
-                continue;
+                    if (!empty($keys)) {
+                        $keyData = $keys[0];
+                        \App\Models\License::create([
+                            'user_id' => $checkoutOrder->user_id,
+                            'product_id' => $purchase->product_id,
+                            'license_key' => $keyData['key'],
+                            'duration' => $priceRecord->duration,
+                            'duration_type' => $priceRecord->duration_type,
+                            'expires_at' => $keyData['expires_at'],
+                            'generated_by' => 'Auto-Checkout',
+                            'status' => 'active',
+                        ]);
+                        $purchase->update(['license_key' => $keyData['key']]);
+                        $this->grantProductAccess($checkoutOrder->user, $purchase->product);
+                    }
+                }
             }
-
-            Purchase::create([
-                'user_id' => $checkoutOrder->user_id,
-                'product_id' => $product->id,
-                'amount_paid' => $item['amount'],
-                'payment_method' => 'paytabs',
-                'status' => 'completed',
-            ]);
+        } catch (\Exception $e) {
+            Log::error('Auto License Generation Failed: ' . $e->getMessage());
         }
-
-        $checkoutOrder->update([
-            'status' => 'completed',
-            'processed_at' => now(),
-        ]);
-
-        session()->forget('checkout_paytabs');
-
-        return redirect()->route('purchases.index')->with('success', 'Payment successful! Your order has been completed.');
     }
 
     /**
@@ -369,69 +435,88 @@ class CheckoutController extends Controller
             return response()->json(['message' => 'Missing order_id'], 422);
         }
 
-        $checkoutOrder = CheckoutOrder::where('order_ref', $orderRef)->first();
-        if (! $checkoutOrder) {
-            return response()->json(['message' => 'Order not found'], 404);
-        }
-
-        $mapped = $nowPayments->mapStatus($paymentStatus);
-
-        // Always update status/meta
-        $meta = $checkoutOrder->meta ?? [];
-        $meta['nowpayments_ipn'] = $payload;
-
-        $checkoutOrder->status = $mapped;
-        $checkoutOrder->external_id = (string) ($payload['payment_id'] ?? $payload['invoice_id'] ?? $checkoutOrder->external_id);
-        $checkoutOrder->meta = $meta;
-        $checkoutOrder->save();
-
-        // Idempotency: only process once
-        if ($checkoutOrder->processed_at) {
-            return response()->json(['ok' => true]);
-        }
-
-        if ($mapped !== 'completed') {
-            return response()->json(['ok' => true]);
-        }
-
-        // Handle Top-up logic
-        if (($checkoutOrder->meta['type'] ?? '') === 'topup') {
-            $user = User::find($checkoutOrder->user_id);
-            if ($user) {
-                $user->increment('balance', $checkoutOrder->total_amount);
-                
-                \App\Models\Transaction::create([
-                    'user_id' => $user->id,
-                    'amount' => $checkoutOrder->total_amount,
-                    'status' => 'completed',
-                    'payment_method' => 'nowpayments',
-                    'details' => 'Account top-up via ' . $checkoutOrder->provider,
-                ]);
-
-                \Log::info("User {$user->id} account topped up with {$checkoutOrder->total_amount}");
-            }
-        } else {
-            // Standard product purchase logic
-            foreach ($checkoutOrder->items as $item) {
-                $product = Product::find($item['product_id']);
-                if (! $product) {
-                    continue;
+        try {
+            return \Illuminate\Support\Facades\DB::transaction(function () use ($payload, $orderRef, $paymentStatus, $nowPayments) {
+                $checkoutOrder = CheckoutOrder::where('order_ref', $orderRef)->lockForUpdate()->first();
+                if (! $checkoutOrder) {
+                    return response()->json(['message' => 'Order not found'], 404);
                 }
 
-                Purchase::create([
-                    'user_id' => $checkoutOrder->user_id,
-                    'product_id' => $product->id,
-                    'amount_paid' => $item['amount'],
-                    'payment_method' => 'nowpayments',
-                    'status' => 'completed',
-                ]);
-            }
+                $mapped = $nowPayments->mapStatus($paymentStatus);
+
+                // Always update status/meta
+                $meta = $checkoutOrder->meta ?? [];
+                $meta['nowpayments_ipn_latest'] = $payload;
+
+                $checkoutOrder->status = $mapped;
+                $checkoutOrder->external_id = (string) ($payload['payment_id'] ?? $payload['invoice_id'] ?? $checkoutOrder->external_id);
+                $checkoutOrder->meta = $meta;
+                $checkoutOrder->save();
+
+                // Idempotency: only process once
+                if ($checkoutOrder->processed_at) {
+                    return response()->json(['ok' => true]);
+                }
+
+                if ($mapped !== 'completed') {
+                    return response()->json(['ok' => true]);
+                }
+
+                // Handle Top-up logic
+                if (($checkoutOrder->meta['type'] ?? '') === 'topup') {
+                    $user = User::find($checkoutOrder->user_id);
+                    if ($user) {
+                        $user->increment('balance', $checkoutOrder->total_amount);
+                        
+                        \App\Models\Transaction::create([
+                            'user_id' => $user->id,
+                            'amount' => $checkoutOrder->total_amount,
+                            'status' => 'completed',
+                            'payment_method' => 'nowpayments',
+                            'details' => 'Account top-up via ' . $checkoutOrder->provider,
+                        ]);
+
+                        \Log::info("User {$user->id} account topped up with {$checkoutOrder->total_amount}");
+                    }
+                } else {
+                    // Standard product purchase logic
+                    foreach ($checkoutOrder->items as $item) {
+                        $product = Product::find($item['product_id']);
+                        if (! $product) {
+                            continue;
+                        }
+
+                        // Strict Idempotency: check if purchase already exists
+                        $exists = Purchase::where('checkout_order_id', $checkoutOrder->id)
+                            ->where('product_id', $product->id)
+                            ->exists();
+                        
+                        if ($exists) {
+                            continue;
+                        }
+
+                        $purchase = Purchase::create([
+                            'user_id' => $checkoutOrder->user_id,
+                            'product_id' => $product->id,
+                            'amount_paid' => $item['amount'] ?? 0,
+                            'payment_method' => 'nowpayments',
+                            'status' => 'completed',
+                            'checkout_order_id' => $checkoutOrder->id,
+                        ]);
+
+                        $this->triggerLicenseGeneration($purchase, $item, $checkoutOrder);
+                    }
+                }
+
+                $checkoutOrder->processed_at = now();
+                $checkoutOrder->save();
+
+                return response()->json(['ok' => true]);
+            });
+        } catch (\Throwable $e) {
+            Log::error('NOWPayments IPN Exception: ' . $e->getMessage(), ['trace' => $e->getTraceAsString()]);
+            return response()->json(['error' => $e->getMessage()], 500);
         }
-
-        $checkoutOrder->processed_at = now();
-        $checkoutOrder->save();
-
-        return response()->json(['ok' => true]);
     }
 
     /**
@@ -440,7 +525,7 @@ class CheckoutController extends Controller
     public function paytabsIpn(Request $request, PaytabsService $paytabs)
     {
         $payload = $request->all();
-        \Log::info('PayTabs IPN Received', $payload);
+        Log::info('PayTabs IPN Received', $payload);
 
         $tranRef = $payload['tran_ref'] ?? null;
         $cartId = $payload['cart_id'] ?? null;
@@ -452,74 +537,69 @@ class CheckoutController extends Controller
 
         try {
             \Log::info('Verifying PayTabs payment', ['tran_ref' => $tranRef]);
-            $result = $paytabs->verifyPayment($tranRef);
-            
-            $status = $result['payment_result']['response_status'] ?? null;
-            if ($status !== 'A') {
-                \Log::warning('PayTabs IPN: Payment not authorized', [
-                    'tran_ref' => $tranRef, 
-                    'status' => $status,
-                    'full_result' => $result
-                ]);
-                return response()->json(['message' => 'Payment not authorized'], 400);
-            }
 
-            $checkoutOrder = CheckoutOrder::where('external_id', (string) $tranRef)
-                ->orWhere('order_ref', (string) $cartId)
-                ->first();
+            return \Illuminate\Support\Facades\DB::transaction(function () use ($tranRef, $cartId, $paytabs, $payload) {
+                $checkoutOrder = CheckoutOrder::where('external_id', (string) $tranRef)
+                    ->orWhere('order_ref', (string) $cartId)
+                    ->lockForUpdate()
+                    ->first();
 
-            if (!$checkoutOrder) {
-                \Log::error('PayTabs IPN Error: Order not found in database', [
-                    'tran_ref' => $tranRef, 
-                    'cart_id' => $cartId,
-                    'payload' => $payload
-                ]);
-                return response()->json(['message' => 'Order not found'], 404);
-            }
-
-            if ($checkoutOrder->processed_at) {
-                \Log::info('PayTabs IPN: Order already processed', ['order_id' => $checkoutOrder->id]);
-                return response()->json(['ok' => true]);
-            }
-
-            // Important: Use user from order if auth is null (IPN has no session)
-            $userId = $checkoutOrder->user_id;
-
-            foreach ($checkoutOrder->items as $item) {
-                $product = Product::find($item['product_id']);
-                if (!$product) {
-                    \Log::warning('PayTabs IPN: Product not found during purchase creation', ['product_id' => $item['product_id']]);
-                    continue;
+                if (!$checkoutOrder) {
+                    Log::error('PayTabs IPN Error: Order not found');
+                    return response()->json(['message' => 'Order not found'], 404);
                 }
 
-                Purchase::create([
-                    'user_id' => $userId,
-                    'product_id' => $product->id,
-                    'amount_paid' => $item['amount'] ?? 0,
-                    'payment_method' => 'paytabs',
+                if ($checkoutOrder->processed_at) {
+                    return response()->json(['ok' => true]);
+                }
+
+                $result = $paytabs->verifyPayment($tranRef);
+                $status = $result['payment_result']['response_status'] ?? null;
+                
+                if ($status !== 'A') {
+                    return response()->json(['message' => 'Not authorized'], 400);
+                }
+
+                foreach ($checkoutOrder->items as $item) {
+                    $product = Product::find($item['product_id']);
+                    if (!$product) continue;
+
+                    // Strict Idempotency: check if purchase already exists
+                    $exists = Purchase::where('checkout_order_id', $checkoutOrder->id)
+                        ->where('product_id', $product->id)
+                        ->exists();
+                    
+                    if ($exists) {
+                        continue;
+                    }
+
+                    $purchase = Purchase::create([
+                        'user_id' => $checkoutOrder->user_id,
+                        'product_id' => $product->id,
+                        'amount_paid' => $item['amount'] ?? 0,
+                        'payment_method' => 'paytabs',
+                        'status' => 'completed',
+                        'checkout_order_id' => $checkoutOrder->id,
+                    ]);
+
+                    $this->triggerLicenseGeneration($purchase, $item, $checkoutOrder);
+                }
+
+                $checkoutOrder->update([
                     'status' => 'completed',
+                    'processed_at' => now(),
                 ]);
-            }
 
-            $checkoutOrder->update([
-                'status' => 'completed',
-                'processed_at' => now(),
-                'external_id' => (string) $tranRef
-            ]);
+                // Send Notification
+                try {
+                    $user = User::find($checkoutOrder->user_id);
+                    if ($user) {
+                        $user->notify(new \App\Notifications\GeneralNotification('Your payment of ' . $checkoutOrder->total_amount . ' ' . $checkoutOrder->currency . ' was successful!'));
+                    }
+                } catch (\Throwable $ne) {}
 
-            \Log::info('PayTabs IPN: Order processed successfully', ['order_id' => $checkoutOrder->id]);
-            
-            // Send Notification (resiliently)
-            try {
-                $user = User::find($userId);
-                if ($user) {
-                    $user->notify(new \App\Notifications\GeneralNotification('Your payment of ' . $checkoutOrder->total_amount . ' ' . $checkoutOrder->currency . ' was successful!'));
-                }
-            } catch (\Throwable $ne) {
-                \Log::error('Failed to send IPN notification: ' . $ne->getMessage());
-            }
-
-            return response()->json(['ok' => true]);
+                return response()->json(['ok' => true]);
+            });
 
         } catch (\Throwable $e) {
             \Log::error('PayTabs IPN Exception: ' . $e->getMessage(), [

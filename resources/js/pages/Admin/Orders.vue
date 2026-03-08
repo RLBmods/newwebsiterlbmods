@@ -88,7 +88,7 @@ const getStatusColor = (status: string) => {
                                     </td>
                                     <td class="px-6 py-4">
                                         <div class="flex flex-col">
-                                            <span class="font-black text-brand-primary italic">${{ order.amount.toFixed(2) }}</span>
+                                            <span class="font-black text-brand-primary italic">${{ Number(order.amount).toFixed(2) }}</span>
                                             <span class="text-[10px] text-muted-foreground uppercase tracking-widest flex items-center gap-1">
                                                 <CreditCard class="h-2.5 w-2.5" />
                                                 {{ order.payment_method }}
